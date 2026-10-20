@@ -1,0 +1,159 @@
+{
+ "fecha": "2026-10-19_2212",
+ "etiqueta": "windows",
+ "sistema": "win32",
+ "equipo": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "nucleos": 16,
+  "memoria_gb": 62,
+  "so": "Windows 11 Pro (10.0.26200)",
+  "gpu": "AMD Radeon(TM) Graphics; NVIDIA GeForce RTX 5070",
+  "node": "v22.19.0",
+  "ffmpeg": "ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "python": "3.13.2"
+ },
+ "modo_render": "beginFrame",
+ "prueba_completa": {
+  "pasa": true,
+  "s": 60.3
+ },
+ "corridas": [
+  {
+   "corrida": 1,
+   "maquina_s": 47.1,
+   "construir_s": 0.11,
+   "vista_s": 1.6,
+   "final_s": 45.4,
+   "etapas_s": {
+    "vista": 1.5,
+    "musica": 16.8,
+    "render": 24.9,
+    "mezcla": 13.7,
+    "verificar_musica": 7.9,
+    "verificar_audio": 2.7,
+    "cortes": 5.8
+   },
+   "check_audio": [
+    "43.1333 s: PASA",
+    "67.5 s: PASA"
+   ],
+   "medir_pista": "PASA",
+   "cortes_fuera_del_plan": 0,
+   "md5_video_mudo": "b937b3e5af3becc8ad66d138f3a1dc85",
+   "duracion_video_s": 90.23333333333333
+  },
+  {
+   "corrida": 2,
+   "maquina_s": 46.8,
+   "construir_s": 0.11,
+   "vista_s": 1.6,
+   "final_s": 45,
+   "etapas_s": {
+    "vista": 1.5,
+    "musica": 16.7,
+    "render": 25,
+    "mezcla": 13.4,
+    "verificar_musica": 7.9,
+    "verificar_audio": 2.8,
+    "cortes": 5.8
+   },
+   "check_audio": [
+    "43.1333 s: PASA",
+    "67.5 s: PASA"
+   ],
+   "medir_pista": "PASA",
+   "cortes_fuera_del_plan": 0,
+   "md5_video_mudo": "b937b3e5af3becc8ad66d138f3a1dc85",
+   "duracion_video_s": 90.23333333333333
+  },
+  {
+   "corrida": 3,
+   "maquina_s": 47.1,
+   "construir_s": 0.12,
+   "vista_s": 1.6,
+   "final_s": 45.4,
+   "etapas_s": {
+    "vista": 1.5,
+    "musica": 16.7,
+    "render": 24.7,
+    "mezcla": 13.8,
+    "verificar_musica": 7.9,
+    "verificar_audio": 2.8,
+    "cortes": 5.8
+   },
+   "check_audio": [
+    "43.1333 s: PASA",
+    "67.5 s: PASA"
+   ],
+   "medir_pista": "PASA",
+   "cortes_fuera_del_plan": 0,
+   "md5_video_mudo": "b937b3e5af3becc8ad66d138f3a1dc85",
+   "duracion_video_s": 90.23333333333333
+  }
+ ],
+ "determinista": true,
+ "igual_a_linux": false,
+ "ssim_contra_linux": 0.997705,
+ "maquina_mediana_s": 47.1,
+ "render_mediana_s": 24.9,
+ "agente_s": [
+  72.1,
+  76,
+  69.2
+ ],
+ "agente_mediana_s": 72.1,
+ "punta_a_punta_s": 119.2,
+ "nube_2vcpu_s": 257.4,
+ "mac_m5_s": 110.7,
+ "jueces_pasan": true,
+ "gpu": {
+  "codificador": "h264_nvenc",
+  "probados": [
+   "h264_nvenc",
+   "h264_qsv",
+   "h264_amf"
+  ],
+  "refs": {
+   "ref20": {
+    "duracion_s": 20,
+    "cpu_s": [
+     12.1,
+     10.4,
+     11.7
+    ],
+    "gpu_s": [
+     15.1,
+     17.2,
+     15.5
+    ],
+    "cpu_mediana_s": 11.7,
+    "gpu_mediana_s": 15.5,
+    "cambio_pct": 32.8,
+    "ssim_gpu_contra_cpu": 0.998454,
+    "kb_cpu": 5632,
+    "kb_gpu": 3866,
+    "tasa_bits_bps": 2306954
+   },
+   "ref90": {
+    "duracion_s": 90,
+    "cpu_s": [
+     26.9,
+     28.5,
+     27.3
+    ],
+    "gpu_s": [
+     37.2,
+     37.1,
+     34.6
+    ],
+    "cpu_mediana_s": 27.3,
+    "gpu_mediana_s": 37.1,
+    "cambio_pct": 35.9,
+    "ssim_gpu_contra_cpu": 0.996592,
+    "kb_cpu": 18745,
+    "kb_gpu": 11846,
+    "tasa_bits_bps": 1706232
+   }
+  }
+ }
+}

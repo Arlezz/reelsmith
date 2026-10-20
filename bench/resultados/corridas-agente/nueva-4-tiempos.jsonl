@@ -1,0 +1,16 @@
+{"v": 1, "tipo": "marca", "etapa": "pedido", "t": 1792389838.312, "nota": null}
+{"v": 1, "tipo": "marca", "etapa": "contenido", "t": 1792389844.143, "nota": null}
+{"v": 1, "tipo": "marca", "etapa": "preguntas", "t": 1792389869.248, "nota": null}
+{"v": 1, "tipo": "marca", "etapa": "guion", "t": 1792389869.295, "nota": null}
+{"v":1,"tipo":"maquina","etapa":"vista","t0":1792389923.636,"t1":1792389927.38,"s":3.744,"pid":6554,"datos":{"cuadros_pedidos":36,"cuadros_dibujados":36,"escala":0.5,"hojas":3,"escenas":"todas"}}
+{"v": 1, "tipo": "marca", "etapa": "vista", "t": 1792389927.464, "nota": null}
+{"v": 1, "tipo": "marca", "etapa": "final", "t": 1792389935.852, "nota": null}
+{"v": 1, "tipo": "maquina", "etapa": "musica", "t0": 1792389936.023, "t1": 1792389978.336, "s": 42.313, "pid": 6675, "datos": {"estilo": "corporativa", "duracion_s": 90.23333333333333, "bpm": 128.0}}
+{"v": 1, "tipo": "maquina", "etapa": "mezcla", "t0": 1792389979.87, "t1": 1792390097.975, "s": 118.105, "pid": 7022, "datos": {"planificacion_s": 44.76, "ffmpeg_s": 67.23, "duracion_s": 90.23333333333333}}
+{"v": 1, "tipo": "maquina", "etapa": "verificar_musica", "t0": 1792390098.207, "t1": 1792390110.161, "s": 11.953, "pid": 7530, "datos": {"resultado": "PASA"}}
+{"v":1,"tipo":"maquina","etapa":"render","t0":1792389936.147,"t1":1792390110.887,"s":174.74,"pid":6674,"datos":{"cuadros":2707,"fps":30,"duracion_s":90.23333333333333,"modo":"beginFrame","version":"3","segmentos":12,"segmentos_cache":0,"cuadros_dibujados":2707,"trabajadores":4,"preset":"veryfast","crf":16,"manifiesto":true,"dibujo_s":164.07,"union_s":0.25,"hoja_s":10.34,"s_por_cuadro_dibujado":0.0606,"segmentos_detalle":[{"id":"e2","cuadros":225,"s":51.08},{"id":"e11","cuadros":309,"s":71.12},{"id":"e9","cuadros":309,"s":72.39},{"id":"e5","cuadros":337,"s":77.06},{"id":"e3","cuadros":225,"s":55.96},{"id":"e7","cuadros":225,"s":57.3},{"id":"e4","cuadros":197,"s":51.65},{"id":"e10","cuadros":225,"s":60.48},{"id":"e8","cuadros":197,"s":46.97},{"id":"e1","cuadros":169,"s":33.71},{"id":"e6","cuadros":141,"s":30.29},{"id":"e12","cuadros":148,"s":34.46}]}}
+{"v":1,"tipo":"maquina","etapa":"verificar_audio","t0":1792390111.206,"t1":1792390124.936,"s":13.73,"pid":7563,"datos":{"resultado":"PASA","expect":43.1333}}
+{"v":1,"tipo":"maquina","etapa":"verificar_audio","t0":1792390111.244,"t1":1792390125.167,"s":13.923,"pid":7564,"datos":{"resultado":"PASA","expect":67.5}}
+{"v": 1, "tipo": "maquina", "etapa": "cortes", "t0": 1792390110.929, "t1": 1792390126.772, "s": 15.842, "pid": 7557, "datos": {"cuadros": 2707, "cortes": 20}}
+{"v": 1, "tipo": "marca", "etapa": "entrega", "t": 1792390132.989, "nota": null}
+{"v": 1, "tipo": "marca", "etapa": "fin", "t": 1792390135.282, "nota": null}

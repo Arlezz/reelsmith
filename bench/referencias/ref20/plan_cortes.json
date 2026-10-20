@@ -1,0 +1,49 @@
+{
+ "cortes": [
+  {
+   "t": 1.17,
+   "nombre": "destello del logotipo",
+   "peso": 0.3
+  },
+  {
+   "t": 3.17,
+   "nombre": "cortina 1: apertura → arquitectura",
+   "peso": 0.6
+  },
+  {
+   "t": 7.5,
+   "nombre": "cortina 2: arquitectura → palabras",
+   "peso": 0.6
+  },
+  {
+   "t": 8.63,
+   "nombre": "fondo rosa → blanco (CHAT)",
+   "peso": 0.3
+  },
+  {
+   "t": 9.57,
+   "nombre": "CORTE PRINCIPAL blanco → navy (FORMULARIOS)",
+   "peso": 1.0
+  },
+  {
+   "t": 10.53,
+   "nombre": "navy → rosa (TABLAS)",
+   "peso": 0.4
+  },
+  {
+   "t": 11.47,
+   "nombre": "rosa → blanco (TEMAS)",
+   "peso": 0.3
+  },
+  {
+   "t": 12.5,
+   "nombre": "máscara circular → pipeline",
+   "peso": 0.6
+  },
+  {
+   "t": 16.63,
+   "nombre": "outro: pipeline → logo final",
+   "peso": 0.6
+  }
+ ]
+}

@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="es" data-duracion="90">
+<head>
+<meta charset="utf-8">
+<title>video-with-ai · showreel 90 s</title>
+<!-- Generado por construir.mjs: no editar a mano. -->
+<style>
+@font-face { font-family: "Quicksand"; src: url("./fuentes/quicksand-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; font-display: block; }
+@property --n { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@counter-style tres { system: extends decimal; pad: 3 "0"; }
+:root {
+  --ground: #090E50; --main: #E72887; --ink: #FFFFFF; --accent: #FAD4E7;
+  --suave: linear(0, 0.0152 2.08%, 0.0548 4.17%, 0.1112 6.25%, 0.1781 8.33%, 0.2508 10.42%, 0.3257 12.50%, 0.4000 14.58%, 0.4718 16.67%, 0.5395 18.75%, 0.6024 20.83%, 0.6599 22.92%, 0.7119 25.00%, 0.7582 27.08%, 0.7991 29.17%, 0.8348 31.25%, 0.8657 33.33%, 0.8922 35.42%, 0.9147 37.50%, 0.9337 39.58%, 0.9495 41.67%, 0.9625 43.75%, 0.9731 45.83%, 0.9816 47.92%, 0.9884 50.00%, 0.9937 52.08%, 0.9977 54.17%, 1.0008 56.25%, 1.0030 58.33%, 1.0045 60.42%, 1.0055 62.50%, 1.0060 64.58%, 1.0063 66.67%, 1.0063 68.75%, 1.0061 70.83%, 1.0058 72.92%, 1.0054 75.00%, 1.0049 77.08%, 1.0045 79.17%, 1.0040 81.25%, 1.0035 83.33%, 1.0031 85.42%, 1.0027 87.50%, 1.0023 89.58%, 1.0020 91.67%, 1.0016 93.75%, 1.0014 95.83%, 1.0011 97.92%, 1); --firme: linear(0, 0.0145 2.08%, 0.0526 4.17%, 0.1075 6.25%, 0.1734 8.33%, 0.2458 10.42%, 0.3211 12.50%, 0.3964 14.58%, 0.4697 16.67%, 0.5395 18.75%, 0.6046 20.83%, 0.6645 22.92%, 0.7188 25.00%, 0.7674 27.08%, 0.8104 29.17%, 0.8479 31.25%, 0.8803 33.33%, 0.9079 35.42%, 0.9313 37.50%, 0.9507 39.58%, 0.9667 41.67%, 0.9796 43.75%, 0.9899 45.83%, 0.9979 47.92%, 1.0039 50.00%, 1.0084 52.08%, 1.0115 54.17%, 1.0135 56.25%, 1.0147 58.33%, 1.0151 60.42%, 1.0151 62.50%, 1.0146 64.58%, 1.0138 66.67%, 1.0129 68.75%, 1.0118 70.83%, 1.0107 72.92%, 1.0095 75.00%, 1.0084 77.08%, 1.0073 79.17%, 1.0063 81.25%, 1.0054 83.33%, 1.0045 85.42%, 1.0038 87.50%, 1.0031 89.58%, 1.0025 91.67%, 1.0020 93.75%, 1.0015 95.83%, 1.0012 97.92%, 1); --golpe: linear(0, 0.0315 2.08%, 0.1133 4.17%, 0.2277 6.25%, 0.3597 8.33%, 0.4970 10.42%, 0.6299 12.50%, 0.7515 14.58%, 0.8575 16.67%, 0.9453 18.75%, 1.0142 20.83%, 1.0650 22.92%, 1.0990 25.00%, 1.1186 27.08%, 1.1260 29.17%, 1.1241 31.25%, 1.1151 33.33%, 1.1015 35.42%, 1.0852 37.50%, 1.0679 39.58%, 1.0509 41.67%, 1.0351 43.75%, 1.0212 45.83%, 1.0095 47.92%, 1.0002 50.00%, 0.9932 52.08%, 0.9884 54.17%, 0.9855 56.25%, 0.9842 58.33%, 0.9842 60.42%, 0.9851 62.50%, 0.9867 64.58%, 0.9887 66.67%, 0.9909 68.75%, 0.9930 70.83%, 0.9951 72.92%, 0.9969 75.00%, 0.9985 77.08%, 0.9997 79.17%, 1.0007 81.25%, 1.0013 83.33%, 1.0018 85.42%, 1.0020 87.50%, 1.0020 89.58%, 1.0019 91.67%, 1.0017 93.75%, 1.0015 95.83%, 1.0012 97.92%, 1);
+  --sale-rapido: cubic-bezier(0.55, 0, 1, 0.45); --entra-rapido: cubic-bezier(0.16, 1, 0.3, 1);
+  --bloque: #1A2180;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+#raiz { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: Quicksand, sans-serif; color: var(--ink); background: var(--ground); }
+.escena { position: absolute; inset: 0; visibility: hidden;
+  animation: mostrar 1ms steps(1, jump-start) var(--entra) both, ocultar 1ms steps(1, jump-start) var(--sale) forwards; }
+@keyframes mostrar { from { visibility: hidden; } to { visibility: visible; } }
+@keyframes ocultar { from { visibility: visible; } to { visibility: hidden; } }
+.centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ch, .wd { display: inline-block; }
+.mask { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.wd.m { color: var(--main); }
+.kicker { position: absolute; font-size: 30px; font-weight: 700; letter-spacing: 0.22em; color: var(--main); }
+.camara { position: absolute; inset: 0; }
+.num { display: inline-block; text-align: right; counter-reset: n var(--n); }
+.num::after { content: counter(n); }
+@keyframes subir { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes bajar { from { transform: translateY(-110%); } to { transform: none; } }
+@keyframes empuje { from { transform: scale(1); } to { transform: scale(1.03); } }
+@keyframes fuga { from { transform: scale(1.03); opacity: 1; } to { transform: scale(2.4); opacity: 0; } }
+@keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+@keyframes destello { from { opacity: 0.6; } to { opacity: 0; } }
+@keyframes trazo { to { stroke-dashoffset: 0; } }
+.destello { position: absolute; inset: 0; background: var(--ink); opacity: 0; pointer-events: none; }
+
+/* fondo continuo: cuadrícula de puntos que deriva durante todo el video */
+#fondo { position: absolute; left: -200px; top: -200px; width: 2400px; height: 1500px;
+  background-image: radial-gradient(circle, rgba(250, 212, 231, 0.12) 2px, transparent 2.6px); background-size: 48px 48px;
+  animation: deriva 90s linear 0s both; }
+@keyframes deriva { from { transform: translate(0, 0); } to { transform: translate(-144px, -96px); } }
+
+/* ---------- 1 · apertura ---------- */
+#s1 .pieza { position: absolute; height: 22px; border-radius: 11px; opacity: 0.9;
+  animation: flotar 6.0328s ease-in-out 0s both; }
+@keyframes flotar { from { transform: rotate(var(--r)); } to { transform: translate(var(--dx), var(--dy)) rotate(var(--r)); } }
+#s1 .camara { animation: empuje 5.6328s ease-in-out 0s both; }
+#s1 .titulo { font-size: 160px; font-weight: 700; letter-spacing: -0.03em; white-space: pre; }
+#s1 .titulo .ch { animation: letra 0.5s var(--suave) calc(-0.3s + var(--i) * 0.04s) both; }
+@keyframes letra { from { transform: translateY(80px) scale(1.6); opacity: 0; } to { transform: none; opacity: 1; } }
+#s1 .regla { width: 0; height: 10px; border-radius: 5px; background: var(--main); margin: 36px 0 30px; animation: regla 0.6s var(--entra-rapido) 0.3661s both; }
+@keyframes regla { from { width: 0; } to { width: 560px; } }
+#s1 .bajada { font-size: 52px; font-weight: 500; color: var(--accent); }
+#s1 .bajada .wd { animation: subir 0.6s var(--entra-rapido) calc(0.5161s + var(--i) * 0.07s) both; }
+
+/* cortina (apertura → problema y agente → logo) */
+.cortina { position: absolute; inset: 0; background: var(--main); clip-path: inset(0 100% 0 0); }
+#cortina1 { animation: cortina 0.6s linear 5.3328s both; }
+#cortina2 { animation: cortina 0.6s linear 84.0661s both; }
+@keyframes cortina { 0% { clip-path: inset(0 100% 0 0); animation-timing-function: var(--sale-rapido); }
+  50% { clip-path: inset(0 0 0 0); animation-timing-function: var(--entra-rapido); } 100% { clip-path: inset(0 0 0 100%); } }
+
+/* ---------- 2 · problema (sale con whip pan y estela) ---------- */
+#s2 .lienzo { position: absolute; inset: 0; }
+#s2 .k2 { left: 160px; top: 300px; animation: aparecer 0.4s linear 5.6828s both; }
+#s2 .t2 { position: absolute; left: 160px; top: 360px; font-size: 76px; font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
+#s2 .t2 .wd { animation: subir 0.6s var(--entra-rapido) calc(5.7328s + var(--i) * 0.05s) both; }
+#s2 .reloj { position: absolute; left: 1340px; top: 320px; width: 440px; height: 440px; }
+#s2 .pulsa { position: absolute; inset: 0; animation: llegar-reloj 0.7795s var(--suave) 5.6328s both, pulso 0.4s ease-out 9.3661s forwards; }
+@keyframes llegar-reloj { from { transform: translateY(120px) scale(0.7); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes pulso { 0% { transform: scale(1); opacity: 1; } 35% { transform: scale(1.06); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+#s2 svg { position: absolute; inset: 0; overflow: visible; }
+#s2 .aro { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 14; }
+#s2 .ticks line { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+#s2 .arco { fill: none; stroke-width: 14; stroke-linecap: round; }
+#s2 .a1 { stroke: var(--accent); animation: trazo 3.4328s ease-in-out 5.9328s forwards; }
+#s2 .a2 { stroke: var(--main); animation: trazo 3.2661s ease-in-out 9.3661s forwards; }
+#s2 .aguja { position: absolute; left: 216px; top: 70px; width: 8px; height: 150px; border-radius: 4px; background: var(--ink); transform-origin: 50% 100%;
+  animation: girar 6.6995s cubic-bezier(0.45, 0, 0.55, 1) 5.9328s both; }
+@keyframes girar { from { transform: rotate(0deg); } to { transform: rotate(720deg); } }
+#s2 .eje { position: absolute; left: 204px; top: 204px; width: 32px; height: 32px; border-radius: 50%; background: var(--main); }
+#s2 .camara { animation: empuje 7.4995s ease-in-out 5.6328s both, whip-sale 0.3s var(--sale-rapido) 12.8328s forwards; }
+#s2 .estela { position: absolute; inset: 0; opacity: 0; }
+#s2 .e1 { animation: whip-sale 0.3s var(--sale-rapido) 12.8668s forwards, estela-op 0.33s linear 12.8328s forwards; }
+#s2 .e2 { animation: whip-sale 0.3s var(--sale-rapido) 12.8998s forwards, estela-op2 0.37s linear 12.8328s forwards; }
+@keyframes whip-sale { from { transform: scale(1.03) translateX(0); } to { transform: scale(1.03) translateX(-2600px); } }
+@keyframes estela-op { 0% { opacity: 0; } 15% { opacity: 0.35; } 100% { opacity: 0; } }
+@keyframes estela-op2 { 0% { opacity: 0; } 15% { opacity: 0.18; } 100% { opacity: 0; } }
+
+/* ---------- 3 · prueba: pantalla dividida ---------- */
+#s3 .camara { animation: whip-entra 0.45s var(--entra-rapido) 13.0128s both; }
+@keyframes whip-entra { from { transform: translateX(2600px); } to { transform: none; } }
+#s3 .empuja { position: absolute; inset: 0; animation: empuje 7.4995s ease-in-out 13.1328s both; }
+#s3 .panel { position: absolute; top: 110px; width: 600px; }
+#s3 .izq { left: 250px; } #s3 .der { left: 1070px; }
+#s3 .pantalla { width: 600px; height: 338px; border-radius: 24px; border: 4px solid rgba(250, 212, 231, 0.55); background: #10166A; overflow: hidden; position: relative; }
+#s3 .rotulo { margin-top: 18px; text-align: center; font-size: 40px; font-weight: 700; color: var(--accent); }
+#s3 .mini { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#s3 .mini b { font-size: 64px; font-weight: 700; letter-spacing: -0.03em; }
+#s3 .mregla { width: 220px; height: 6px; border-radius: 3px; background: var(--main); margin: 16px 0 18px; }
+#s3 .mlinea { width: 300px; height: 12px; border-radius: 6px; background: rgba(250, 212, 231, 0.5); margin-bottom: 10px; }
+#s3 .mlinea.corta { width: 200px; }
+#s3 .scan { position: absolute; left: 0; top: 0; width: 6px; height: 100%; background: var(--accent); box-shadow: 0 0 24px var(--accent); opacity: 0;
+  animation: escanear 1.4s ease-in-out 14.5328s 3 both; }
+@keyframes escanear { 0% { transform: translateX(-10px); opacity: 0; } 10% { opacity: 0.9; } 90% { opacity: 0.9; } 100% { transform: translateX(600px); opacity: 0; } }
+#s3 .igual { position: absolute; left: 910px; top: 245px; width: 100px; height: 70px; }
+#s3 .igual i { position: absolute; left: 0; width: 100px; height: 16px; border-radius: 8px; background: var(--main); transform-origin: 0 50%;
+  animation: barra-igual 0.35s var(--entra-rapido) 13.4828s both; }
+#s3 .igual i:last-child { top: 50px; animation-delay: 13.5828s; }
+@keyframes barra-igual { from { transform: scaleX(0); } to { transform: none; } }
+#s3 .t3 { position: absolute; left: 0; right: 0; top: 600px; text-align: center; font-size: 52px; font-weight: 600; }
+#s3 .t3 .wd { animation: subir 0.6s var(--entra-rapido) calc(13.2828s + var(--i) * 0.035s) both; }
+#s3 .ssim { position: absolute; left: 0; right: 0; top: 690px; text-align: center; font-size: 160px; font-weight: 700; color: var(--main); letter-spacing: -0.02em; }
+#s3 .ssim .wd { animation: subir 0.6s var(--entra-rapido) 13.3828s both; }
+#s3 .cnt { counter-reset: n var(--n); animation: c994 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) 13.4328s both; }
+#s3 .cnt::after { content: counter(n, tres); }
+@keyframes c994 { from { --n: 0; } to { --n: 994; } }
+
+/* máscara circular: crece desde el signo igual */
+#mascara { position: absolute; left: 860px; top: 180px; width: 200px; height: 200px; border-radius: 50%; background: var(--accent);
+  transform: scale(0); animation: crecer 0.35s var(--sale-rapido) 20.2828s both, ocultar 1ms steps(1, jump-start) 20.6328s forwards; }
+@keyframes crecer { from { transform: scale(0); } to { transform: scale(13); } }
+
+/* ---------- 4 · decisión: tipografía cinética ---------- */
+#s4 { background: var(--accent); color: var(--ground); }
+#s4 .camara { animation: empuje 7.2995s ease-in-out 20.6328s both, inhalar 0.2s var(--sale-rapido) 27.9328s forwards; }
+@keyframes inhalar { from { transform: scale(1.03); } to { transform: scale(0.97); } }
+#s4 p { position: absolute; left: 0; right: 0; text-align: center; font-weight: 700; }
+#s4 .l1 { top: 220px; font-size: 120px; letter-spacing: -0.02em; animation: dejar-pasar 0.6195s var(--firme) 21.5161s both; }
+@keyframes dejar-pasar { from { transform: translateY(150px); } to { transform: none; } }
+#s4 .w1 { animation: subir 0.5s var(--entra-rapido) 20.6328s both; }
+#s4 .w2 { animation: subir 0.5s var(--entra-rapido) 21.0995s both; }
+#s4 .l2 { top: 380px; font-size: 240px; letter-spacing: -0.04em; color: var(--main); line-height: 1.1; }
+#s4 .w3 { display: inline-block; animation: grande 0.7795s var(--suave) 21.5661s both; }
+@keyframes grande { from { transform: scale(2.2) translateY(-10%); opacity: 0; } to { transform: none; opacity: 1; } }
+#s4 .l3 { top: 720px; font-size: 80px; font-weight: 600; }
+#s4 .l3 .wd { animation: subir 0.6s var(--entra-rapido) calc(22.0328s + var(--i) * 0.06s) both; }
+
+/* ---------- 5 · pipeline: arquitectura que se arma (PRINCIPAL 1) ---------- */
+#s5 { background: var(--ground); }
+#s5 .vista { position: absolute; inset: 0; perspective: 1800px; perspective-origin: 50% 50%; overflow: hidden; }
+#s5 .mundo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-style: preserve-3d; transform-origin: 50% 50%;
+  animation: cam5 9.3661s linear 28.1328s both; }
+@keyframes cam5 {
+  0.000% { transform: rotateX(56deg) translate3d(955.5px, 40px, 0) scale(1.3); animation-timing-function: ease-in-out; }
+  4.982% { transform: rotateX(54deg) translate3d(506.9px, 40px, 0) scale(1.28); animation-timing-function: ease-in-out; }
+  9.964% { transform: rotateX(52deg) translate3d(128.5px, 40px, 0) scale(1.26); animation-timing-function: ease-in-out; }
+  14.947% { transform: rotateX(50deg) translate3d(-238.1px, 40px, 0) scale(1.24); animation-timing-function: ease-in-out; }
+  19.929% { transform: rotateX(48deg) translate3d(-592.9px, 40px, 0) scale(1.22); animation-timing-function: ease-in-out; }
+  24.911% { transform: rotateX(46deg) translate3d(-936.0px, 40px, 0) scale(1.2); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  39.858% { transform: rotateX(20deg) translate3d(0.0px, 0px, 0) scale(0.9); animation-timing-function: linear; }
+  95.196% { transform: rotateX(20deg) translate3d(0.0px, 0px, 0) scale(0.93); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  100.000% { transform: rotateX(0deg) translate3d(5148.0px, 0px, 0) scale(13); animation-timing-function: linear; }
+}
+#s5 .piso, #s5 .piso2 { position: absolute; left: -1500px; top: -1500px; width: 4920px; height: 4080px; }
+#s5 .piso { background-image: linear-gradient(rgba(250, 212, 231, 0.11) 2px, transparent 2px), linear-gradient(90deg, rgba(250, 212, 231, 0.11) 2px, transparent 2px);
+  background-size: 96px 96px; background-position: 27px 54px; }
+#s5 .piso2 { background-image: linear-gradient(rgba(231, 40, 135, 0.55) 3px, transparent 3px), linear-gradient(90deg, rgba(231, 40, 135, 0.55) 3px, transparent 3px);
+  background-size: 96px 96px; background-position: 27px 54px; opacity: 0; animation: encender-piso 0.9s ease-out 31.8661s forwards; }
+@keyframes encender-piso { from { opacity: 1; } to { opacity: 0.35; } }
+#s5 .sombra { position: absolute; top: 470px; height: 140px; border-radius: 24px; background: rgba(0, 0, 0, 0.45); transform: translateZ(1px);
+  animation: sombra 0.7795s var(--suave) var(--t) both; }
+@keyframes sombra { from { transform: translateZ(1px) scale(0.4); opacity: 0; } to { transform: translateZ(1px); opacity: 1; } }
+#s5 .onda { position: absolute; top: 440px; width: 200px; height: 200px; border-radius: 50%; border: 5px solid var(--accent); opacity: 0;
+  animation: onda 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) var(--t) forwards; }
+#s5 .onda.grande { border-color: var(--main); border-width: 8px; animation-name: onda-grande; animation-duration: 1.1s; }
+@keyframes onda { from { transform: translateZ(2px) scale(0.6); opacity: 0.9; } to { transform: translateZ(2px) scale(2.6); opacity: 0; } }
+@keyframes onda-grande { from { transform: translateZ(2px) scale(0.6); opacity: 1; } to { transform: translateZ(2px) scale(7); opacity: 0; } }
+#s5 .bloque { position: absolute; top: 470px; height: 140px; border-radius: 24px; background: var(--bloque); border: 4px solid var(--accent);
+  display: flex; align-items: center; justify-content: center; font-size: 42px; font-weight: 700; color: var(--ink); white-space: nowrap;
+  animation: caer 0.7795s var(--suave) var(--t) both, aparecer 0.08s linear var(--t) both; }
+#s5 .bloque.primero { animation: caer 0.8395s var(--golpe) var(--t) both, aparecer 0.08s linear var(--t) both; }
+#s5 .bloque.r { animation: caer 0.7795s var(--suave) var(--t) both, aparecer 0.08s linear var(--t) both,
+  encender 1ms steps(1, jump-start) 37.0328s both; }
+#s5 .bloque.r span { animation: apagar 0.2s linear 37.0495s forwards; }
+@keyframes caer { from { transform: translateZ(520px); } to { transform: translateZ(28px); } }
+@keyframes encender { from { background-color: var(--bloque); border-color: var(--accent); } to { background-color: var(--main); border-color: var(--main); } }
+@keyframes apagar { from { opacity: 1; } to { opacity: 0; } }
+#s5 .conex { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform: translateZ(28px); overflow: visible; }
+#s5 .conex path { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+#s5 .paquete { position: absolute; left: 0; top: 531px; width: 18px; height: 18px; border-radius: 50%; background: var(--main);
+  box-shadow: 0 0 18px var(--main); opacity: 0; animation: viaje 2.4s linear var(--t) 3 both; }
+@keyframes viaje { 0% { transform: translate3d(216px, 0, 14px); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; }
+  100% { transform: translate3d(1731px, 0, 14px); opacity: 0; } }
+#s5 .k5 { left: 0; right: 0; top: 170px; text-align: center; font-size: 34px; }
+#s5 .k5 .wd { animation: subir 0.5s var(--entra-rapido) 31.8661s both; }
+#s5 .destello { animation: destello 0.5s ease-out 28.1328s forwards; }
+
+/* ---------- 6a · render: tres MP4 idénticos ---------- */
+#s6a .t6 { position: absolute; left: 160px; top: 380px; font-size: 76px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+#s6a .t6 .wd { animation: subir 0.6s var(--entra-rapido) calc(37.6495s + var(--i) * 0.05s) both; }
+#s6a .camara { animation: empuje 7.4995s ease-in-out 37.4995s both; transform-origin: 30% 50%; }
+#s6a .mp4 { position: absolute; left: 1360px; top: 330px; width: 320px; height: 420px; border-radius: 28px; background: #141B72; border: 4px solid var(--accent);
+  display: flex; flex-direction: column; align-items: center; padding-top: 42px; }
+#s6a .mp4 b { font-size: 72px; font-weight: 700; letter-spacing: 0.02em; }
+#s6a .pliegue { position: absolute; right: -4px; top: -4px; width: 64px; height: 64px; background: var(--ground); border-bottom-left-radius: 18px;
+  border-left: 4px solid var(--accent); border-bottom: 4px solid var(--accent); }
+#s6a .bytes { margin-top: 34px; display: grid; grid-template-columns: repeat(8, 26px); gap: 6px; }
+#s6a .bytes i { width: 26px; height: 26px; border-radius: 6px; }
+#s6a .k0 { --x0: -900px; --y0: -500px; --r0: -40deg; --fx: -64px; --fy: -26px; --fr: -7deg; --t: 37.5495s; }
+#s6a .k1 { --x0: 0px; --y0: 800px; --r0: 25deg; --fx: 0px; --fy: 0px; --fr: 2deg; --t: 37.6695s; }
+#s6a .k2 { --x0: 900px; --y0: -300px; --r0: 50deg; --fx: 64px; --fy: 26px; --fr: 8deg; --t: 37.7895s; }
+#s6a .mp4 { animation: volar 0.7795s var(--suave) var(--t) both, apilar 0.6195s var(--firme) 39.3661s forwards; }
+@keyframes volar { from { transform: translate(var(--x0), var(--y0)) rotate(var(--r0)); } to { transform: translate(var(--fx), var(--fy)) rotate(var(--fr)); } }
+@keyframes apilar { from { transform: translate(var(--fx), var(--fy)) rotate(var(--fr)); } to { transform: none; } }
+#s6a .check { position: absolute; left: 1630px; top: 290px; width: 96px; height: 96px; border-radius: 50%; background: var(--main);
+  animation: brotar 0.8395s var(--suave) 39.4861s both; }
+#s6a .check svg { position: absolute; inset: 0; }
+#s6a .check path { fill: none; stroke: var(--ink); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes brotar { from { transform: scale(0); } to { transform: none; } }
+
+/* barrido de progreso (render → contadores) */
+#barrido { position: absolute; inset: 0; clip-path: inset(0 100% 0 0);
+  background: repeating-linear-gradient(-45deg, var(--main) 0 60px, #D21E79 60px 120px);
+  animation: cortina 0.6s linear 44.6995s both; }
+
+/* ---------- 6b · contadores ---------- */
+#s6b p { position: absolute; left: 0; right: 0; text-align: center; font-size: 104px; font-weight: 700; letter-spacing: -0.02em; }
+#s6b .l1 { top: 280px; } #s6b .l2 { top: 420px; }
+#s6b .wd { animation: subir 0.6s var(--entra-rapido) 45.0495s both; }
+#s6b .l2 .wd { animation-delay: 45.1195s; }
+#s6b .num { color: var(--main); }
+#s6b .n20 { width: 1.2em; animation: c20 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) 45.0995s both; }
+#s6b .n825 { width: 1.85em; animation: c825 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) 45.0995s both; }
+#s6b .n76 { width: 1.2em; animation: c76 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) 45.0995s both; }
+@keyframes c20 { from { --n: 0; } to { --n: 20; } }
+@keyframes c825 { from { --n: 0; } to { --n: 825; } }
+@keyframes c76 { from { --n: 0; } to { --n: 76; } }
+.pista { position: absolute; left: 360px; top: 640px; width: 1200px; height: 16px; border-radius: 8px; background: rgba(250, 212, 231, 0.18); overflow: hidden; }
+.pista .relleno { position: absolute; inset: 0; background: var(--main); transform-origin: 0 50%; }
+#s6b .relleno { animation: llenar 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) 45.0995s both; }
+@keyframes llenar { from { transform: scaleX(0); } to { transform: none; } }
+
+/* ---------- 7 · música (match cut: la barra pasa a ser la pista de cortes) ---------- */
+#s7 .t7 { position: absolute; left: 0; right: 0; top: 190px; text-align: center; font-size: 70px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+#s7 .t7 .wd { animation: subir 0.6s var(--entra-rapido) calc(50.7328s + var(--i) * 0.05s) both; }
+#s7 .relleno { animation: atenuar 0.5s ease-out 50.6328s both; }
+@keyframes atenuar { from { opacity: 1; } to { opacity: 0.35; } }
+#s7 .cabezal { position: absolute; left: 357px; top: 600px; width: 6px; height: 320px; border-radius: 3px; background: var(--ink);
+  animation: recorrer 7.4995s linear 50.6328s both; }
+@keyframes recorrer { from { transform: translateX(0); } to { transform: translateX(1200px); } }
+#s7 .marca { position: absolute; top: 600px; width: 4px; height: 320px; background: var(--main); transform-origin: 50% 0;
+  animation: caer-marca 0.6195s var(--firme) var(--t) both; }
+@keyframes caer-marca { from { transform: scaleY(0); } to { transform: none; } }
+#s7 .pico { position: absolute; top: 690px; width: 16px; height: 220px; border-radius: 8px; background: var(--main); box-shadow: 0 0 24px var(--main);
+  animation: pico 0.8395s var(--golpe) var(--t) both; }
+@keyframes pico { from { transform: scaleY(0); } to { transform: none; } }
+#s7 .barra { position: absolute; width: 12px; border-radius: 6px; background: rgba(250, 212, 231, 0.55);
+  animation: crecer-barra 0.45s var(--entra-rapido) calc(50.7328s + var(--i) * 0.012s) both, hinchar 1.8661s cubic-bezier(0.5, 0, 0.9, 0.6) 56.2661s forwards; }
+@keyframes crecer-barra { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes hinchar { from { transform: scaleY(1); opacity: 1; } to { transform: scaleY(1.7); opacity: 1; } }
+
+/* ---------- 8 · impacto (PRINCIPAL 2) ---------- */
+#s8 .camara { animation: empuje 7.4995s ease-in-out 58.1328s both, fuga 0.35s var(--sale-rapido) 65.2828s forwards; }
+#s8 .cero { font-size: 300px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 10px 0 20px; animation: impacto 0.8395s var(--golpe) 57.8828s both; }
+@keyframes impacto { from { transform: scale(1.9); opacity: 0; } to { transform: none; opacity: 1; } }
+#s8 .l8 { font-size: 66px; font-weight: 600; }
+#s8 .l8a .wd { animation: bajar 0.6s var(--entra-rapido) calc(58.4328s + var(--i) * 0.06s) both; }
+#s8 .l8b .wd { animation: subir 0.6s var(--entra-rapido) calc(58.4828s + (var(--i) - 4) * 0.06s) both; }
+#s8 .anillo { position: absolute; left: 760px; top: 340px; width: 400px; height: 400px; border-radius: 50%; border: 10px solid var(--main); opacity: 0; }
+#s8 .an1 { animation: anillo 1.1s cubic-bezier(0.2, 0.7, 0.3, 1) 58.1328s forwards; }
+#s8 .an2 { border-color: var(--accent); border-width: 6px; animation: anillo-fuera 1.2s cubic-bezier(0.2, 0.7, 0.3, 1) 61.8661s forwards; }
+@keyframes anillo-fuera { from { transform: scale(2.4); opacity: 0.9; } to { transform: scale(4.6); opacity: 0; } }
+@keyframes anillo { from { transform: scale(0.3); opacity: 1; } to { transform: scale(4); opacity: 0; } }
+#s8 .chispas { position: absolute; left: 960px; top: 540px; }
+#s8 .p { position: absolute; border-radius: 50%; opacity: 0; animation: chispa var(--d) cubic-bezier(0.22, 0.61, 0.36, 1) 58.1328s both; }
+@keyframes chispa { from { transform: translate(0, 0) scale(0.2); opacity: 1; } to { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; } }
+#s8 .destello { animation: destello 0.5s ease-out 58.1328s forwards; }
+
+/* ---------- 9a · mezcla: medidores ---------- */
+#s9a .t9 { position: absolute; left: 160px; top: 390px; font-size: 84px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+#s9a .t9 .wd { animation: subir 0.6s var(--entra-rapido) calc(65.5128s + var(--i) * 0.05s) both; }
+#s9a .medidor { position: absolute; top: 220px; width: 100px; }
+#s9a .m1 { left: 1300px; } #s9a .m2 { left: 1540px; }
+#s9a .tubo { position: relative; width: 100px; height: 580px; border-radius: 18px; background: rgba(255, 255, 255, 0.07); border: 3px solid rgba(250, 212, 231, 0.3); overflow: visible; }
+#s9a .nivel { position: absolute; left: 8px; right: 8px; bottom: 8px; border-radius: 10px; transform-origin: 50% 100%;
+  animation: subir-nivel 0.7795s var(--suave) 65.5328s both, vibrar 0.47s ease-in-out 66.5328s 8 alternate forwards; }
+#s9a .m1 .nivel { height: 359px; background: var(--accent); }
+#s9a .m2 .nivel { height: 500px; background: var(--main); animation-delay: 65.5828s, 66.5828s; }
+@keyframes subir-nivel { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes vibrar { from { transform: scaleY(1); } to { transform: scaleY(0.97); } }
+#s9a .meta { position: absolute; left: -14px; width: 128px; height: 6px; border-radius: 3px; background: var(--ink); }
+#s9a .m1 .meta { bottom: 364px; } #s9a .m2 .meta { bottom: 547px; }
+#s9a .meta span { position: absolute; left: 138px; top: -26px; font-size: 40px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+#s9a .meta { animation: aparecer 0.3s linear 65.5328s both; }
+#s9a .destello { animation: destello9 0.35s ease-out 65.6328s forwards; }
+@keyframes destello9 { from { opacity: 0.25; } to { opacity: 0; } }
+#s9a .medidor p { margin-top: 18px; text-align: center; font-size: 36px; font-weight: 700; color: var(--accent); }
+
+/* ola (mezcla → derechos): una banda con borde de onda cruza de abajo arriba */
+#ola { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: var(--accent); transform: translateY(120%);
+  animation: ola 0.6s linear 70.9661s both; }
+#ola svg { position: absolute; left: 0; width: 1920px; height: 90px; }
+#ola .arriba { top: -89px; } #ola .abajo { bottom: -89px; transform: scaleY(-1); }
+#ola path { fill: var(--accent); }
+@keyframes ola { 0% { transform: translateY(120%); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } 100% { transform: translateY(-120%); } }
+
+/* ---------- 9b · derechos: sello ---------- */
+#s9b .sello { position: absolute; left: 360px; top: 340px; width: 400px; height: 400px; border-radius: 50%; border: 12px solid var(--main);
+  animation: sellar 0.7s cubic-bezier(0.3, 0, 0.2, 1) 71.2661s both; }
+@keyframes sellar { 0% { transform: scale(1.6) rotate(-20deg); opacity: 0; } 55% { transform: scale(1.06, 0.92) rotate(-8deg); opacity: 1; }
+  80% { transform: scale(0.98, 1.02) rotate(-6deg); opacity: 1; } 100% { transform: rotate(-6deg); opacity: 1; } }
+#s9b .sello svg { position: absolute; left: 0; top: 0; width: 376px; height: 376px; }
+#s9b .sello rect { fill: var(--accent); }
+#s9b .anillo-int { position: absolute; inset: 22px; border-radius: 50%; border: 4px dashed rgba(250, 212, 231, 0.5);
+  animation: rotar 5.5995s linear 71.2661s both; }
+@keyframes rotar { from { transform: rotate(0deg); } to { transform: rotate(40deg); } }
+#s9b .t9b { position: absolute; left: 900px; top: 400px; font-size: 92px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+#s9b .t9b .wd { animation: subir 0.6s var(--entra-rapido) calc(71.4161s + var(--i) * 0.06s) both; }
+
+/* ---------- 10 · agente: dial de 28 minutos (match cut desde el sello) ---------- */
+#s10 .dial { position: absolute; left: 340px; top: 320px; width: 440px; height: 440px; }
+#s10 svg { position: absolute; inset: 0; overflow: visible; }
+#s10 .pista-dial { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 12; }
+#s10 .arco { fill: none; stroke: var(--main); stroke-width: 12; stroke-linecap: round; stroke-dasharray: 1256.6; stroke-dashoffset: 1256.6;
+  animation: arco28 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 76.9661s both; }
+@keyframes arco28 { from { stroke-dashoffset: 1256.6; } to { stroke-dashoffset: 670.2; } }
+#s10 .ticks line { stroke: rgba(250, 212, 231, 0.6); stroke-width: 4; stroke-linecap: round; }
+#s10 .giro { position: absolute; inset: 0; animation: rotar 7.4995s linear 76.8661s both; }
+#s10 .aguja { position: absolute; left: 216px; top: 34px; width: 8px; height: 62px; border-radius: 4px; background: var(--ink); transform-origin: 4px 186px;
+  animation: aguja28 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 76.9661s both; }
+@keyframes aguja28 { from { transform: rotate(0deg); } to { transform: rotate(168deg); } }
+#s10 .lectura { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 10px; }
+#s10 .lectura .num { font-size: 120px; font-weight: 700; line-height: 1; width: 1.25em; text-align: center; animation: c28 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 76.9661s both; }
+#s10 .lectura small { font-size: 40px; font-weight: 600; color: var(--accent); }
+@keyframes c28 { from { --n: 0; } to { --n: 28; } }
+#s10 .t10 { position: absolute; left: 900px; top: 330px; font-size: 80px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+#s10 .t10 .wd { animation: subir 0.6s var(--entra-rapido) calc(77.0161s + var(--i) * 0.05s) both; }
+
+/* ---------- 11 · logo: las piezas del inicio vuelven y se arman ---------- */
+#s11 .logo { position: absolute; left: 0; right: 0; top: 340px; text-align: center; font-size: 220px; font-weight: 700; letter-spacing: 0.04em; line-height: 1.1; }
+#s11 .logo .ch { animation: asentar 0.7795s var(--suave) calc(84.2161s + var(--i) * 0.07s) both; }
+@keyframes asentar { from { transform: translateY(70px) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
+#s11 .seg { position: absolute; top: 640px; width: 90px; height: 12px; border-radius: 6px; background: var(--main);
+  animation: armar 0.7795s var(--suave) var(--t) both; }
+@keyframes armar { from { transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scaleX(var(--sx)); } to { transform: none; } }
+#s11 .meta11 { position: absolute; left: 0; right: 0; top: 690px; text-align: center; font-size: 48px; font-weight: 600; color: var(--accent); }
+#s11 .meta11 .wd { animation: subir 0.6s var(--entra-rapido) 85.6661s both; }
+</style>
+</head>
+<body>
+<div id="raiz">
+  <div id="fondo"></div>
+
+  <section class="escena" id="s1" style="--entra:-0.0005s;--sale:5.6328s">
+    <i class="pieza" style="left:150px;top:150px;width:220px;background:var(--main);--dx:-40px;--dy:-18px;--r:-8deg"></i><i class="pieza" style="left:1560px;top:190px;width:160px;background:var(--accent);--dx:-24px;--dy:-11px;--r:6deg"></i><i class="pieza" style="left:240px;top:880px;width:150px;background:var(--accent);--dx:-32px;--dy:-14px;--r:4deg"></i><i class="pieza" style="left:1500px;top:860px;width:240px;background:var(--main);--dx:-48px;--dy:-22px;--r:-5deg"></i><i class="pieza" style="left:90px;top:540px;width:110px;background:var(--main);--dx:-20px;--dy:-9px;--r:10deg"></i><i class="pieza" style="left:1700px;top:560px;width:130px;background:var(--accent);--dx:-36px;--dy:-16px;--r:-10deg"></i>
+    <div class="camara"><div class="centro">
+      <h1 class="titulo"><span class="ch" style="--i:0">v</span><span class="ch" style="--i:1">i</span><span class="ch" style="--i:2">d</span><span class="ch" style="--i:3">e</span><span class="ch" style="--i:4">o</span><span class="ch" style="--i:5">-</span><span class="ch" style="--i:6">w</span><span class="ch" style="--i:7">i</span><span class="ch" style="--i:8">t</span><span class="ch" style="--i:9">h</span><span class="ch" style="--i:10">-</span><span class="ch" style="--i:11">a</span><span class="ch" style="--i:12">i</span></h1>
+      <div class="regla"></div>
+      <p class="bajada"><span class="mask"><span class="wd" style="--i:0">Videos</span></span> <span class="mask"><span class="wd" style="--i:1">de</span></span> <span class="mask"><span class="wd" style="--i:2">proyecto</span></span> <span class="mask"><span class="wd" style="--i:3">hechos</span></span> <span class="mask"><span class="wd" style="--i:4">con</span></span> <span class="mask"><span class="wd" style="--i:5">código</span></span></p>
+    </div></div>
+  </section>
+
+  <section class="escena" id="s2" style="--entra:5.6328s;--sale:13.1328s">
+    <div class="estela e2" aria-hidden="true"><div class="lienzo">
+  <p class="kicker k2">EL PROBLEMA</p>
+  <h2 class="t2"><span class="mask"><span class="wd" style="--i:0">Un</span></span> <span class="mask"><span class="wd" style="--i:1">video</span></span> <span class="mask"><span class="wd" style="--i:2">de</span></span> <span class="mask"><span class="wd" style="--i:3">90 s</span></span> <span class="mask"><span class="wd" style="--i:4">con</span></span> <span class="mask"><span class="wd" style="--i:5">agentes</span></span><br><span class="mask"><span class="wd" style="--i:6">tomaba</span></span> <span class="mask"><span class="wd" style="--i:7">de</span></span> <span class="mask"><span class="wd m" style="--i:8">1</span></span> <span class="mask"><span class="wd m" style="--i:9">a</span></span> <span class="mask"><span class="wd m" style="--i:10">2</span></span> <span class="mask"><span class="wd m" style="--i:11">horas</span></span></h2>
+  <div class="reloj"><div class="pulsa">
+    <svg viewBox="-220 -220 440 440" width="440" height="440">
+      <circle r="160" class="aro"/><circle r="130" class="aro"/>
+      <g class="ticks"><line x1="0.0" y1="-205.0" x2="0.0" y2="-180.0"/><line x1="102.5" y1="-177.5" x2="96.0" y2="-166.3"/><line x1="177.5" y1="-102.5" x2="166.3" y2="-96.0"/><line x1="205.0" y1="-0.0" x2="180.0" y2="-0.0"/><line x1="177.5" y1="102.5" x2="166.3" y2="96.0"/><line x1="102.5" y1="177.5" x2="96.0" y2="166.3"/><line x1="0.0" y1="205.0" x2="0.0" y2="180.0"/><line x1="-102.5" y1="177.5" x2="-96.0" y2="166.3"/><line x1="-177.5" y1="102.5" x2="-166.3" y2="96.0"/><line x1="-205.0" y1="0.0" x2="-180.0" y2="0.0"/><line x1="-177.5" y1="-102.5" x2="-166.3" y2="-96.0"/><line x1="-102.5" y1="-177.5" x2="-96.0" y2="-166.3"/></g>
+      <g transform="rotate(-90)">
+        <circle r="160" class="arco a1" style="stroke-dasharray:1005.3;stroke-dashoffset:1005.3"/>
+        <circle r="130" class="arco a2" style="stroke-dasharray:816.8;stroke-dashoffset:816.8"/>
+      </g>
+    </svg>
+    <div class="aguja"></div><div class="eje"></div>
+  </div></div></div></div>
+    <div class="estela e1" aria-hidden="true"><div class="lienzo">
+  <p class="kicker k2">EL PROBLEMA</p>
+  <h2 class="t2"><span class="mask"><span class="wd" style="--i:0">Un</span></span> <span class="mask"><span class="wd" style="--i:1">video</span></span> <span class="mask"><span class="wd" style="--i:2">de</span></span> <span class="mask"><span class="wd" style="--i:3">90 s</span></span> <span class="mask"><span class="wd" style="--i:4">con</span></span> <span class="mask"><span class="wd" style="--i:5">agentes</span></span><br><span class="mask"><span class="wd" style="--i:6">tomaba</span></span> <span class="mask"><span class="wd" style="--i:7">de</span></span> <span class="mask"><span class="wd m" style="--i:8">1</span></span> <span class="mask"><span class="wd m" style="--i:9">a</span></span> <span class="mask"><span class="wd m" style="--i:10">2</span></span> <span class="mask"><span class="wd m" style="--i:11">horas</span></span></h2>
+  <div class="reloj"><div class="pulsa">
+    <svg viewBox="-220 -220 440 440" width="440" height="440">
+      <circle r="160" class="aro"/><circle r="130" class="aro"/>
+      <g class="ticks"><line x1="0.0" y1="-205.0" x2="0.0" y2="-180.0"/><line x1="102.5" y1="-177.5" x2="96.0" y2="-166.3"/><line x1="177.5" y1="-102.5" x2="166.3" y2="-96.0"/><line x1="205.0" y1="-0.0" x2="180.0" y2="-0.0"/><line x1="177.5" y1="102.5" x2="166.3" y2="96.0"/><line x1="102.5" y1="177.5" x2="96.0" y2="166.3"/><line x1="0.0" y1="205.0" x2="0.0" y2="180.0"/><line x1="-102.5" y1="177.5" x2="-96.0" y2="166.3"/><line x1="-177.5" y1="102.5" x2="-166.3" y2="96.0"/><line x1="-205.0" y1="0.0" x2="-180.0" y2="0.0"/><line x1="-177.5" y1="-102.5" x2="-166.3" y2="-96.0"/><line x1="-102.5" y1="-177.5" x2="-96.0" y2="-166.3"/></g>
+      <g transform="rotate(-90)">
+        <circle r="160" class="arco a1" style="stroke-dasharray:1005.3;stroke-dashoffset:1005.3"/>
+        <circle r="130" class="arco a2" style="stroke-dasharray:816.8;stroke-dashoffset:816.8"/>
+      </g>
+    </svg>
+    <div class="aguja"></div><div class="eje"></div>
+  </div></div></div></div>
+    <div class="camara"><div class="lienzo">
+  <p class="kicker k2">EL PROBLEMA</p>
+  <h2 class="t2"><span class="mask"><span class="wd" style="--i:0">Un</span></span> <span class="mask"><span class="wd" style="--i:1">video</span></span> <span class="mask"><span class="wd" style="--i:2">de</span></span> <span class="mask"><span class="wd" style="--i:3">90 s</span></span> <span class="mask"><span class="wd" style="--i:4">con</span></span> <span class="mask"><span class="wd" style="--i:5">agentes</span></span><br><span class="mask"><span class="wd" style="--i:6">tomaba</span></span> <span class="mask"><span class="wd" style="--i:7">de</span></span> <span class="mask"><span class="wd m" style="--i:8">1</span></span> <span class="mask"><span class="wd m" style="--i:9">a</span></span> <span class="mask"><span class="wd m" style="--i:10">2</span></span> <span class="mask"><span class="wd m" style="--i:11">horas</span></span></h2>
+  <div class="reloj"><div class="pulsa">
+    <svg viewBox="-220 -220 440 440" width="440" height="440">
+      <circle r="160" class="aro"/><circle r="130" class="aro"/>
+      <g class="ticks"><line x1="0.0" y1="-205.0" x2="0.0" y2="-180.0"/><line x1="102.5" y1="-177.5" x2="96.0" y2="-166.3"/><line x1="177.5" y1="-102.5" x2="166.3" y2="-96.0"/><line x1="205.0" y1="-0.0" x2="180.0" y2="-0.0"/><line x1="177.5" y1="102.5" x2="166.3" y2="96.0"/><line x1="102.5" y1="177.5" x2="96.0" y2="166.3"/><line x1="0.0" y1="205.0" x2="0.0" y2="180.0"/><line x1="-102.5" y1="177.5" x2="-96.0" y2="166.3"/><line x1="-177.5" y1="102.5" x2="-166.3" y2="96.0"/><line x1="-205.0" y1="0.0" x2="-180.0" y2="0.0"/><line x1="-177.5" y1="-102.5" x2="-166.3" y2="-96.0"/><line x1="-102.5" y1="-177.5" x2="-96.0" y2="-166.3"/></g>
+      <g transform="rotate(-90)">
+        <circle r="160" class="arco a1" style="stroke-dasharray:1005.3;stroke-dashoffset:1005.3"/>
+        <circle r="130" class="arco a2" style="stroke-dasharray:816.8;stroke-dashoffset:816.8"/>
+      </g>
+    </svg>
+    <div class="aguja"></div><div class="eje"></div>
+  </div></div></div></div>
+  </section>
+
+  <section class="escena" id="s3" style="--entra:13.1328s;--sale:20.6328s">
+    <div class="camara"><div class="empuja">
+      <div class="panel izq"><div class="pantalla"><div class="mini"><b>video-with-ai</b><i class="mregla"></i><i class="mlinea"></i><i class="mlinea corta"></i><i class="scan"></i></div></div><p class="rotulo">HyperFrames</p></div>
+      <div class="igual"><i></i><i></i></div>
+      <div class="panel der"><div class="pantalla"><div class="mini"><b>video-with-ai</b><i class="mregla"></i><i class="mlinea"></i><i class="mlinea corta"></i><i class="scan"></i></div></div><p class="rotulo">Render nativo</p></div>
+      <p class="t3"><span class="mask"><span class="wd" style="--i:0">Probamos</span></span> <span class="mask"><span class="wd" style="--i:1">HyperFrames</span></span> <span class="mask"><span class="wd" style="--i:2">y</span></span> <span class="mask"><span class="wd" style="--i:3">un</span></span> <span class="mask"><span class="wd" style="--i:4">render</span></span> <span class="mask"><span class="wd" style="--i:5">nativo</span></span> <span class="mask"><span class="wd" style="--i:6">con</span></span> <span class="mask"><span class="wd" style="--i:7">el</span></span> <span class="mask"><span class="wd" style="--i:8">mismo</span></span> <span class="mask"><span class="wd" style="--i:9">HTML:</span></span></p>
+      <p class="ssim"><span class="mask"><span class="wd">SSIM 0,<span class="cnt"></span></span></span></p>
+    </div></div>
+  </section>
+
+  <section class="escena" id="s4" style="--entra:20.6328s;--sale:28.1328s">
+    <div class="camara">
+      <p class="l1"><span class="mask"><span class="wd w1">Video</span></span> <span class="mask"><span class="wd w2">y música</span></span></p>
+      <p class="l2"><span class="w3">nativos,</span></p>
+      <p class="l3"><span class="mask"><span class="wd" style="--i:0">sin</span></span> <span class="mask"><span class="wd" style="--i:1">framework</span></span> <span class="mask"><span class="wd" style="--i:2">de</span></span> <span class="mask"><span class="wd" style="--i:3">video</span></span></p>
+    </div>
+  </section>
+
+  <section class="escena" id="s5" style="--entra:28.1328s;--sale:37.4995s">
+    <div class="vista"><div class="mundo">
+      <div class="piso"></div><div class="piso2"></div>
+      <div class="sombra" style="left:75px;width:300px;--t:28.1328s"></div><i class="onda grande" style="left:125px;--t:28.1328s"></i><div class="bloque primero" style="left:75px;width:300px;--t:27.8828s"><span>HTML y CSS</span></div><div class="sombra" style="left:459px;width:210px;--t:28.5995s"></div><i class="onda" style="left:464px;--t:28.5995s"></i><div class="bloque r" style="left:459px;width:210px;--t:28.0695s"><span>render</span></div><div class="sombra" style="left:753px;width:210px;--t:29.0661s"></div><i class="onda" style="left:758px;--t:29.0661s"></i><div class="bloque" style="left:753px;width:210px;--t:28.5361s"><span>cortes</span></div><div class="sombra" style="left:1047px;width:210px;--t:29.5328s"></div><i class="onda" style="left:1052px;--t:29.5328s"></i><div class="bloque" style="left:1047px;width:210px;--t:29.0028s"><span>música</span></div><div class="sombra" style="left:1341px;width:210px;--t:29.9995s"></div><i class="onda" style="left:1346px;--t:29.9995s"></i><div class="bloque" style="left:1341px;width:210px;--t:29.4695s"><span>mezcla</span></div><div class="sombra" style="left:1635px;width:210px;--t:30.4661s"></div><i class="onda" style="left:1640px;--t:30.4661s"></i><div class="bloque" style="left:1635px;width:210px;--t:29.9361s"><span>jueces</span></div>
+      <svg class="conex" viewBox="0 0 1920 1080" width="1920" height="1080"><path d="M387 540 L447 540 M433 528 L447 540 L433 552" style="stroke-dasharray:96.9;stroke-dashoffset:96.9;animation:trazo 0.3s ease-out 30.9328s forwards"/><path d="M681 540 L741 540 M727 528 L741 540 L727 552" style="stroke-dasharray:96.9;stroke-dashoffset:96.9;animation:trazo 0.3s ease-out 31.0328s forwards"/><path d="M975 540 L1035 540 M1021 528 L1035 540 L1021 552" style="stroke-dasharray:96.9;stroke-dashoffset:96.9;animation:trazo 0.3s ease-out 31.1328s forwards"/><path d="M1269 540 L1329 540 M1315 528 L1329 540 L1315 552" style="stroke-dasharray:96.9;stroke-dashoffset:96.9;animation:trazo 0.3s ease-out 31.2328s forwards"/><path d="M1563 540 L1623 540 M1609 528 L1623 540 L1609 552" style="stroke-dasharray:96.9;stroke-dashoffset:96.9;animation:trazo 0.3s ease-out 31.3328s forwards"/></svg>
+      <i class="paquete" style="--t:32.1661s"></i><i class="paquete" style="--t:32.7661s"></i><i class="paquete" style="--t:33.3661s"></i><i class="paquete" style="--t:33.9661s"></i>
+    </div></div>
+    <p class="kicker k5"><span class="mask"><span class="wd">PIPELINE</span></span></p>
+    <div class="destello"></div>
+  </section>
+
+  <section class="escena" id="s6a" style="--entra:37.4995s;--sale:44.9995s">
+    <div class="camara">
+      <h2 class="t6"><span class="mask"><span class="wd" style="--i:0">El</span></span> <span class="mask"><span class="wd" style="--i:1">MP4</span></span> <span class="mask"><span class="wd" style="--i:2">sale</span></span> <span class="mask"><span class="wd m" style="--i:3">idéntico</span></span><br><span class="mask"><span class="wd" style="--i:4">byte</span></span> <span class="mask"><span class="wd" style="--i:5">a</span></span> <span class="mask"><span class="wd" style="--i:6">byte</span></span> <span class="mask"><span class="wd" style="--i:7">en</span></span> <span class="mask"><span class="wd" style="--i:8">cada</span></span> <span class="mask"><span class="wd" style="--i:9">render</span></span></h2>
+      <div class="mp4 k0"><i class="pliegue"></i><b>MP4</b><div class="bytes"><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i></div></div><div class="mp4 k1"><i class="pliegue"></i><b>MP4</b><div class="bytes"><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i></div></div><div class="mp4 k2"><i class="pliegue"></i><b>MP4</b><div class="bytes"><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--main)"></i><i style="background:var(--accent)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:rgba(255,255,255,0.16)"></i><i style="background:var(--accent)"></i><i style="background:var(--main)"></i></div></div>
+      <div class="check"><svg viewBox="0 0 96 96" width="96" height="96"><path d="M28 50 L42 64 L70 34"/></svg></div>
+    </div>
+  </section>
+
+  <section class="escena" id="s6b" style="--entra:44.9995s;--sale:50.6328s">
+    <p class="l1"><span class="mask"><span class="wd"><b class="num n20"></b> s con <b class="num n825"></b> animaciones</span></span></p>
+    <p class="l2"><span class="mask"><span class="wd">se renderizan en <b class="num n76"></b> s</span></span></p>
+    <div class="pista"><div class="relleno"></div></div>
+  </section>
+
+  <section class="escena" id="s7" style="--entra:50.6328s;--sale:58.1328s">
+    <h2 class="t7"><span class="mask"><span class="wd" style="--i:0">La</span></span> <span class="mask"><span class="wd" style="--i:1">música</span></span> <span class="mask"><span class="wd" style="--i:2">se</span></span> <span class="mask"><span class="wd" style="--i:3">compone</span></span> <span class="mask"><span class="wd" style="--i:4">a</span></span> <span class="mask"><span class="wd" style="--i:5">la</span></span> <span class="mask"><span class="wd" style="--i:6">medida:</span></span><br><span class="mask"><span class="wd" style="--i:6">cada</span></span> <span class="mask"><span class="wd" style="--i:7">corte</span></span> <span class="mask"><span class="wd" style="--i:8">tiene</span></span> <span class="mask"><span class="wd" style="--i:9">su</span></span> <span class="mask"><span class="wd m" style="--i:10">golpe</span></span></h2>
+    <i class="barra" style="left:364px;top:763px;height:74px;--i:0"></i><i class="barra" style="left:384px;top:762px;height:76px;--i:1"></i><i class="barra" style="left:404px;top:758px;height:84px;--i:2"></i><i class="barra" style="left:424px;top:758px;height:84px;--i:3"></i><i class="barra" style="left:444px;top:747px;height:106px;--i:4"></i><i class="barra" style="left:464px;top:758.5px;height:83px;--i:5"></i><i class="barra" style="left:484px;top:776.5px;height:47px;--i:6"></i><i class="barra" style="left:504px;top:757.5px;height:85px;--i:7"></i><i class="barra" style="left:524px;top:753px;height:94px;--i:8"></i><i class="barra" style="left:544px;top:759.5px;height:81px;--i:9"></i><i class="barra" style="left:564px;top:757.5px;height:85px;--i:10"></i><i class="barra" style="left:584px;top:739.5px;height:121px;--i:11"></i><i class="barra" style="left:604px;top:759.5px;height:81px;--i:12"></i><i class="barra" style="left:624px;top:746.5px;height:107px;--i:13"></i><i class="barra" style="left:644px;top:745px;height:110px;--i:14"></i><i class="barra" style="left:664px;top:771.5px;height:57px;--i:15"></i><i class="barra" style="left:684px;top:770.5px;height:59px;--i:16"></i><i class="barra" style="left:704px;top:765px;height:70px;--i:17"></i><i class="barra" style="left:724px;top:758px;height:84px;--i:18"></i><i class="barra" style="left:744px;top:759px;height:82px;--i:19"></i><i class="barra" style="left:764px;top:747px;height:106px;--i:20"></i><i class="barra" style="left:784px;top:772.5px;height:55px;--i:21"></i><i class="barra" style="left:804px;top:745.5px;height:109px;--i:22"></i><i class="barra" style="left:824px;top:746.5px;height:107px;--i:23"></i><i class="barra" style="left:844px;top:755.5px;height:89px;--i:24"></i><i class="barra" style="left:864px;top:730px;height:140px;--i:25"></i><i class="barra" style="left:884px;top:732px;height:136px;--i:26"></i><i class="barra" style="left:904px;top:734px;height:132px;--i:27"></i><i class="barra" style="left:924px;top:761px;height:78px;--i:28"></i><i class="barra" style="left:944px;top:742.5px;height:115px;--i:29"></i><i class="barra" style="left:964px;top:765px;height:70px;--i:30"></i><i class="barra" style="left:984px;top:776.5px;height:47px;--i:31"></i><i class="barra" style="left:1004px;top:735.5px;height:129px;--i:32"></i><i class="barra" style="left:1024px;top:722px;height:156px;--i:33"></i><i class="barra" style="left:1044px;top:762.5px;height:75px;--i:34"></i><i class="barra" style="left:1064px;top:771.5px;height:57px;--i:35"></i><i class="barra" style="left:1084px;top:736.5px;height:127px;--i:36"></i><i class="barra" style="left:1104px;top:760px;height:80px;--i:37"></i><i class="barra" style="left:1124px;top:748.5px;height:103px;--i:38"></i><i class="barra" style="left:1144px;top:747.5px;height:105px;--i:39"></i><i class="barra" style="left:1164px;top:732.5px;height:135px;--i:40"></i><i class="barra" style="left:1184px;top:772px;height:56px;--i:41"></i><i class="barra" style="left:1204px;top:734px;height:132px;--i:42"></i><i class="barra" style="left:1224px;top:736.5px;height:127px;--i:43"></i><i class="barra" style="left:1244px;top:760px;height:80px;--i:44"></i><i class="barra" style="left:1264px;top:778.5px;height:43px;--i:45"></i><i class="barra" style="left:1284px;top:776px;height:48px;--i:46"></i><i class="barra" style="left:1304px;top:738.5px;height:123px;--i:47"></i><i class="barra" style="left:1324px;top:756px;height:88px;--i:48"></i><i class="barra" style="left:1344px;top:755.5px;height:89px;--i:49"></i><i class="barra" style="left:1364px;top:767.5px;height:65px;--i:50"></i><i class="barra" style="left:1384px;top:758px;height:84px;--i:51"></i><i class="barra" style="left:1404px;top:748.5px;height:103px;--i:52"></i><i class="barra" style="left:1424px;top:776.5px;height:47px;--i:53"></i><i class="barra" style="left:1444px;top:754px;height:92px;--i:54"></i><i class="barra" style="left:1464px;top:778.5px;height:43px;--i:55"></i><i class="barra" style="left:1484px;top:763.5px;height:73px;--i:56"></i><i class="barra" style="left:1504px;top:757px;height:86px;--i:57"></i><i class="barra" style="left:1524px;top:746px;height:108px;--i:58"></i><i class="barra" style="left:1544px;top:766px;height:68px;--i:59"></i>
+    <div class="pista"><div class="relleno"></div></div>
+    <i class="marca" style="left:656.7px;--t:52.4995s"></i><i class="pico" style="left:650.7px;--t:52.4995s"></i><i class="marca" style="left:955.3px;--t:54.3661s"></i><i class="pico" style="left:949.3px;--t:54.3661s"></i><i class="marca" style="left:1104.7px;--t:55.2995s"></i><i class="pico" style="left:1098.7px;--t:55.2995s"></i>
+    <div class="cabezal"></div>
+  </section>
+
+  <section class="escena" id="s8" style="--entra:58.1328s;--sale:65.6328s">
+    <div class="camara">
+      <i class="anillo an1"></i><i class="anillo an2"></i>
+      <div class="chispas"><i class="p" style="--x:368.6px;--y:27.2px;--d:1.01s;width:12.8px;height:12.8px;background:#FFFFFF"></i><i class="p" style="--x:-574.4px;--y:387.6px;--d:1.14s;width:6.2px;height:6.2px;background:#FFFFFF"></i><i class="p" style="--x:-21.8px;--y:444.2px;--d:0.82s;width:10.9px;height:10.9px;background:#FFFFFF"></i><i class="p" style="--x:-374.4px;--y:409.1px;--d:1.29s;width:8.8px;height:8.8px;background:#FFFFFF"></i><i class="p" style="--x:15.8px;--y:1022.1px;--d:0.79s;width:5.7px;height:5.7px;background:#FFFFFF"></i><i class="p" style="--x:-193.0px;--y:733.4px;--d:1.25s;width:10.9px;height:10.9px;background:#FFFFFF"></i><i class="p" style="--x:-771.2px;--y:-270.6px;--d:1.07s;width:10.1px;height:10.1px;background:#FAD4E7"></i><i class="p" style="--x:864.2px;--y:-466.6px;--d:0.91s;width:4.4px;height:4.4px;background:#FFFFFF"></i><i class="p" style="--x:-299.8px;--y:152.0px;--d:0.92s;width:4.8px;height:4.8px;background:#FAD4E7"></i><i class="p" style="--x:-622.6px;--y:308.8px;--d:1.11s;width:12.5px;height:12.5px;background:#FAD4E7"></i><i class="p" style="--x:-293.6px;--y:529.0px;--d:1.25s;width:5.2px;height:5.2px;background:#FFFFFF"></i><i class="p" style="--x:-207.6px;--y:424.2px;--d:0.73s;width:9.7px;height:9.7px;background:#FFFFFF"></i><i class="p" style="--x:-424.4px;--y:-968.2px;--d:1.09s;width:8.9px;height:8.9px;background:#FAD4E7"></i><i class="p" style="--x:362.3px;--y:-199.5px;--d:1.23s;width:8.8px;height:8.8px;background:#FFFFFF"></i><i class="p" style="--x:960.0px;--y:-243.3px;--d:1.28s;width:9.3px;height:9.3px;background:#FAD4E7"></i><i class="p" style="--x:-929.8px;--y:-292.9px;--d:0.90s;width:4.1px;height:4.1px;background:#FFFFFF"></i><i class="p" style="--x:-122.3px;--y:-749.7px;--d:1.03s;width:10.8px;height:10.8px;background:#FAD4E7"></i><i class="p" style="--x:294.6px;--y:-595.1px;--d:1.03s;width:9.8px;height:9.8px;background:#FAD4E7"></i><i class="p" style="--x:-194.6px;--y:470.8px;--d:1.27s;width:4.1px;height:4.1px;background:#FFFFFF"></i><i class="p" style="--x:412.4px;--y:-713.9px;--d:1.06s;width:4.1px;height:4.1px;background:#FFFFFF"></i><i class="p" style="--x:-230.8px;--y:-1091.8px;--d:1.09s;width:6.5px;height:6.5px;background:#FAD4E7"></i><i class="p" style="--x:277.2px;--y:-771.2px;--d:1.30s;width:11.5px;height:11.5px;background:#FFFFFF"></i><i class="p" style="--x:-772.8px;--y:-33.7px;--d:0.83s;width:5.4px;height:5.4px;background:#FFFFFF"></i><i class="p" style="--x:392.3px;--y:-929.9px;--d:1.29s;width:10.6px;height:10.6px;background:#FFFFFF"></i><i class="p" style="--x:-703.0px;--y:-576.5px;--d:0.84s;width:12.6px;height:12.6px;background:#FFFFFF"></i><i class="p" style="--x:-826.4px;--y:-481.8px;--d:1.03s;width:11.7px;height:11.7px;background:#FFFFFF"></i><i class="p" style="--x:-733.3px;--y:103.4px;--d:0.96s;width:5.6px;height:5.6px;background:#FFFFFF"></i><i class="p" style="--x:-452.1px;--y:64.3px;--d:0.71s;width:4.0px;height:4.0px;background:#FFFFFF"></i><i class="p" style="--x:797.9px;--y:637.0px;--d:0.80s;width:12.8px;height:12.8px;background:#FFFFFF"></i><i class="p" style="--x:-594.9px;--y:404.1px;--d:0.92s;width:10.6px;height:10.6px;background:#FFFFFF"></i><i class="p" style="--x:229.2px;--y:-858.5px;--d:1.18s;width:11.2px;height:11.2px;background:#FFFFFF"></i><i class="p" style="--x:-655.8px;--y:403.8px;--d:1.17s;width:6.6px;height:6.6px;background:#FFFFFF"></i><i class="p" style="--x:457.2px;--y:251.4px;--d:1.16s;width:11.4px;height:11.4px;background:#FAD4E7"></i><i class="p" style="--x:-547.6px;--y:258.4px;--d:0.92s;width:12.3px;height:12.3px;background:#FFFFFF"></i><i class="p" style="--x:-974.0px;--y:142.0px;--d:1.03s;width:7.6px;height:7.6px;background:#FAD4E7"></i><i class="p" style="--x:-544.2px;--y:230.2px;--d:1.23s;width:8.8px;height:8.8px;background:#FFFFFF"></i><i class="p" style="--x:-996.5px;--y:-486.3px;--d:0.96s;width:11.6px;height:11.6px;background:#FFFFFF"></i><i class="p" style="--x:-343.8px;--y:-1007.8px;--d:0.80s;width:9.0px;height:9.0px;background:#FFFFFF"></i><i class="p" style="--x:-220.6px;--y:-592.9px;--d:0.93s;width:9.5px;height:9.5px;background:#FAD4E7"></i><i class="p" style="--x:-110.4px;--y:376.6px;--d:1.28s;width:10.2px;height:10.2px;background:#FAD4E7"></i><i class="p" style="--x:-216.9px;--y:481.1px;--d:1.26s;width:4.6px;height:4.6px;background:#FAD4E7"></i><i class="p" style="--x:209.5px;--y:-960.4px;--d:1.29s;width:12.7px;height:12.7px;background:#FFFFFF"></i><i class="p" style="--x:-152.7px;--y:735.1px;--d:1.16s;width:7.5px;height:7.5px;background:#FAD4E7"></i><i class="p" style="--x:-641.8px;--y:-631.6px;--d:0.86s;width:9.6px;height:9.6px;background:#FFFFFF"></i><i class="p" style="--x:347.7px;--y:-614.5px;--d:0.98s;width:5.3px;height:5.3px;background:#FAD4E7"></i><i class="p" style="--x:-708.4px;--y:-278.1px;--d:0.79s;width:12.0px;height:12.0px;background:#FAD4E7"></i><i class="p" style="--x:441.0px;--y:327.9px;--d:1.25s;width:8.7px;height:8.7px;background:#FFFFFF"></i><i class="p" style="--x:464.4px;--y:-581.4px;--d:1.00s;width:12.2px;height:12.2px;background:#FFFFFF"></i><i class="p" style="--x:769.2px;--y:-386.2px;--d:1.25s;width:11.2px;height:11.2px;background:#FFFFFF"></i><i class="p" style="--x:976.2px;--y:-188.6px;--d:1.15s;width:4.0px;height:4.0px;background:#FFFFFF"></i><i class="p" style="--x:305.7px;--y:235.7px;--d:1.05s;width:12.2px;height:12.2px;background:#FFFFFF"></i><i class="p" style="--x:-73.0px;--y:952.3px;--d:0.97s;width:10.5px;height:10.5px;background:#FFFFFF"></i><i class="p" style="--x:382.7px;--y:-49.6px;--d:1.17s;width:4.8px;height:4.8px;background:#FFFFFF"></i><i class="p" style="--x:-193.8px;--y:-501.4px;--d:0.99s;width:8.5px;height:8.5px;background:#FFFFFF"></i><i class="p" style="--x:-697.3px;--y:290.6px;--d:0.88s;width:5.5px;height:5.5px;background:#FAD4E7"></i><i class="p" style="--x:-352.3px;--y:-920.9px;--d:1.13s;width:4.3px;height:4.3px;background:#FFFFFF"></i><i class="p" style="--x:426.7px;--y:-339.9px;--d:0.89s;width:11.6px;height:11.6px;background:#FFFFFF"></i><i class="p" style="--x:335.6px;--y:227.4px;--d:0.85s;width:12.9px;height:12.9px;background:#FFFFFF"></i><i class="p" style="--x:-374.2px;--y:-42.4px;--d:1.17s;width:8.6px;height:8.6px;background:#FFFFFF"></i><i class="p" style="--x:478.1px;--y:777.7px;--d:0.82s;width:5.5px;height:5.5px;background:#FFFFFF"></i><i class="p" style="--x:251.8px;--y:-235.3px;--d:1.25s;width:4.3px;height:4.3px;background:#FAD4E7"></i><i class="p" style="--x:-776.5px;--y:79.6px;--d:1.01s;width:10.3px;height:10.3px;background:#FFFFFF"></i><i class="p" style="--x:710.6px;--y:359.2px;--d:0.74s;width:10.5px;height:10.5px;background:#FAD4E7"></i><i class="p" style="--x:-557.4px;--y:-263.0px;--d:0.86s;width:4.5px;height:4.5px;background:#FAD4E7"></i><i class="p" style="--x:306.7px;--y:452.7px;--d:1.19s;width:7.1px;height:7.1px;background:#FAD4E7"></i><i class="p" style="--x:625.4px;--y:-700.2px;--d:1.08s;width:10.4px;height:10.4px;background:#FAD4E7"></i><i class="p" style="--x:-258.3px;--y:-831.2px;--d:1.10s;width:6.8px;height:6.8px;background:#FFFFFF"></i><i class="p" style="--x:-239.9px;--y:453.9px;--d:1.11s;width:8.5px;height:8.5px;background:#FFFFFF"></i><i class="p" style="--x:-795.9px;--y:396.0px;--d:1.01s;width:6.2px;height:6.2px;background:#FAD4E7"></i><i class="p" style="--x:-589.1px;--y:232.6px;--d:1.03s;width:11.3px;height:11.3px;background:#FFFFFF"></i></div>
+      <div class="centro">
+        <p class="l8 l8a"><span class="mask"><span class="wd" style="--i:0">El</span></span> <span class="mask"><span class="wd" style="--i:1">impacto</span></span> <span class="mask"><span class="wd" style="--i:2">cae</span></span> <span class="mask"><span class="wd" style="--i:3">a</span></span></p>
+        <div class="cero">0 ms</div>
+        <p class="l8 l8b"><span class="mask"><span class="wd" style="--i:4">del</span></span> <span class="mask"><span class="wd" style="--i:5">corte</span></span> <span class="mask"><span class="wd" style="--i:6">principal</span></span></p>
+      </div>
+    </div>
+    <div class="destello"></div>
+  </section>
+
+  <section class="escena" id="s9a" style="--entra:65.6328s;--sale:71.2661s">
+    <h2 class="t9"><span class="mask"><span class="wd" style="--i:0">Mezcla</span></span> <span class="mask"><span class="wd" style="--i:1">a</span></span> <span class="mask"><span class="wd m" style="--i:2">−14 LUFS,</span></span><br><span class="mask"><span class="wd" style="--i:3">con</span></span> <span class="mask"><span class="wd" style="--i:4">pico</span></span> <span class="mask"><span class="wd" style="--i:5">bajo</span></span> <span class="mask"><span class="wd m" style="--i:6">−1 dBTP</span></span></h2>
+    <div class="medidor m1"><div class="tubo"><div class="nivel"></div><div class="meta"><span>−14</span></div></div><p>LUFS</p></div>
+    <div class="medidor m2"><div class="tubo"><div class="nivel"></div><div class="meta"><span>−1</span></div></div><p>dBTP</p></div>
+    <div class="destello"></div>
+  </section>
+
+  <section class="escena" id="s9b" style="--entra:71.2661s;--sale:76.8661s">
+    <div class="sello"><div class="anillo-int"></div><svg viewBox="-188 -188 376 376"><rect x="-112" y="-20" width="16" height="40" rx="8"/><rect x="-84" y="-45" width="16" height="90" rx="8"/><rect x="-56" y="-70" width="16" height="140" rx="8"/><rect x="-28" y="-35" width="16" height="70" rx="8"/><rect x="0" y="-85" width="16" height="170" rx="8"/><rect x="28" y="-55" width="16" height="110" rx="8"/><rect x="56" y="-30" width="16" height="60" rx="8"/><rect x="84" y="-65" width="16" height="130" rx="8"/><rect x="112" y="-25" width="16" height="50" rx="8"/></svg></div>
+    <h2 class="t9b"><span class="mask"><span class="wd" style="--i:0">Derechos</span></span> <span class="mask"><span class="wd" style="--i:1">del</span></span> <span class="mask"><span class="wd" style="--i:2">audio</span></span><br><span class="mask"><span class="wd m" style="--i:3">100 %</span></span> <span class="mask"><span class="wd" style="--i:4">propios</span></span></h2>
+  </section>
+
+  <section class="escena" id="s10" style="--entra:76.8661s;--sale:84.3661s">
+    <div class="dial">
+      <div class="giro"><svg viewBox="-220 -220 440 440" width="440" height="440"><g class="ticks"><line x1="0.0" y1="-228.0" x2="0.0" y2="-210.0"/><line x1="23.8" y1="-226.8" x2="23.0" y2="-218.8"/><line x1="47.4" y1="-223.0" x2="45.7" y2="-215.2"/><line x1="70.5" y1="-216.8" x2="68.0" y2="-209.2"/><line x1="92.7" y1="-208.3" x2="89.5" y2="-201.0"/><line x1="114.0" y1="-197.5" x2="105.0" y2="-181.9"/><line x1="134.0" y1="-184.5" x2="129.3" y2="-178.0"/><line x1="152.6" y1="-169.4" x2="147.2" y2="-163.5"/><line x1="169.4" y1="-152.6" x2="163.5" y2="-147.2"/><line x1="184.5" y1="-134.0" x2="178.0" y2="-129.3"/><line x1="197.5" y1="-114.0" x2="181.9" y2="-105.0"/><line x1="208.3" y1="-92.7" x2="201.0" y2="-89.5"/><line x1="216.8" y1="-70.5" x2="209.2" y2="-68.0"/><line x1="223.0" y1="-47.4" x2="215.2" y2="-45.7"/><line x1="226.8" y1="-23.8" x2="218.8" y2="-23.0"/><line x1="228.0" y1="-0.0" x2="210.0" y2="-0.0"/><line x1="226.8" y1="23.8" x2="218.8" y2="23.0"/><line x1="223.0" y1="47.4" x2="215.2" y2="45.7"/><line x1="216.8" y1="70.5" x2="209.2" y2="68.0"/><line x1="208.3" y1="92.7" x2="201.0" y2="89.5"/><line x1="197.5" y1="114.0" x2="181.9" y2="105.0"/><line x1="184.5" y1="134.0" x2="178.0" y2="129.3"/><line x1="169.4" y1="152.6" x2="163.5" y2="147.2"/><line x1="152.6" y1="169.4" x2="147.2" y2="163.5"/><line x1="134.0" y1="184.5" x2="129.3" y2="178.0"/><line x1="114.0" y1="197.5" x2="105.0" y2="181.9"/><line x1="92.7" y1="208.3" x2="89.5" y2="201.0"/><line x1="70.5" y1="216.8" x2="68.0" y2="209.2"/><line x1="47.4" y1="223.0" x2="45.7" y2="215.2"/><line x1="23.8" y1="226.8" x2="23.0" y2="218.8"/><line x1="0.0" y1="228.0" x2="0.0" y2="210.0"/><line x1="-23.8" y1="226.8" x2="-23.0" y2="218.8"/><line x1="-47.4" y1="223.0" x2="-45.7" y2="215.2"/><line x1="-70.5" y1="216.8" x2="-68.0" y2="209.2"/><line x1="-92.7" y1="208.3" x2="-89.5" y2="201.0"/><line x1="-114.0" y1="197.5" x2="-105.0" y2="181.9"/><line x1="-134.0" y1="184.5" x2="-129.3" y2="178.0"/><line x1="-152.6" y1="169.4" x2="-147.2" y2="163.5"/><line x1="-169.4" y1="152.6" x2="-163.5" y2="147.2"/><line x1="-184.5" y1="134.0" x2="-178.0" y2="129.3"/><line x1="-197.5" y1="114.0" x2="-181.9" y2="105.0"/><line x1="-208.3" y1="92.7" x2="-201.0" y2="89.5"/><line x1="-216.8" y1="70.5" x2="-209.2" y2="68.0"/><line x1="-223.0" y1="47.4" x2="-215.2" y2="45.7"/><line x1="-226.8" y1="23.8" x2="-218.8" y2="23.0"/><line x1="-228.0" y1="0.0" x2="-210.0" y2="0.0"/><line x1="-226.8" y1="-23.8" x2="-218.8" y2="-23.0"/><line x1="-223.0" y1="-47.4" x2="-215.2" y2="-45.7"/><line x1="-216.8" y1="-70.5" x2="-209.2" y2="-68.0"/><line x1="-208.3" y1="-92.7" x2="-201.0" y2="-89.5"/><line x1="-197.5" y1="-114.0" x2="-181.9" y2="-105.0"/><line x1="-184.5" y1="-134.0" x2="-178.0" y2="-129.3"/><line x1="-169.4" y1="-152.6" x2="-163.5" y2="-147.2"/><line x1="-152.6" y1="-169.4" x2="-147.2" y2="-163.5"/><line x1="-134.0" y1="-184.5" x2="-129.3" y2="-178.0"/><line x1="-114.0" y1="-197.5" x2="-105.0" y2="-181.9"/><line x1="-92.7" y1="-208.3" x2="-89.5" y2="-201.0"/><line x1="-70.5" y1="-216.8" x2="-68.0" y2="-209.2"/><line x1="-47.4" y1="-223.0" x2="-45.7" y2="-215.2"/><line x1="-23.8" y1="-226.8" x2="-23.0" y2="-218.8"/></g></svg></div>
+      <svg viewBox="-220 -220 440 440" width="440" height="440"><circle r="200" class="pista-dial"/><g transform="rotate(-90)"><circle r="200" class="arco"/></g></svg>
+      <div class="aguja"></div>
+      <div class="lectura"><b class="num"></b><small>min</small></div>
+    </div>
+    <h2 class="t10"><span class="mask"><span class="wd" style="--i:0">Un</span></span> <span class="mask"><span class="wd" style="--i:1">agente</span></span> <span class="mask"><span class="wd" style="--i:2">nuevo</span></span> <span class="mask"><span class="wd" style="--i:3">hizo</span></span><br><span class="mask"><span class="wd" style="--i:4">un</span></span> <span class="mask"><span class="wd" style="--i:5">video</span></span> <span class="mask"><span class="wd" style="--i:6">de</span></span> <span class="mask"><span class="wd m" style="--i:7">30 s</span></span><br><span class="mask"><span class="wd" style="--i:8">en</span></span> <span class="mask"><span class="wd m" style="--i:9">28</span></span> <span class="mask"><span class="wd m" style="--i:10">minutos</span></span></h2>
+  </section>
+
+  <section class="escena" id="s11" style="--entra:84.3661s;--sale:90.9995s">
+    <div class="logo"><span class="ch" style="--i:0">C</span><span class="ch" style="--i:1">E</span><span class="ch" style="--i:2">N</span><span class="ch" style="--i:3">I</span><span class="ch" style="--i:4">A</span></div>
+    <i class="seg" style="left:660px;--dx:-445px;--dy:-490px;--sx:2.44;--r:-24deg;--t:84.5661s"></i><i class="seg" style="left:762px;--dx:833px;--dy:-450px;--sx:1.78;--r:18deg;--t:84.6561s"></i><i class="seg" style="left:864px;--dx:-594px;--dy:240px;--sx:1.67;--r:12deg;--t:84.7461s"></i><i class="seg" style="left:966px;--dx:609px;--dy:220px;--sx:2.67;--r:-15deg;--t:84.8361s"></i><i class="seg" style="left:1068px;--dx:-968px;--dy:-100px;--sx:1.22;--r:30deg;--t:84.9261s"></i><i class="seg" style="left:1170px;--dx:550px;--dy:-80px;--sx:1.44;--r:-30deg;--t:85.0161s"></i>
+    <p class="meta11"><span class="mask"><span class="wd">video-with-ai</span></span></p>
+  </section>
+
+  <div id="cortina1" class="cortina"></div>
+  <div id="mascara"></div>
+  <div id="barrido"></div>
+  <div id="ola"><svg class="arriba" viewBox="0 0 1920 90" preserveAspectRatio="none"><path d="M0 90 L0 50 Q120 0 240 50 T480 50 T720 50 T960 50 T1200 50 T1440 50 T1680 50 T1920 50 L1920 90 Z"/></svg>
+    <svg class="abajo" viewBox="0 0 1920 90" preserveAspectRatio="none"><path d="M0 90 L0 50 Q120 0 240 50 T480 50 T720 50 T960 50 T1200 50 T1440 50 T1680 50 T1920 50 L1920 90 Z"/></svg></div>
+  <div id="cortina2" class="cortina"></div>
+</div>
+</body>
+</html>

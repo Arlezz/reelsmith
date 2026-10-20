@@ -1,0 +1,54 @@
+{
+ "archivo": "transcripción de agent-a87bed38c21fea867 (sesión de Cowork)",
+ "total_s": 256.7,
+ "modelo_s": 69.3,
+ "herramientas_s": 187.5,
+ "otros_s": 0.0,
+ "respuestas_del_modelo": 11,
+ "llamadas_a_herramientas": 15,
+ "por_etapa": {
+  "render": {
+   "s": 180.4,
+   "llamadas": 2
+  },
+  "vista": {
+   "s": 3.4,
+   "llamadas": 1
+  },
+  "bash_otro": {
+   "s": 2.0,
+   "llamadas": 4
+  },
+  "construir": {
+   "s": 1.2,
+   "llamadas": 1
+  },
+  "cortes": {
+   "s": 0.2,
+   "llamadas": 1
+  },
+  "ver_imagen": {
+   "s": 0.1,
+   "llamadas": 3
+  },
+  "leer_archivo": {
+   "s": 0.1,
+   "llamadas": 2
+  },
+  "escritura_archivo": {
+   "s": 0.0,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 22,
+  "cache_creada": 42748,
+  "cache_leida": 844251,
+  "salida": 6055
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 0.5,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}

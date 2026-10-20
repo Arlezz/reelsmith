@@ -1,0 +1,13 @@
+# Medición en windows-gpu · 2026-10-19 2232
+Equipo: AMD Ryzen 7 9800X3D 8-Core Processor · 16 núcleos lógicos · 62 GB · Windows 11 Pro (10.0.26200)
+Tarjeta de video: AMD Radeon(TM) Graphics; NVIDIA GeForce RTX 5070
+v22.19.0 · ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers · Python 3.13.2
+navegador: C:\Users\Anton\AppData\Local\ms-playwright\chromium_headless_shell-1234\chrome-headless-shell-win64\chrome-headless-shell.exe
+modo: beginFrame (MP4 idéntico byte a byte) · sistema: win32
+CPU: 16 · memoria libre: 38911 MB · trabajadores por defecto: 32
+
+GPU (h264_nvenc, 8 sesiones a la vez) contra CPU (libx264), solo el render, intercalados, mediana de 3, a igual tasa de bits:
+[ref20] CPU 11,8 s · GPU 12,0 s (+1,7 %) · CPU con 8 trabajadores 12,6 s · SSIM GPU contra CPU 0.99863 · 5632 KB contra 5273 KB · segmentos repetidos: {"cpu":0,"gpu":0,"cpu_mismos_trabajadores":0}
+[ref90] CPU 27,3 s · GPU 22,9 s (−16,1 %) · CPU con 8 trabajadores 25,5 s · SSIM GPU contra CPU 0.997537 · 18745 KB contra 17755 KB · segmentos repetidos: {"cpu":0,"gpu":0,"cpu_mismos_trabajadores":0}
+
+Listo. Resumen: C:\Users\Anton\Documents\proyectos\video-with-ai\video-showreel-nativo\bench\resultados\2026-10-19_2232_windows-gpu.txt

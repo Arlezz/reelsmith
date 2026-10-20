@@ -1,0 +1,46 @@
+{
+ "archivo": "transcripción de agent-ad24afec59f49867b (sesión de Cowork)",
+ "total_s": 23.6,
+ "modelo_s": 22.1,
+ "herramientas_s": 1.5,
+ "otros_s": 0.0,
+ "respuestas_del_modelo": 10,
+ "llamadas_a_herramientas": 9,
+ "por_etapa": {
+  "vista": {
+   "s": 1.1,
+   "llamadas": 1
+  },
+  "bash_otro": {
+   "s": 0.3,
+   "llamadas": 4
+  },
+  "herramienta_Grep": {
+   "s": 0.0,
+   "llamadas": 1
+  },
+  "escritura_archivo": {
+   "s": 0.0,
+   "llamadas": 1
+  },
+  "ver_imagen": {
+   "s": 0.0,
+   "llamadas": 1
+  },
+  "leer_archivo": {
+   "s": 0.0,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 20,
+  "cache_creada": 29416,
+  "cache_leida": 715860,
+  "salida": 1892
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 0.33,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}

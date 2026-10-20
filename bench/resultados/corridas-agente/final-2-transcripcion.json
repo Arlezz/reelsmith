@@ -1,0 +1,46 @@
+{
+ "archivo": "transcripción de agent-a9312896d1531a3f4 (sesión de Cowork)",
+ "total_s": 257.4,
+ "modelo_s": 75.9,
+ "herramientas_s": 181.4,
+ "otros_s": 0.0,
+ "respuestas_del_modelo": 12,
+ "llamadas_a_herramientas": 14,
+ "por_etapa": {
+  "render": {
+   "s": 176.5,
+   "llamadas": 2
+  },
+  "vista": {
+   "s": 3.7,
+   "llamadas": 1
+  },
+  "bash_otro": {
+   "s": 0.9,
+   "llamadas": 6
+  },
+  "construir": {
+   "s": 0.2,
+   "llamadas": 1
+  },
+  "ver_imagen": {
+   "s": 0.1,
+   "llamadas": 3
+  },
+  "escritura_archivo": {
+   "s": 0.0,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 24,
+  "cache_creada": 41917,
+  "cache_leida": 909444,
+  "salida": 6581
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 0.52,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}

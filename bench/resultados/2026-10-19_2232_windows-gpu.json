@@ -1,0 +1,88 @@
+{
+ "fecha": "2026-10-19_2232",
+ "etiqueta": "windows-gpu",
+ "sistema": "win32",
+ "equipo": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "nucleos": 16,
+  "memoria_gb": 62,
+  "so": "Windows 11 Pro (10.0.26200)",
+  "gpu": "AMD Radeon(TM) Graphics; NVIDIA GeForce RTX 5070",
+  "node": "v22.19.0",
+  "ffmpeg": "ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "python": "3.13.2"
+ },
+ "gpu": {
+  "codificador": "h264_nvenc",
+  "probados": [
+   "h264_nvenc",
+   "h264_qsv",
+   "h264_amf"
+  ],
+  "sesiones": 8,
+  "refs": {
+   "ref20": {
+    "duracion_s": 20,
+    "cpu_s": [
+     11.8,
+     11.8,
+     11.3
+    ],
+    "gpu_s": [
+     12,
+     12.1,
+     12
+    ],
+    "cpu_mediana_s": 11.8,
+    "gpu_mediana_s": 12,
+    "cambio_pct": 1.7,
+    "cpu_mismos_trabajadores_s": [
+     12.6,
+     12.3,
+     12.6
+    ],
+    "cpu_mismos_trabajadores_mediana_s": 12.6,
+    "segmentos_repetidos": {
+     "cpu": 0,
+     "gpu": 0,
+     "cpu_mismos_trabajadores": 0
+    },
+    "ssim_gpu_contra_cpu": 0.99863,
+    "kb_cpu": 5632,
+    "kb_gpu": 5273,
+    "tasa_bits_bps": 2306954
+   },
+   "ref90": {
+    "duracion_s": 90,
+    "cpu_s": [
+     27.6,
+     27.3,
+     26.3
+    ],
+    "gpu_s": [
+     22.8,
+     23.8,
+     22.9
+    ],
+    "cpu_mediana_s": 27.3,
+    "gpu_mediana_s": 22.9,
+    "cambio_pct": -16.1,
+    "cpu_mismos_trabajadores_s": [
+     25.3,
+     25.5,
+     26.8
+    ],
+    "cpu_mismos_trabajadores_mediana_s": 25.5,
+    "segmentos_repetidos": {
+     "cpu": 0,
+     "gpu": 0,
+     "cpu_mismos_trabajadores": 0
+    },
+    "ssim_gpu_contra_cpu": 0.997537,
+    "kb_cpu": 18745,
+    "kb_gpu": 17755,
+    "tasa_bits_bps": 1706232
+   }
+  }
+ }
+}

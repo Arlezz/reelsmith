@@ -1,0 +1,713 @@
+{
+ "fecha": "2026-10-19T01:38:50",
+ "etiqueta": "ab-base-vs-nueva",
+ "maquina": {
+  "sistema": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+  "cpus": 2,
+  "memoria_mb": 8029,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "node": "v22.22.0",
+  "gpu": "ninguna detectada"
+ },
+ "variantes": [
+  {
+   "nombre": "base",
+   "skill": "/home/claude/bench-video/versiones/base/skills/video-showreel-nativo",
+   "modo": "etapas"
+  },
+  {
+   "nombre": "nueva",
+   "skill": "/home/claude/bench-video/versiones/nueva/skills/video-showreel-nativo",
+   "modo": "final"
+  }
+ ],
+ "refs": {
+  "ref20": {
+   "base": {
+    "repeticiones": [
+     {
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 84.5,
+       "cortes": 13.57,
+       "musica": 5.13,
+       "mezcla": 10.83,
+       "verificar_audio": 14.98,
+       "verificar_musica": 1.62
+      },
+      "total_s": 130.62,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "animaciones": 825,
+       "modo": "beginFrame",
+       "preparacion_s": 0.35,
+       "posicionar_s": 4.38,
+       "dibujar_capturar_s": 74.8,
+       "esperar_ffmpeg_s": 2.45,
+       "cola_ffmpeg_s": 0.5,
+       "hoja": true,
+       "s_por_cuadro": 0.1401
+      },
+      "check_audio": [
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+      "md5_mp4_final": "69e7e8527c17c91e0ea2c5698b43b653",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": true,
+      "modo": "etapas"
+     },
+     {
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 82.65,
+       "cortes": 14.05,
+       "musica": 5.25,
+       "mezcla": 10.9,
+       "verificar_audio": 15.64,
+       "verificar_musica": 1.79
+      },
+      "total_s": 130.28,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "animaciones": 825,
+       "modo": "beginFrame",
+       "preparacion_s": 0.29,
+       "posicionar_s": 4.33,
+       "dibujar_capturar_s": 73.06,
+       "esperar_ffmpeg_s": 2.42,
+       "cola_ffmpeg_s": 0.49,
+       "hoja": true,
+       "s_por_cuadro": 0.1372
+      },
+      "check_audio": [
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+      "md5_mp4_final": "69e7e8527c17c91e0ea2c5698b43b653",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": true,
+      "modo": "etapas"
+     },
+     {
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 94.21,
+       "cortes": 15.09,
+       "musica": 6.29,
+       "mezcla": 12.42,
+       "verificar_audio": 15.66,
+       "verificar_musica": 1.68
+      },
+      "total_s": 145.34,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "animaciones": 825,
+       "modo": "beginFrame",
+       "preparacion_s": 0.35,
+       "posicionar_s": 4.92,
+       "dibujar_capturar_s": 83.1,
+       "esperar_ffmpeg_s": 2.84,
+       "cola_ffmpeg_s": 0.57,
+       "hoja": true,
+       "s_por_cuadro": 0.1563
+      },
+      "check_audio": [
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+      "md5_mp4_final": "69e7e8527c17c91e0ea2c5698b43b653",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": true,
+      "modo": "etapas"
+     }
+    ],
+    "modo": "etapas",
+    "mediana_s": {
+     "construir": 0.0,
+     "render": 84.5,
+     "cortes": 14.05,
+     "musica": 5.25,
+     "mezcla": 10.9,
+     "verificar_audio": 15.64,
+     "verificar_musica": 1.68
+    },
+    "mediana_total_s": 130.62,
+    "totales_s": [
+     130.62,
+     130.28,
+     145.34
+    ],
+    "deterministico": true
+   },
+   "nueva": {
+    "repeticiones": [
+     {
+      "modo": "final",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 52.4,
+       "cortes": 2.43,
+       "musica": 5.66,
+       "mezcla": 10.31,
+       "verificar_musica": 3.88,
+       "verificar_audio": 3.37
+      },
+      "total_s": 79.52,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 50.53,
+       "union_s": 0.11,
+       "hoja_s": 1.69,
+       "s_por_cuadro_dibujado": 0.0842,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 150,
+         "s": 34.99
+        },
+        {
+         "id": "parte3",
+         "cuadros": 150,
+         "s": 42.11
+        },
+        {
+         "id": "parte2",
+         "cuadros": 150,
+         "s": 47.5
+        },
+        {
+         "id": "parte1",
+         "cuadros": 150,
+         "s": 50.09
+        }
+       ]
+      },
+      "check_audio": [
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "recompuesto": false,
+      "md5_video_mudo": "be6d093b351b56e53f48870daa141e09",
+      "md5_mp4_final": "b472bfeb4ba2cc155f3f160935d139ea",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false,
+      "ssim_vs_golden": {
+       "ssim_promedio": 0.999069,
+       "ssim_minimo": 0.997227,
+       "cuadros": 600
+      }
+     },
+     {
+      "modo": "final",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 57.52,
+       "cortes": 3.01,
+       "musica": 5.16,
+       "mezcla": 10.65,
+       "verificar_musica": 3.75,
+       "verificar_audio": 3.27
+      },
+      "total_s": 84.77,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 55.63,
+       "union_s": 0.13,
+       "hoja_s": 1.7,
+       "s_por_cuadro_dibujado": 0.0927,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 150,
+         "s": 34.88
+        },
+        {
+         "id": "parte3",
+         "cuadros": 150,
+         "s": 44.4
+        },
+        {
+         "id": "parte2",
+         "cuadros": 150,
+         "s": 52.01
+        },
+        {
+         "id": "parte1",
+         "cuadros": 150,
+         "s": 55.16
+        }
+       ]
+      },
+      "check_audio": [
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "recompuesto": false,
+      "md5_video_mudo": "be6d093b351b56e53f48870daa141e09",
+      "md5_mp4_final": "b472bfeb4ba2cc155f3f160935d139ea",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false
+     },
+     {
+      "modo": "final",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 65.85,
+       "cortes": 3.44,
+       "musica": 5.35,
+       "mezcla": 11.57,
+       "verificar_musica": 3.71,
+       "verificar_audio": 3.41
+      },
+      "total_s": 94.92,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 63.5,
+       "union_s": 0.14,
+       "hoja_s": 2.13,
+       "s_por_cuadro_dibujado": 0.1058,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 150,
+         "s": 38.5
+        },
+        {
+         "id": "parte3",
+         "cuadros": 150,
+         "s": 53.46
+        },
+        {
+         "id": "parte2",
+         "cuadros": 150,
+         "s": 60.52
+        },
+        {
+         "id": "parte1",
+         "cuadros": 150,
+         "s": 62.84
+        }
+       ]
+      },
+      "check_audio": [
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "recompuesto": false,
+      "md5_video_mudo": "be6d093b351b56e53f48870daa141e09",
+      "md5_mp4_final": "b472bfeb4ba2cc155f3f160935d139ea",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false
+     }
+    ],
+    "modo": "final",
+    "mediana_s": {
+     "construir": 0.0,
+     "render": 57.52,
+     "cortes": 3.01,
+     "musica": 5.35,
+     "mezcla": 10.65,
+     "verificar_audio": 3.37,
+     "verificar_musica": 3.75
+    },
+    "mediana_total_s": 84.77,
+    "totales_s": [
+     79.52,
+     84.77,
+     94.92
+    ],
+    "deterministico": true
+   }
+  },
+  "ref90": {
+   "base": {
+    "repeticiones": [
+     {
+      "etapas_s": {
+       "construir": 0.06,
+       "render": 243.27,
+       "cortes": 65.53,
+       "musica": 21.1,
+       "mezcla": 55.2,
+       "verificar_audio": 138.39,
+       "verificar_musica": 3.72
+      },
+      "total_s": 527.27,
+      "render_interno": {
+       "cuadros": 2700,
+       "fps": 30,
+       "duracion_s": 90,
+       "animaciones": 482,
+       "modo": "beginFrame",
+       "preparacion_s": 0.4,
+       "posicionar_s": 15.27,
+       "dibujar_capturar_s": 215.88,
+       "esperar_ffmpeg_s": 1.89,
+       "cola_ffmpeg_s": 1.12,
+       "hoja": true,
+       "s_por_cuadro": 0.0899
+      },
+      "check_audio": [
+       "PASA",
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "md5_video_mudo": "7e35101ad782654d6b7f6bd4c6f2dd70",
+      "md5_mp4_final": "c5181d5fa58b18c9b7929a6a7d127295",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": true,
+      "modo": "etapas"
+     },
+     {
+      "etapas_s": {
+       "construir": 0.07,
+       "render": 268.08,
+       "cortes": 69.22,
+       "musica": 21.92,
+       "mezcla": 67.99,
+       "verificar_audio": 142.11,
+       "verificar_musica": 3.78
+      },
+      "total_s": 573.17,
+      "render_interno": {
+       "cuadros": 2700,
+       "fps": 30,
+       "duracion_s": 90,
+       "animaciones": 482,
+       "modo": "beginFrame",
+       "preparacion_s": 0.39,
+       "posicionar_s": 17.35,
+       "dibujar_capturar_s": 236.29,
+       "esperar_ffmpeg_s": 1.92,
+       "cola_ffmpeg_s": 1.34,
+       "hoja": true,
+       "s_por_cuadro": 0.0991
+      },
+      "check_audio": [
+       "PASA",
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "md5_video_mudo": "7e35101ad782654d6b7f6bd4c6f2dd70",
+      "md5_mp4_final": "c5181d5fa58b18c9b7929a6a7d127295",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": true,
+      "modo": "etapas"
+     },
+     {
+      "etapas_s": {
+       "construir": 0.06,
+       "render": 273.42,
+       "cortes": 67.0,
+       "musica": 21.04,
+       "mezcla": 65.89,
+       "verificar_audio": 142.22,
+       "verificar_musica": 3.95
+      },
+      "total_s": 573.57,
+      "render_interno": {
+       "cuadros": 2700,
+       "fps": 30,
+       "duracion_s": 90,
+       "animaciones": 482,
+       "modo": "beginFrame",
+       "preparacion_s": 0.39,
+       "posicionar_s": 17.94,
+       "dibujar_capturar_s": 241.75,
+       "esperar_ffmpeg_s": 1.97,
+       "cola_ffmpeg_s": 1.36,
+       "hoja": true,
+       "s_por_cuadro": 0.1011
+      },
+      "check_audio": [
+       "PASA",
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "md5_video_mudo": "7e35101ad782654d6b7f6bd4c6f2dd70",
+      "md5_mp4_final": "c5181d5fa58b18c9b7929a6a7d127295",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": true,
+      "modo": "etapas"
+     }
+    ],
+    "modo": "etapas",
+    "mediana_s": {
+     "construir": 0.06,
+     "render": 268.08,
+     "cortes": 67.0,
+     "musica": 21.1,
+     "mezcla": 65.89,
+     "verificar_audio": 142.11,
+     "verificar_musica": 3.78
+    },
+    "mediana_total_s": 573.17,
+    "totales_s": [
+     527.27,
+     573.17,
+     573.57
+    ],
+    "deterministico": true
+   },
+   "nueva": {
+    "repeticiones": [
+     {
+      "modo": "final",
+      "etapas_s": {
+       "construir": 0.06,
+       "musica": 46.03,
+       "mezcla": 124.16,
+       "verificar_musica": 12.88,
+       "render": 189.1,
+       "verificar_audio": 34.81,
+       "cortes": 21.26
+      },
+      "total_s": 210.76,
+      "render_interno": {
+       "cuadros": 2700,
+       "fps": 30,
+       "duracion_s": 90,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 2700,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 178.96,
+       "union_s": 0.17,
+       "hoja_s": 9.92,
+       "s_por_cuadro_dibujado": 0.0663,
+       "segmentos_detalle": [
+        {
+         "id": "parte3",
+         "cuadros": 675,
+         "s": 163.07
+        },
+        {
+         "id": "parte4",
+         "cuadros": 675,
+         "s": 164.13
+        },
+        {
+         "id": "parte1",
+         "cuadros": 675,
+         "s": 170.2
+        },
+        {
+         "id": "parte2",
+         "cuadros": 675,
+         "s": 178.53
+        }
+       ]
+      },
+      "check_audio": [
+       "PASA",
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "recompuesto": false,
+      "md5_video_mudo": "c1c17cd3119dc15cc72082e1b4f59b7f",
+      "md5_mp4_final": "0e51fb7c85d9f17a854e240ea227692e",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false,
+      "ssim_vs_golden": {
+       "ssim_promedio": 0.998105,
+       "ssim_minimo": 0.995335,
+       "cuadros": 2700
+      }
+     },
+     {
+      "modo": "final",
+      "etapas_s": {
+       "construir": 0.06,
+       "musica": 54.96,
+       "mezcla": 141.99,
+       "verificar_musica": 14.49,
+       "render": 216.48,
+       "verificar_audio": 28.31,
+       "cortes": 19.36
+      },
+      "total_s": 236.27,
+      "render_interno": {
+       "cuadros": 2700,
+       "fps": 30,
+       "duracion_s": 90,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 2700,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 204.76,
+       "union_s": 0.19,
+       "hoja_s": 11.44,
+       "s_por_cuadro_dibujado": 0.0758,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 675,
+         "s": 185.92
+        },
+        {
+         "id": "parte3",
+         "cuadros": 675,
+         "s": 187.99
+        },
+        {
+         "id": "parte1",
+         "cuadros": 675,
+         "s": 193.81
+        },
+        {
+         "id": "parte2",
+         "cuadros": 675,
+         "s": 204.09
+        }
+       ]
+      },
+      "check_audio": [
+       "PASA",
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "recompuesto": false,
+      "md5_video_mudo": "c1c17cd3119dc15cc72082e1b4f59b7f",
+      "md5_mp4_final": "0e51fb7c85d9f17a854e240ea227692e",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false
+     },
+     {
+      "modo": "final",
+      "etapas_s": {
+       "construir": 0.06,
+       "musica": 54.18,
+       "mezcla": 134.22,
+       "verificar_musica": 12.79,
+       "render": 205.28,
+       "verificar_audio": 28.09,
+       "cortes": 18.48
+      },
+      "total_s": 224.19,
+      "render_interno": {
+       "cuadros": 2700,
+       "fps": 30,
+       "duracion_s": 90,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 2700,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 194.63,
+       "union_s": 0.16,
+       "hoja_s": 10.39,
+       "s_por_cuadro_dibujado": 0.0721,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 675,
+         "s": 179.82
+        },
+        {
+         "id": "parte3",
+         "cuadros": 675,
+         "s": 179.91
+        },
+        {
+         "id": "parte1",
+         "cuadros": 675,
+         "s": 183.31
+        },
+        {
+         "id": "parte2",
+         "cuadros": 675,
+         "s": 193.66
+        }
+       ]
+      },
+      "check_audio": [
+       "PASA",
+       "PASA"
+      ],
+      "medir_pista": "PASA",
+      "recompuesto": false,
+      "md5_video_mudo": "c1c17cd3119dc15cc72082e1b4f59b7f",
+      "md5_mp4_final": "0e51fb7c85d9f17a854e240ea227692e",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false
+     }
+    ],
+    "modo": "final",
+    "mediana_s": {
+     "construir": 0.06,
+     "render": 205.28,
+     "cortes": 19.36,
+     "musica": 54.18,
+     "mezcla": 134.22,
+     "verificar_audio": 28.31,
+     "verificar_musica": 12.88
+    },
+    "mediana_total_s": 224.19,
+    "totales_s": [
+     210.76,
+     236.27,
+     224.19
+    ],
+    "deterministico": true
+   }
+  }
+ }
+}

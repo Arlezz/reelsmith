@@ -1,0 +1,14 @@
+# cachés y entornos
+.cache/
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+# lo que producen las corridas (videos, audio, proyectos de prueba)
+*.mp4
+*.wav
+*.m4a
+/proyecto/
+/prueba*/
+showreel.log
+tiempos.jsonl

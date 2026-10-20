@@ -1,0 +1,854 @@
+{
+ "fecha": "2026-10-19T09:59:31",
+ "etiqueta": "gpu-mac-ref20",
+ "maquina": {
+  "sistema": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "cpus": 10,
+  "memoria_mb": 0,
+  "cpu": "",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "node": "v26.7.0",
+  "gpu": "ninguna detectada"
+ },
+ "variantes": [
+  {
+   "nombre": "cpu",
+   "skill": "/Users/antony/Documents/proyectos/video-with-ai/video-showreel-nativo/skills/video-showreel-nativo",
+   "modo": "render"
+  },
+  {
+   "nombre": "gpu",
+   "skill": "/Users/antony/Documents/proyectos/video-with-ai/video-showreel-nativo/skills/video-showreel-nativo",
+   "modo": "render",
+   "extra": "--codificador h264_videotoolbox"
+  }
+ ],
+ "refs": {
+  "ref20": {
+   "cpu": {
+    "repeticiones": [
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 9.98
+      },
+      "total_s": 9.98,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "capturas",
+       "version": "3",
+       "segmentos": 20,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 20,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 9.59,
+       "union_s": 0.1,
+       "hoja_s": 0.24,
+       "s_por_cuadro_dibujado": 0.016,
+       "segmentos_detalle": [
+        {
+         "id": "parte12",
+         "cuadros": 30,
+         "s": 5.31
+        },
+        {
+         "id": "parte10",
+         "cuadros": 30,
+         "s": 5.38
+        },
+        {
+         "id": "parte1",
+         "cuadros": 30,
+         "s": 5.61
+        },
+        {
+         "id": "parte13",
+         "cuadros": 30,
+         "s": 5.42
+        },
+        {
+         "id": "parte19",
+         "cuadros": 30,
+         "s": 5.44
+        },
+        {
+         "id": "parte18",
+         "cuadros": 30,
+         "s": 5.57
+        },
+        {
+         "id": "parte20",
+         "cuadros": 30,
+         "s": 5.59
+        },
+        {
+         "id": "parte11",
+         "cuadros": 30,
+         "s": 5.61
+        },
+        {
+         "id": "parte9",
+         "cuadros": 30,
+         "s": 5.62
+        },
+        {
+         "id": "parte14",
+         "cuadros": 30,
+         "s": 5.65
+        },
+        {
+         "id": "parte3",
+         "cuadros": 30,
+         "s": 5.97
+        },
+        {
+         "id": "parte2",
+         "cuadros": 30,
+         "s": 6.17
+        },
+        {
+         "id": "parte17",
+         "cuadros": 30,
+         "s": 6.41
+        },
+        {
+         "id": "parte15",
+         "cuadros": 30,
+         "s": 6.44
+        },
+        {
+         "id": "parte16",
+         "cuadros": 30,
+         "s": 6.53
+        },
+        {
+         "id": "parte8",
+         "cuadros": 30,
+         "s": 7.12
+        },
+        {
+         "id": "parte4",
+         "cuadros": 30,
+         "s": 7.89
+        },
+        {
+         "id": "parte5",
+         "cuadros": 30,
+         "s": 8.57
+        },
+        {
+         "id": "parte6",
+         "cuadros": 30,
+         "s": 8.78
+        },
+        {
+         "id": "parte7",
+         "cuadros": 30,
+         "s": 8.91
+        }
+       ],
+       "reintentos": []
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "a06ac5f7553314e1c548f20cb91bdb7c"
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 10.6
+      },
+      "total_s": 10.6,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "capturas",
+       "version": "3",
+       "segmentos": 20,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 20,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 10.21,
+       "union_s": 0.1,
+       "hoja_s": 0.24,
+       "s_por_cuadro_dibujado": 0.017,
+       "segmentos_detalle": [
+        {
+         "id": "parte19",
+         "cuadros": 30,
+         "s": 6.22
+        },
+        {
+         "id": "parte13",
+         "cuadros": 30,
+         "s": 6.24
+        },
+        {
+         "id": "parte12",
+         "cuadros": 30,
+         "s": 6.26
+        },
+        {
+         "id": "parte9",
+         "cuadros": 30,
+         "s": 6.33
+        },
+        {
+         "id": "parte11",
+         "cuadros": 30,
+         "s": 6.45
+        },
+        {
+         "id": "parte1",
+         "cuadros": 30,
+         "s": 6.5
+        },
+        {
+         "id": "parte10",
+         "cuadros": 30,
+         "s": 6.53
+        },
+        {
+         "id": "parte14",
+         "cuadros": 30,
+         "s": 6.55
+        },
+        {
+         "id": "parte20",
+         "cuadros": 30,
+         "s": 6.56
+        },
+        {
+         "id": "parte18",
+         "cuadros": 30,
+         "s": 6.57
+        },
+        {
+         "id": "parte3",
+         "cuadros": 30,
+         "s": 6.84
+        },
+        {
+         "id": "parte2",
+         "cuadros": 30,
+         "s": 6.88
+        },
+        {
+         "id": "parte17",
+         "cuadros": 30,
+         "s": 6.91
+        },
+        {
+         "id": "parte16",
+         "cuadros": 30,
+         "s": 7.12
+        },
+        {
+         "id": "parte15",
+         "cuadros": 30,
+         "s": 7.15
+        },
+        {
+         "id": "parte8",
+         "cuadros": 30,
+         "s": 7.57
+        },
+        {
+         "id": "parte4",
+         "cuadros": 30,
+         "s": 8.43
+        },
+        {
+         "id": "parte6",
+         "cuadros": 30,
+         "s": 9.31
+        },
+        {
+         "id": "parte5",
+         "cuadros": 30,
+         "s": 9.44
+        },
+        {
+         "id": "parte7",
+         "cuadros": 30,
+         "s": 9.5
+        }
+       ],
+       "reintentos": []
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "2b0d64f72f537d7bbcba5c912a089f45"
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 11.12
+      },
+      "total_s": 11.12,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "capturas",
+       "version": "3",
+       "segmentos": 20,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 20,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 10.73,
+       "union_s": 0.09,
+       "hoja_s": 0.23,
+       "s_por_cuadro_dibujado": 0.0179,
+       "segmentos_detalle": [
+        {
+         "id": "parte12",
+         "cuadros": 30,
+         "s": 6.2
+        },
+        {
+         "id": "parte13",
+         "cuadros": 30,
+         "s": 6.25
+        },
+        {
+         "id": "parte10",
+         "cuadros": 30,
+         "s": 6.44
+        },
+        {
+         "id": "parte11",
+         "cuadros": 30,
+         "s": 6.56
+        },
+        {
+         "id": "parte1",
+         "cuadros": 30,
+         "s": 6.59
+        },
+        {
+         "id": "parte20",
+         "cuadros": 30,
+         "s": 6.61
+        },
+        {
+         "id": "parte9",
+         "cuadros": 30,
+         "s": 6.65
+        },
+        {
+         "id": "parte19",
+         "cuadros": 30,
+         "s": 6.67
+        },
+        {
+         "id": "parte18",
+         "cuadros": 30,
+         "s": 6.71
+        },
+        {
+         "id": "parte14",
+         "cuadros": 30,
+         "s": 6.75
+        },
+        {
+         "id": "parte2",
+         "cuadros": 30,
+         "s": 7.11
+        },
+        {
+         "id": "parte3",
+         "cuadros": 30,
+         "s": 7.13
+        },
+        {
+         "id": "parte15",
+         "cuadros": 30,
+         "s": 7.57
+        },
+        {
+         "id": "parte17",
+         "cuadros": 30,
+         "s": 7.61
+        },
+        {
+         "id": "parte16",
+         "cuadros": 30,
+         "s": 7.63
+        },
+        {
+         "id": "parte8",
+         "cuadros": 30,
+         "s": 8.19
+        },
+        {
+         "id": "parte4",
+         "cuadros": 30,
+         "s": 9.07
+        },
+        {
+         "id": "parte6",
+         "cuadros": 30,
+         "s": 9.82
+        },
+        {
+         "id": "parte5",
+         "cuadros": 30,
+         "s": 9.85
+        },
+        {
+         "id": "parte7",
+         "cuadros": 30,
+         "s": 10.05
+        }
+       ],
+       "reintentos": []
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "24b619a48664548fad9d282e9fca2adc"
+     }
+    ],
+    "modo": "render",
+    "mediana_s": {
+     "construir": 0.0,
+     "render": 10.6
+    },
+    "mediana_total_s": 10.6,
+    "totales_s": [
+     9.98,
+     10.6,
+     11.12
+    ],
+    "deterministico": false
+   },
+   "gpu": {
+    "repeticiones": [
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 9.94
+      },
+      "total_s": 9.94,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "capturas",
+       "version": "3",
+       "segmentos": 20,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 20,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 9.53,
+       "union_s": 0.1,
+       "hoja_s": 0.25,
+       "s_por_cuadro_dibujado": 0.0159,
+       "segmentos_detalle": [
+        {
+         "id": "parte11",
+         "cuadros": 30,
+         "s": 6.22
+        },
+        {
+         "id": "parte12",
+         "cuadros": 30,
+         "s": 6.35
+        },
+        {
+         "id": "parte10",
+         "cuadros": 30,
+         "s": 6.39
+        },
+        {
+         "id": "parte18",
+         "cuadros": 30,
+         "s": 6.71
+        },
+        {
+         "id": "parte9",
+         "cuadros": 30,
+         "s": 6.94
+        },
+        {
+         "id": "parte1",
+         "cuadros": 30,
+         "s": 7.05
+        },
+        {
+         "id": "parte20",
+         "cuadros": 30,
+         "s": 7.06
+        },
+        {
+         "id": "parte13",
+         "cuadros": 30,
+         "s": 7.29
+        },
+        {
+         "id": "parte2",
+         "cuadros": 30,
+         "s": 7.36
+        },
+        {
+         "id": "parte14",
+         "cuadros": 30,
+         "s": 7.34
+        },
+        {
+         "id": "parte19",
+         "cuadros": 30,
+         "s": 7.35
+        },
+        {
+         "id": "parte3",
+         "cuadros": 30,
+         "s": 7.43
+        },
+        {
+         "id": "parte17",
+         "cuadros": 30,
+         "s": 7.42
+        },
+        {
+         "id": "parte16",
+         "cuadros": 30,
+         "s": 7.45
+        },
+        {
+         "id": "parte15",
+         "cuadros": 30,
+         "s": 7.47
+        },
+        {
+         "id": "parte8",
+         "cuadros": 30,
+         "s": 7.51
+        },
+        {
+         "id": "parte4",
+         "cuadros": 30,
+         "s": 8
+        },
+        {
+         "id": "parte6",
+         "cuadros": 30,
+         "s": 8.85
+        },
+        {
+         "id": "parte7",
+         "cuadros": 30,
+         "s": 8.86
+        },
+        {
+         "id": "parte5",
+         "cuadros": 30,
+         "s": 8.93
+        }
+       ],
+       "reintentos": []
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "f1d60eb4410e7c13cf5e031e1c653c3d"
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 9.95
+      },
+      "total_s": 9.95,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "capturas",
+       "version": "3",
+       "segmentos": 20,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 20,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 9.56,
+       "union_s": 0.07,
+       "hoja_s": 0.25,
+       "s_por_cuadro_dibujado": 0.0159,
+       "segmentos_detalle": [
+        {
+         "id": "parte9",
+         "cuadros": 30,
+         "s": 5.93
+        },
+        {
+         "id": "parte13",
+         "cuadros": 30,
+         "s": 6.09
+        },
+        {
+         "id": "parte10",
+         "cuadros": 30,
+         "s": 6.28
+        },
+        {
+         "id": "parte19",
+         "cuadros": 30,
+         "s": 6.37
+        },
+        {
+         "id": "parte1",
+         "cuadros": 30,
+         "s": 7.05
+        },
+        {
+         "id": "parte11",
+         "cuadros": 30,
+         "s": 7.07
+        },
+        {
+         "id": "parte18",
+         "cuadros": 30,
+         "s": 7.07
+        },
+        {
+         "id": "parte12",
+         "cuadros": 30,
+         "s": 7.12
+        },
+        {
+         "id": "parte14",
+         "cuadros": 30,
+         "s": 7.18
+        },
+        {
+         "id": "parte2",
+         "cuadros": 30,
+         "s": 7.22
+        },
+        {
+         "id": "parte20",
+         "cuadros": 30,
+         "s": 7.34
+        },
+        {
+         "id": "parte3",
+         "cuadros": 30,
+         "s": 7.4
+        },
+        {
+         "id": "parte16",
+         "cuadros": 30,
+         "s": 7.42
+        },
+        {
+         "id": "parte17",
+         "cuadros": 30,
+         "s": 7.44
+        },
+        {
+         "id": "parte15",
+         "cuadros": 30,
+         "s": 7.46
+        },
+        {
+         "id": "parte8",
+         "cuadros": 30,
+         "s": 7.48
+        },
+        {
+         "id": "parte4",
+         "cuadros": 30,
+         "s": 7.82
+        },
+        {
+         "id": "parte7",
+         "cuadros": 30,
+         "s": 8.68
+        },
+        {
+         "id": "parte6",
+         "cuadros": 30,
+         "s": 8.71
+        },
+        {
+         "id": "parte5",
+         "cuadros": 30,
+         "s": 8.85
+        }
+       ],
+       "reintentos": []
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "9b83c2cf37404d43886753e0b480ff64"
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 10.05
+      },
+      "total_s": 10.05,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "capturas",
+       "version": "3",
+       "segmentos": 20,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 20,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 9.66,
+       "union_s": 0.08,
+       "hoja_s": 0.25,
+       "s_por_cuadro_dibujado": 0.0161,
+       "segmentos_detalle": [
+        {
+         "id": "parte9",
+         "cuadros": 30,
+         "s": 5.72
+        },
+        {
+         "id": "parte19",
+         "cuadros": 30,
+         "s": 6.05
+        },
+        {
+         "id": "parte13",
+         "cuadros": 30,
+         "s": 6.09
+        },
+        {
+         "id": "parte12",
+         "cuadros": 30,
+         "s": 6.21
+        },
+        {
+         "id": "parte10",
+         "cuadros": 30,
+         "s": 6.39
+        },
+        {
+         "id": "parte1",
+         "cuadros": 30,
+         "s": 6.71
+        },
+        {
+         "id": "parte11",
+         "cuadros": 30,
+         "s": 6.73
+        },
+        {
+         "id": "parte14",
+         "cuadros": 30,
+         "s": 6.83
+        },
+        {
+         "id": "parte17",
+         "cuadros": 30,
+         "s": 6.85
+        },
+        {
+         "id": "parte18",
+         "cuadros": 30,
+         "s": 6.9
+        },
+        {
+         "id": "parte2",
+         "cuadros": 30,
+         "s": 7.1
+        },
+        {
+         "id": "parte3",
+         "cuadros": 30,
+         "s": 7.12
+        },
+        {
+         "id": "parte15",
+         "cuadros": 30,
+         "s": 7.13
+        },
+        {
+         "id": "parte16",
+         "cuadros": 30,
+         "s": 7.15
+        },
+        {
+         "id": "parte20",
+         "cuadros": 30,
+         "s": 7.16
+        },
+        {
+         "id": "parte8",
+         "cuadros": 30,
+         "s": 7.23
+        },
+        {
+         "id": "parte4",
+         "cuadros": 30,
+         "s": 8.16
+        },
+        {
+         "id": "parte5",
+         "cuadros": 30,
+         "s": 8.76
+        },
+        {
+         "id": "parte6",
+         "cuadros": 30,
+         "s": 8.8
+        },
+        {
+         "id": "parte7",
+         "cuadros": 30,
+         "s": 8.86
+        }
+       ],
+       "reintentos": []
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "23905ed709d36ad9ba0916b5fe8de3c0"
+     }
+    ],
+    "modo": "render",
+    "mediana_s": {
+     "construir": 0.0,
+     "render": 9.95
+    },
+    "mediana_total_s": 9.95,
+    "totales_s": [
+     9.94,
+     9.95,
+     10.05
+    ],
+    "deterministico": false
+   }
+  }
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "titulo": "video-with-ai · showreel 90 s", "duracion": 90, "bpm": 128, "paleta": "cenia-oscura", "fuente": "Quicksand",
+ "escenas": [
+  {"tipo": "portada", "titulo": "video-with-ai", "bajada": "Videos de proyecto hechos con código"},
+  {"tipo": "texto", "entrada": "cortina", "kicker": "El problema", "titulo": "Un video de 90 s con agentes tomaba de 1 a 2 horas"},
+  {"tipo": "dato", "kicker": "La prueba", "prefijo": "SSIM", "valor": 0.994, "texto": "HyperFrames y render nativo con el mismo HTML"},
+  {"tipo": "texto", "entrada": "mascara", "kicker": "La decisión", "titulo": "Video y música nativos, sin framework de video"},
+  {"tipo": "pasos", "entrada": "cortina", "kicker": "Pipeline", "titulo": "Seis pasos del HTML a los jueces", "pasos": ["HTML y CSS", "render", "cortes", "música", "mezcla", "jueces"]},
+  {"tipo": "montaje", "palabras": ["RENDER", "CORTES", "MÚSICA", "MEZCLA"]},
+  {"tipo": "impacto", "principal": true, "titulo": "BYTE A BYTE", "bajada": "El MP4 sale idéntico en cada render"},
+  {"tipo": "dato", "entrada": "fuga", "kicker": "Render", "valor": 76, "unidad": "s", "texto": "para 20 s con 825 animaciones"},
+  {"tipo": "texto", "entrada": "cortina", "kicker": "Música", "titulo": "La música se compone a la medida de cada corte", "bajada": "El impacto cae a 0 ms del corte principal"},
+  {"tipo": "impacto", "principal": true, "titulo": "−14 LUFS", "bajada": "Mezcla con pico bajo −1 dBTP", "sello": "Derechos 100 % propios"},
+  {"tipo": "dato", "entrada": "fuga", "kicker": "Transferencia", "valor": 28, "unidad": "min", "texto": "le tomó a un agente nuevo hacer un video de 30 s"},
+  {"tipo": "cierre", "entrada": "destello", "logo": "CENIA", "linea": "video-with-ai"}
+ ]
+}

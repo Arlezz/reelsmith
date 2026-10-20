@@ -1,0 +1,306 @@
+{
+ "fecha": "2026-10-19T02:29:23",
+ "etiqueta": "ab-render-ref20",
+ "maquina": {
+  "sistema": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+  "cpus": 2,
+  "memoria_mb": 8029,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "node": "v22.22.0",
+  "gpu": "ninguna detectada"
+ },
+ "variantes": [
+  {
+   "nombre": "base",
+   "skill": "/home/claude/bench-video/versiones/base/skills/video-showreel-nativo",
+   "modo": "render"
+  },
+  {
+   "nombre": "nueva",
+   "skill": "/home/claude/bench-video/versiones/nueva/skills/video-showreel-nativo",
+   "modo": "render"
+  }
+ ],
+ "refs": {
+  "ref20": {
+   "base": {
+    "repeticiones": [
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 90.41
+      },
+      "total_s": 90.41,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "animaciones": 825,
+       "modo": "beginFrame",
+       "preparacion_s": 0.43,
+       "posicionar_s": 4.83,
+       "dibujar_capturar_s": 79.41,
+       "esperar_ffmpeg_s": 2.9,
+       "cola_ffmpeg_s": 0.61,
+       "hoja": true,
+       "s_por_cuadro": 0.1498
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": false
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 90.47
+      },
+      "total_s": 90.47,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "animaciones": 825,
+       "modo": "beginFrame",
+       "preparacion_s": 0.38,
+       "posicionar_s": 4.87,
+       "dibujar_capturar_s": 79.61,
+       "esperar_ffmpeg_s": 2.59,
+       "cola_ffmpeg_s": 0.63,
+       "hoja": true,
+       "s_por_cuadro": 0.15
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": false
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 90.79
+      },
+      "total_s": 90.79,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "animaciones": 825,
+       "modo": "beginFrame",
+       "preparacion_s": 0.33,
+       "posicionar_s": 4.67,
+       "dibujar_capturar_s": 80.39,
+       "esperar_ffmpeg_s": 2.29,
+       "cola_ffmpeg_s": 0.64,
+       "hoja": true,
+       "s_por_cuadro": 0.1507
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+      "video_igual_al_golden": true,
+      "final_igual_al_golden": false
+     }
+    ],
+    "modo": "render",
+    "mediana_s": {
+     "construir": 0.0,
+     "render": 90.47
+    },
+    "mediana_total_s": 90.47,
+    "totales_s": [
+     90.41,
+     90.47,
+     90.79
+    ],
+    "deterministico": true
+   },
+   "nueva": {
+    "repeticiones": [
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 57.55
+      },
+      "total_s": 57.55,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 55.31,
+       "union_s": 0.13,
+       "hoja_s": 1.97,
+       "s_por_cuadro_dibujado": 0.0922,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 150,
+         "s": 33.17
+        },
+        {
+         "id": "parte3",
+         "cuadros": 150,
+         "s": 35.33
+        },
+        {
+         "id": "parte1",
+         "cuadros": 150,
+         "s": 54.71
+        },
+        {
+         "id": "parte2",
+         "cuadros": 150,
+         "s": 54.85
+        }
+       ]
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "be6d093b351b56e53f48870daa141e09",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false,
+      "ssim_vs_golden": {
+       "ssim_promedio": 0.999069,
+       "ssim_minimo": 0.997227,
+       "cuadros": 600
+      }
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 58.48
+      },
+      "total_s": 58.48,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 56.45,
+       "union_s": 0.14,
+       "hoja_s": 1.73,
+       "s_por_cuadro_dibujado": 0.0941,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 150,
+         "s": 33.98
+        },
+        {
+         "id": "parte3",
+         "cuadros": 150,
+         "s": 35.25
+        },
+        {
+         "id": "parte1",
+         "cuadros": 150,
+         "s": 55.74
+        },
+        {
+         "id": "parte2",
+         "cuadros": 150,
+         "s": 55.93
+        }
+       ]
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "be6d093b351b56e53f48870daa141e09",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false
+     },
+     {
+      "modo": "render",
+      "etapas_s": {
+       "construir": 0.0,
+       "render": 59.08
+      },
+      "total_s": 59.08,
+      "render_interno": {
+       "cuadros": 600,
+       "fps": 30,
+       "duracion_s": 20,
+       "modo": "beginFrame",
+       "version": "3",
+       "segmentos": 4,
+       "segmentos_cache": 0,
+       "cuadros_dibujados": 600,
+       "trabajadores": 4,
+       "preset": "veryfast",
+       "crf": 16,
+       "manifiesto": false,
+       "dibujo_s": 57.02,
+       "union_s": 0.13,
+       "hoja_s": 1.79,
+       "s_por_cuadro_dibujado": 0.095,
+       "segmentos_detalle": [
+        {
+         "id": "parte4",
+         "cuadros": 150,
+         "s": 34.48
+        },
+        {
+         "id": "parte3",
+         "cuadros": 150,
+         "s": 36.38
+        },
+        {
+         "id": "parte2",
+         "cuadros": 150,
+         "s": 55.78
+        },
+        {
+         "id": "parte1",
+         "cuadros": 150,
+         "s": 56.36
+        }
+       ]
+      },
+      "check_audio": [],
+      "medir_pista": "—",
+      "md5_video_mudo": "be6d093b351b56e53f48870daa141e09",
+      "video_igual_al_golden": false,
+      "final_igual_al_golden": false
+     }
+    ],
+    "modo": "render",
+    "mediana_s": {
+     "construir": 0.0,
+     "render": 58.48
+    },
+    "mediana_total_s": 58.48,
+    "totales_s": [
+     57.55,
+     58.48,
+     59.08
+    ],
+    "deterministico": true
+   }
+  }
+ }
+}

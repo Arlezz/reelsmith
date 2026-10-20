@@ -1,0 +1,12 @@
+{
+ "guion": "final-1-guion.json",
+ "md5_video_mudo": "46aa5c560a596354beb80fa3295a52ba",
+ "version_render": "3",
+ "version_catalogo": "2",
+ "modo": "beginFrame",
+ "navegador": "chromium_headless_shell-1194 (Playwright 1.56.0)",
+ "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+ "sistema": "Linux (sandbox de Cowork, 2 vCPU)",
+ "fecha": "2026-10-19",
+ "nota": "md5 del video mudo de construir + final con el guion final-1, versión 0.2.1. medir-equipo.mjs lo compara con el de cada equipo."
+}

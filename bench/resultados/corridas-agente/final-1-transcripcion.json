@@ -1,0 +1,50 @@
+{
+ "archivo": "transcripción de agent-af60ea643bf80d110 (sesión de Cowork)",
+ "total_s": 261.9,
+ "modelo_s": 72.1,
+ "herramientas_s": 189.8,
+ "otros_s": 0.0,
+ "respuestas_del_modelo": 12,
+ "llamadas_a_herramientas": 16,
+ "por_etapa": {
+  "render": {
+   "s": 184.9,
+   "llamadas": 2
+  },
+  "vista": {
+   "s": 3.5,
+   "llamadas": 1
+  },
+  "bash_otro": {
+   "s": 0.8,
+   "llamadas": 5
+  },
+  "construir": {
+   "s": 0.2,
+   "llamadas": 1
+  },
+  "leer_archivo": {
+   "s": 0.1,
+   "llamadas": 3
+  },
+  "ver_imagen": {
+   "s": 0.1,
+   "llamadas": 3
+  },
+  "escritura_archivo": {
+   "s": 0.0,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 24,
+  "cache_creada": 94257,
+  "cache_leida": 889347,
+  "salida": 5352
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 0.76,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "video-showreel-nativo",
+  "version": "0.2.1",
+  "description": "Versión de prueba de video-showreel: showreel desde un guion de escenas de catálogo, renderizado a MP4 en paralelo con caché, con música y efectos compuestos por código a la medida de los cortes, mezcla a -14 LUFS y dos jueces medibles.",
+  "author": {
+    "name": "Antony Rodríguez (CENIA)",
+    "email": "antony.rodriguez@cenia.cl"
+  },
+  "keywords": ["video", "showreel", "motion graphics", "html", "css", "música", "ffmpeg"]
+}

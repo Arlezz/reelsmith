@@ -1,0 +1,74 @@
+{
+ "archivo": "transcripción de agent-aeedda7be8fcad68a (sesión de Cowork)",
+ "total_s": 3045.8,
+ "modelo_s": 1331.1,
+ "herramientas_s": 1714.7,
+ "otros_s": 0.0,
+ "respuestas_del_modelo": 46,
+ "llamadas_a_herramientas": 50,
+ "por_etapa": {
+  "render": {
+   "s": 986.6,
+   "llamadas": 5
+  },
+  "jueces": {
+   "s": 299.9,
+   "llamadas": 4
+  },
+  "cortes": {
+   "s": 218.7,
+   "llamadas": 3
+  },
+  "mezcla": {
+   "s": 123.4,
+   "llamadas": 2
+  },
+  "ffmpeg_revision": {
+   "s": 56.3,
+   "llamadas": 5
+  },
+  "musica": {
+   "s": 21.7,
+   "llamadas": 2
+  },
+  "bash_otro": {
+   "s": 3.8,
+   "llamadas": 9
+  },
+  "instalacion": {
+   "s": 2.5,
+   "llamadas": 1
+  },
+  "ver_imagen": {
+   "s": 0.8,
+   "llamadas": 6
+  },
+  "construir": {
+   "s": 0.5,
+   "llamadas": 2
+  },
+  "leer_archivo": {
+   "s": 0.3,
+   "llamadas": 9
+  },
+  "escritura_archivo": {
+   "s": 0.1,
+   "llamadas": 1
+  },
+  "herramienta_Grep": {
+   "s": 0.1,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 92,
+  "cache_creada": 366776,
+  "cache_leida": 9240959,
+  "salida": 73315
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 5.15,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}

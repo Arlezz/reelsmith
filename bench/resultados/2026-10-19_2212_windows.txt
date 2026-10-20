@@ -1,0 +1,30 @@
+# Medición en windows · 2026-10-19 2212
+Equipo: AMD Ryzen 7 9800X3D 8-Core Processor · 16 núcleos lógicos · 62 GB · Windows 11 Pro (10.0.26200)
+Tarjeta de video: AMD Radeon(TM) Graphics; NVIDIA GeForce RTX 5070
+v22.19.0 · ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers · Python 3.13.2
+navegador: C:\Users\Anton\AppData\Local\ms-playwright\chromium_headless_shell-1234\chrome-headless-shell-win64\chrome-headless-shell.exe
+modo: beginFrame (MP4 idéntico byte a byte) · sistema: win32
+CPU: 16 · memoria libre: 36378 MB · trabajadores por defecto: 32
+
+prueba-completa: PASA en 60 s (plantilla en los dos estilos y guion del catálogo, con jueces)
+  medir_pista: PASA {"1_espectro":true,"2_graves_bajo_50hz":true,"3_ancho":true,"4_arco":true,"5_golpe_principal":true}
+  medir_pista: PASA {"1_espectro":true,"2_graves_bajo_50hz":true,"3_ancho":true,"4_arco":true,"5_golpe_principal":true}
+  check-audio: ["24.3667 s: PASA"] · medir_pista: PASA · cortes fuera del plan: 0
+
+corrida 1: máquina 47,1 s (construir 0,11 · vista 1,6 · final 45,4) · render 24,9 s · música 16,8 s · check-audio ["43.1333 s: PASA","67.5 s: PASA"] · medir_pista PASA
+corrida 2: máquina 46,8 s (construir 0,11 · vista 1,6 · final 45,0) · render 25,0 s · música 16,7 s · check-audio ["43.1333 s: PASA","67.5 s: PASA"] · medir_pista PASA
+corrida 3: máquina 47,1 s (construir 0,12 · vista 1,6 · final 45,4) · render 24,7 s · música 16,7 s · check-audio ["43.1333 s: PASA","67.5 s: PASA"] · medir_pista PASA
+Video mudo: md5 idéntico en las 3 corridas · distinto del de Linux
+SSIM del video de este equipo contra el de Linux: 0.997705
+
+Máquina en este equipo (construir + vista + final), mediana de 3: 47,1 s · render 24,9 s
+Agente (modelo y escritura), mediana de final-1/2/3: 72,1 s
+PUNTA A PUNTA EN ESTE EQUIPO (agente + máquina): 119,2 s = 2,0 min
+  como referencia: 257,4 s en la máquina de prueba de 2 vCPU · 110,7 s en el MacBook M5
+Jueces: PASA en todas
+
+GPU (h264_nvenc) contra CPU (libx264), solo el render, intercalados, mediana de 3, a igual tasa de bits:
+[ref20] CPU 11,7 s · GPU 15,5 s (+32,8 %) · SSIM GPU contra CPU 0.998454 · 5632 KB contra 3866 KB
+[ref90] CPU 27,3 s · GPU 37,1 s (+35,9 %) · SSIM GPU contra CPU 0.996592 · 18745 KB contra 11846 KB
+
+Listo. Resumen: C:\Users\Anton\Documents\proyectos\video-with-ai\video-showreel-nativo\bench\resultados\2026-10-19_2212_windows.txt

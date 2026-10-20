@@ -1,0 +1,8 @@
+# Dependencias de los scripts de audio (probadas con python 3.13). Instalar con:
+#   pip install -r requirements.txt --break-system-packages
+numpy==2.5.3
+scipy==1.18.1
+numba==0.68.0
+soundfile==0.14.0
+pyloudnorm==0.2.0
+matplotlib==3.11.2

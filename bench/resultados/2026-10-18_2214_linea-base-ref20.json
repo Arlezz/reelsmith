@@ -1,0 +1,134 @@
+{
+ "fecha": "2026-10-18T22:08:19",
+ "etiqueta": "linea-base-ref20",
+ "skill": "/home/claude/bench-video/versiones/base/skills/video-showreel-nativo",
+ "render_extra": "",
+ "maquina": {
+  "sistema": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+  "cpus": 2,
+  "memoria_mb": 8029,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "node": "v22.22.0",
+  "gpu": "ninguna detectada"
+ },
+ "refs": {
+  "ref20": {
+   "repeticiones": [
+    {
+     "etapas_s": {
+      "construir": 0.0,
+      "render": 83.66,
+      "cortes": 14.56,
+      "musica": 6.35,
+      "mezcla": 10.82,
+      "verificar_audio": 15.63,
+      "verificar_musica": 1.66
+     },
+     "total_s": 132.67,
+     "render_interno": {
+      "cuadros": 600,
+      "fps": 30,
+      "duracion_s": 20,
+      "animaciones": 825,
+      "modo": "beginFrame",
+      "preparacion_s": 0.33,
+      "posicionar_s": 4.98,
+      "dibujar_capturar_s": 73,
+      "esperar_ffmpeg_s": 2.45,
+      "cola_ffmpeg_s": 0.61,
+      "hoja": true,
+      "s_por_cuadro": 0.1388
+     },
+     "check_audio": [
+      "PASA"
+     ],
+     "medir_pista": "PASA",
+     "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+     "md5_mp4_final": "69e7e8527c17c91e0ea2c5698b43b653",
+     "video_igual_al_golden": true,
+     "final_igual_al_golden": true
+    },
+    {
+     "etapas_s": {
+      "construir": 0.0,
+      "render": 76.12,
+      "cortes": 12.45,
+      "musica": 4.98,
+      "mezcla": 9.93,
+      "verificar_audio": 13.43,
+      "verificar_musica": 1.4
+     },
+     "total_s": 118.33,
+     "render_interno": {
+      "cuadros": 600,
+      "fps": 30,
+      "duracion_s": 20,
+      "animaciones": 825,
+      "modo": "beginFrame",
+      "preparacion_s": 0.31,
+      "posicionar_s": 3.8,
+      "dibujar_capturar_s": 67.47,
+      "esperar_ffmpeg_s": 2.42,
+      "cola_ffmpeg_s": 0.46,
+      "hoja": true,
+      "s_por_cuadro": 0.1263
+     },
+     "check_audio": [
+      "PASA"
+     ],
+     "medir_pista": "PASA",
+     "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+     "md5_mp4_final": "69e7e8527c17c91e0ea2c5698b43b653",
+     "video_igual_al_golden": true,
+     "final_igual_al_golden": true
+    },
+    {
+     "etapas_s": {
+      "construir": 0.0,
+      "render": 72.41,
+      "cortes": 12.43,
+      "musica": 4.85,
+      "mezcla": 9.64,
+      "verificar_audio": 13.41,
+      "verificar_musica": 1.47
+     },
+     "total_s": 114.21,
+     "render_interno": {
+      "cuadros": 600,
+      "fps": 30,
+      "duracion_s": 20,
+      "animaciones": 825,
+      "modo": "beginFrame",
+      "preparacion_s": 0.25,
+      "posicionar_s": 3.55,
+      "dibujar_capturar_s": 63.98,
+      "esperar_ffmpeg_s": 2.5,
+      "cola_ffmpeg_s": 0.49,
+      "hoja": true,
+      "s_por_cuadro": 0.1202
+     },
+     "check_audio": [
+      "PASA"
+     ],
+     "medir_pista": "PASA",
+     "md5_video_mudo": "d698e51e5ebf721c618d2fed571e5284",
+     "md5_mp4_final": "69e7e8527c17c91e0ea2c5698b43b653",
+     "video_igual_al_golden": true,
+     "final_igual_al_golden": true
+    }
+   ],
+   "mediana_s": {
+    "construir": 0.0,
+    "render": 76.12,
+    "cortes": 12.45,
+    "musica": 4.98,
+    "mezcla": 9.93,
+    "verificar_audio": 13.43,
+    "verificar_musica": 1.47
+   },
+   "mediana_total_s": 118.33,
+   "deterministico": true
+  }
+ }
+}

@@ -1,0 +1,66 @@
+{
+ "archivo": "transcripción de agent-aa161ad6a57252bc3 (sesión de Cowork)",
+ "total_s": 3588.4,
+ "modelo_s": 1378.4,
+ "herramientas_s": 2210.4,
+ "otros_s": -0.4,
+ "respuestas_del_modelo": 53,
+ "llamadas_a_herramientas": 67,
+ "por_etapa": {
+  "render": {
+   "s": 1213.2,
+   "llamadas": 5
+  },
+  "jueces": {
+   "s": 446.1,
+   "llamadas": 6
+  },
+  "cortes": {
+   "s": 426.8,
+   "llamadas": 5
+  },
+  "mezcla": {
+   "s": 55.5,
+   "llamadas": 1
+  },
+  "ffmpeg_revision": {
+   "s": 40.3,
+   "llamadas": 7
+  },
+  "musica": {
+   "s": 22.0,
+   "llamadas": 6
+  },
+  "bash_otro": {
+   "s": 4.3,
+   "llamadas": 10
+  },
+  "leer_archivo": {
+   "s": 1.7,
+   "llamadas": 6
+  },
+  "ver_imagen": {
+   "s": 1.2,
+   "llamadas": 9
+  },
+  "escritura_archivo": {
+   "s": 0.4,
+   "llamadas": 11
+  },
+  "construir": {
+   "s": 0.2,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 106,
+  "cache_creada": 1135528,
+  "cache_leida": 10837992,
+  "salida": 142589
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 10.7,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}

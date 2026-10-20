@@ -1,0 +1,17 @@
+# Corrida completa en el Mac · 2026-10-19 12:17
+Mac: Apple M5 · 10 núcleos · 24 GB · macOS 27.0.1
+v26.7.0 · ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers · Python 3.12.14
+
+prueba-completa.sh: PASA en 39 s (plantilla en los dos estilos y guion del catálogo, con jueces)
+  medir_pista: PASA {'1_espectro': True, '2_graves_bajo_50hz': True, '3_ancho': True, '4_arco': True, '5_golpe_principal': True}
+  check-audio: ['24.3667 s: PASA'] · medir_pista: PASA · cortes fuera del plan: 0
+
+corrida 1: máquina 32.5 s (construir 0.06 · vista 2.4 · final 30.1) · render 19.1 s · check-audio ['43.1333 s: PASA', '67.5 s: PASA'] · medir_pista PASA
+corrida 2: máquina 38.6 s (construir 0.06 · vista 2.4 · final 36.2) · render 24.1 s · check-audio ['43.1333 s: PASA', '67.5 s: PASA'] · medir_pista PASA
+corrida 3: máquina 38.9 s (construir 0.06 · vista 2.4 · final 36.5) · render 23.3 s · check-audio ['43.1333 s: PASA', '67.5 s: PASA'] · medir_pista PASA
+
+Máquina en el Mac (construir + vista + final), mediana de 3: 38.6 s · render 23.3 s
+Agente (modelo y escritura), mediana de final-1/2/3: 72.1 s  [72.1, 76.0, 69.2]
+PUNTA A PUNTA EN EL MAC (agente + máquina): 110.7 s = 1.8 min
+  en la máquina de prueba de 2 vCPU fue 257.4 s (mediana de final-1/2/3)
+Jueces: PASA en todas

@@ -1,0 +1,147 @@
+{
+ "cortes": [
+  {
+   "t": 0.4667,
+   "nombre": "regla y bajada",
+   "peso": 0.3
+  },
+  {
+   "t": 5.6333,
+   "nombre": "cortina: apertura → problema",
+   "peso": 0.4
+  },
+  {
+   "t": 9.3667,
+   "nombre": "reloj: primera vuelta",
+   "peso": 0.3
+  },
+  {
+   "t": 13.1333,
+   "nombre": "whip pan: problema → prueba",
+   "peso": 0.6
+  },
+  {
+   "t": 20.6333,
+   "nombre": "máscara: prueba → decisión",
+   "peso": 0.6
+  },
+  {
+   "t": 21.5667,
+   "nombre": "«nativos» aterriza",
+   "peso": 0.4
+  },
+  {
+   "t": 22.0333,
+   "nombre": "segunda línea",
+   "peso": 0.3
+  },
+  {
+   "t": 28.1333,
+   "nombre": "PRINCIPAL 1: decisión → pipeline",
+   "peso": 1
+  },
+  {
+   "t": 28.6,
+   "nombre": "bloque render",
+   "peso": 0.3
+  },
+  {
+   "t": 29.0667,
+   "nombre": "bloque cortes",
+   "peso": 0.3
+  },
+  {
+   "t": 29.5333,
+   "nombre": "bloque música",
+   "peso": 0.3
+  },
+  {
+   "t": 30,
+   "nombre": "bloque mezcla",
+   "peso": 0.3
+  },
+  {
+   "t": 30.4667,
+   "nombre": "bloque jueces",
+   "peso": 0.3
+  },
+  {
+   "t": 31.8667,
+   "nombre": "cámara se asienta: pipeline completo",
+   "peso": 0.6
+  },
+  {
+   "t": 37.0333,
+   "nombre": "se enciende el bloque render",
+   "peso": 0.3
+  },
+  {
+   "t": 37.5,
+   "nombre": "zoom-through: pipeline → render",
+   "peso": 0.6
+  },
+  {
+   "t": 39.3667,
+   "nombre": "los MP4 se apilan",
+   "peso": 0.3
+  },
+  {
+   "t": 45,
+   "nombre": "barrido: render → contadores",
+   "peso": 0.6
+  },
+  {
+   "t": 50.6333,
+   "nombre": "match cut: barra → pista de cortes",
+   "peso": 0.6
+  },
+  {
+   "t": 52.5,
+   "nombre": "marca de corte 1",
+   "peso": 0.3
+  },
+  {
+   "t": 54.3667,
+   "nombre": "marca de corte 2",
+   "peso": 0.3
+  },
+  {
+   "t": 55.3,
+   "nombre": "marca de corte 3",
+   "peso": 0.3
+  },
+  {
+   "t": 58.1333,
+   "nombre": "PRINCIPAL 2: impacto a 0 ms",
+   "peso": 1
+  },
+  {
+   "t": 61.8667,
+   "nombre": "segundo pulso del anillo",
+   "peso": 0.3
+  },
+  {
+   "t": 65.6333,
+   "nombre": "fuga: impacto → mezcla",
+   "peso": 0.6
+  },
+  {
+   "t": 71.2667,
+   "nombre": "ola: mezcla → derechos",
+   "peso": 0.6
+  },
+  {
+   "t": 76.8667,
+   "nombre": "match cut: sello → dial",
+   "peso": 0.6
+  },
+  {
+   "t": 84.3667,
+   "nombre": "cortina: agente → logo",
+   "peso": 0.6
+  }
+ ],
+ "final_s": 86.2667,
+ "bpm_guion": 128,
+ "duracion_s": 90
+}

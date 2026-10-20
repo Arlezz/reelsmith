@@ -1,0 +1,9 @@
+# Finales de línea fijos: los scripts de bash y Node con LF en todos los sistemas (un .sh con CRLF no corre),
+# el de PowerShell con CRLF (Windows PowerShell 5.1 lo espera así).
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.woff2 binary
+*.png binary
+*.mp4 binary
+*.wav binary
+*.m4a binary

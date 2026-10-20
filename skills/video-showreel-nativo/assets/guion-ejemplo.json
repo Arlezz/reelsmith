@@ -1,0 +1,15 @@
+{
+ "titulo": "ejemplo del catálogo · 43 s",
+ "bpm": 128,
+ "paleta": "cenia-oscura",
+ "fuente": "Quicksand",
+ "escenas": [
+  {"tipo": "portada", "titulo": "video-with-ai", "bajada": "Videos de proyecto hechos con código"},
+  {"tipo": "dato", "entrada": "cortina", "kicker": "Render", "valor": 30, "unidad": "fps", "texto": "cuadro a cuadro, idéntico en cada corrida"},
+  {"tipo": "pasos", "entrada": "mascara", "kicker": "Pipeline", "titulo": "Un solo comando", "pasos": ["guion", "vista", "final"]},
+  {"tipo": "montaje", "palabras": ["VIDEO", "MÚSICA", "JUECES"]},
+  {"tipo": "impacto", "principal": true, "titulo": "LISTO", "bajada": "Un MP4 con música propia", "sello": "−14 LUFS"},
+  {"tipo": "lista", "entrada": "fuga", "kicker": "Incluye", "titulo": "Lo que sale de cada corrida", "items": ["MP4", "guion", "tiempos"]},
+  {"tipo": "cierre", "entrada": "destello", "logo": "CENIA", "linea": "video-with-ai"}
+ ]
+}

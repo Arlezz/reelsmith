@@ -1,0 +1,38 @@
+{
+ "archivo": "transcripción de agent-a55cf0195204c184e (sesión de Cowork)",
+ "total_s": 18.7,
+ "modelo_s": 17.1,
+ "herramientas_s": 1.6,
+ "otros_s": 0.0,
+ "respuestas_del_modelo": 6,
+ "llamadas_a_herramientas": 6,
+ "por_etapa": {
+  "vista": {
+   "s": 1.3,
+   "llamadas": 1
+  },
+  "bash_otro": {
+   "s": 0.3,
+   "llamadas": 3
+  },
+  "leer_archivo": {
+   "s": 0.0,
+   "llamadas": 1
+  },
+  "ver_imagen": {
+   "s": 0.0,
+   "llamadas": 1
+  }
+ },
+ "tokens": {
+  "entrada": 12,
+  "cache_creada": 24431,
+  "cache_leida": 398477,
+  "salida": 1315
+ },
+ "modelos": [
+  "claude-opus-5-5"
+ ],
+ "costo_usd": 0.23,
+ "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+}
