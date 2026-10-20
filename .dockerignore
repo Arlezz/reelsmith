@@ -8,3 +8,5 @@ node_modules
 *.m4a
 prueba*/
 proyecto/
+.ruff_cache
+resultados-medicion/

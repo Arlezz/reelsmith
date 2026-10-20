@@ -69,6 +69,18 @@ function buscarNavegador() {
         const p = path.join(b, d, sub);
         if (existsSync(p)) return p;
       }
+      // otras arquitecturas (por ejemplo Linux arm64, en un contenedor en un Mac con chip M) pueden usar otra carpeta
+      const nombres = new Set(["headless_shell", "headless_shell.exe", "chrome-headless-shell", "chrome-headless-shell.exe"]);
+      const pila = [[path.join(b, d), 0]];
+      while (pila.length) {
+        const [dir, prof] = pila.pop();
+        let entradas = [];
+        try { entradas = readdirSync(dir, { withFileTypes: true }); } catch { continue; }
+        for (const e of entradas) {
+          if (e.isFile() && nombres.has(e.name)) return path.join(dir, e.name);
+          if (e.isDirectory() && prof < 3) pila.push([path.join(dir, e.name), prof + 1]);
+        }
+      }
     }
   }
   console.error("no encontré headless_shell: npx -y playwright@1.56.0 install chromium-headless-shell (o define CHROME_PATH)");

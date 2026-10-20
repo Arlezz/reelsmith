@@ -12,3 +12,5 @@ node_modules/
 /prueba*/
 reelsmith.log
 tiempos.jsonl
+.ruff_cache/
+resultados-medicion/

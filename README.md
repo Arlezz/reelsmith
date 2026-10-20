@@ -41,7 +41,7 @@ reelsmith prueba      # prueba completa con jueces, unos minutos
   reelsmith --docker video             # cualquier comando, dentro del contenedor, sobre la carpeta actual
   ```
 
-  La imagen trae las mismas versiones que la máquina de prueba: Ubuntu 24.04, Node 22, ffmpeg 6.1, Python 3.12 y Chromium 1194. Sin `npm link`, el equivalente es `docker run --rm -v "$PWD:/trabajo" reelsmith video`.
+  La imagen trae las mismas versiones que la máquina de prueba: Ubuntu 24.04, Node 22, ffmpeg 6.1, Python 3.12 y Chromium 1194. En un Mac con chip M la imagen se construye para arm64: funciona igual y, a diferencia de macOS nativo, el render usa `beginFrame` y sale idéntico entre corridas, aunque no byte a byte igual al de la máquina de prueba (x86). Sin `npm link`, el equivalente es `docker run --rm -v "$PWD:/trabajo" reelsmith video`.
 
 ## Comandos
 
