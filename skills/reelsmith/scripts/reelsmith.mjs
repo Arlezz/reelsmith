@@ -51,6 +51,12 @@ if (process.argv.includes("--docker")) {
   // en Linux los archivos nuevos quedan con el usuario de quien corre, no de root
   if (process.platform === "linux" && process.getuid) dargs.push("--user", `${process.getuid()}:${process.getgid()}`, "-e", "HOME=/tmp");
   for (const k of ["RENDER_MODO", "RENDER_ESPERA_MAX_S"]) if (process.env[k]) dargs.push("-e", `${k}=${process.env[k]}`);
+  const hay = spawnSync("docker", ["image", "inspect", imagen], { stdio: "ignore" });
+  if (hay.error) { console.error(`no encontré docker (${hay.error.message}): instala Docker Desktop o Docker Engine`); process.exit(2); }
+  if (hay.status !== 0 && !imagen.includes("/")) {
+    console.error(`no existe la imagen "${imagen}" (o Docker no está corriendo). Constrúyela una vez desde el repo: docker build -t ${imagen} ${RAIZ}`);
+    process.exit(2);
+  }
   const r = spawnSync("docker", [...dargs, imagen, ...args], { stdio: "inherit" });
   if (r.error) {
     console.error(`no pude correr docker (${r.error.message}). Instala Docker y construye la imagen desde el repo: docker build -t ${imagen} .`);
