@@ -7,7 +7,7 @@ Uso: python3 -I planificar_mezcla.py variante.json [--solo-audio]
 Escribe junto al json: mezcla.sh (los comandos ffmpeg literales, para reproducir la mezcla con bash), plan.json
 (parámetros calculados y su porqué), stems/musica.wav, stems/efectos.wav y el MP4 final.
 La mezcla la ejecuta este script con los mismos comandos de mezcla.sh (mezclar(), más abajo), así corre igual en Linux,
-macOS y Windows sin bash. Con SHOWREEL_MEZCLA_BASH=1 la ejecuta bash con mezcla.sh: los dos caminos dan el mismo
+macOS y Windows sin bash. Con REELSMITH_MEZCLA_BASH=1 la ejecuta bash con mezcla.sh: los dos caminos dan el mismo
 audio.m4a, byte a byte.
 
 Reglas de oficio que aplica:
@@ -53,7 +53,7 @@ SR = 48000
 def _hay_soxr():
     """El remuestreador SoX (libsoxr) es opcional en ffmpeg: el ffmpeg de Homebrew (macOS) no lo trae. Sin él se usa
     el de ffmpeg (swr) con un filtro largo; en las pistas de 48 kHz no cambia nada (no hay que remuestrear)."""
-    if os.environ.get("SHOWREEL_SIN_SOXR"):  # para probar el camino sin libsoxr
+    if os.environ.get("REELSMITH_SIN_SOXR"):  # para probar el camino sin libsoxr
         return False
     try:
         r = subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "0.05",
@@ -431,7 +431,7 @@ fi
     os.chmod(sh_path, 0o755)
     t_plan = time.time() - t0
     t1 = time.time()
-    if os.environ.get("SHOWREEL_MEZCLA_BASH") == "1":  # para comprobar que mezcla.sh reproduce la misma mezcla
+    if os.environ.get("REELSMITH_MEZCLA_BASH") == "1":  # para comprobar que mezcla.sh reproduce la misma mezcla
         subprocess.run(["bash", sh_path], check=True, env=dict(os.environ, SOLO_AUDIO="1" if solo_audio else "0"))
     else:
         mezclar(base, entradas_rel, grafo_stems, dur, video_rel, cfg["salida"], solo_audio)

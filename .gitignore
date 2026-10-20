@@ -10,5 +10,5 @@ node_modules/
 *.m4a
 /proyecto/
 /prueba*/
-showreel.log
+reelsmith.log
 tiempos.jsonl

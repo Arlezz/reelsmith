@@ -2,6 +2,7 @@
 //
 // Uso: node bench/medir-equipo.mjs [--repeticiones 3] [--sin-gpu | --solo-gpu] [--etiqueta windows]
 //   --solo-gpu: solo el paso 5 (para repetir la medición de la GPU sin rehacer lo demás).
+//   --salida <carpeta>: dónde dejar los resultados (por defecto, bench/resultados).
 //   En Windows lo corre bench\medir-windows.ps1 después de instalar lo que falte.
 //
 // Qué hace:
@@ -9,7 +10,7 @@
 //   2. Corre prueba-completa.mjs: el pipeline completo (plantilla en los dos estilos y guion del catálogo, con jueces).
 //      Si Chromium no responde a beginFrame en este equipo, repite con capturas comunes (RENDER_MODO=capturas) y lo anota.
 //   3. Repite N veces, cada una en una carpeta limpia y sin caché, lo que hizo la máquina en la corrida de agente final-1:
-//      construir el guion que escribió ese agente, la vista y `showreel.mjs final`. Mide el reloj de pared y compara el
+//      construir el guion que escribió ese agente, la vista y `reelsmith.mjs final`. Mide el reloj de pared y compara el
 //      md5 del video entre corridas (determinismo) y contra el de Linux.
 //   4. Punta a punta = tiempo del agente (modelo y escritura, medido en final-1, final-2 y final-3; no depende de la
 //      máquina) + tiempo de máquina medido aquí.
@@ -21,10 +22,10 @@ import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statS
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { ENV_PYTHON, NODE, md5, python, pythonArgs } from "../skills/video-showreel-nativo/scripts/entorno.mjs";
+import { ENV_PYTHON, NODE, md5, python, pythonArgs } from "../skills/reelsmith/scripts/entorno.mjs";
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
-const SKILL = path.join(path.dirname(AQUI), "skills", "video-showreel-nativo");
+const SKILL = path.join(path.dirname(AQUI), "skills", "reelsmith");
 const S = path.join(SKILL, "scripts");
 const argv = process.argv.slice(2);
 const opt = (k, def) => { const i = argv.indexOf("--" + k); return i >= 0 ? argv[i + 1] : def; };
@@ -36,7 +37,7 @@ const TRABAJO = path.resolve(opt("trabajo", path.join(os.tmpdir(), "bench-equipo
 const dos = (n) => String(n).padStart(2, "0");
 const d = new Date();
 const FECHA = `${d.getFullYear()}-${dos(d.getMonth() + 1)}-${dos(d.getDate())}_${dos(d.getHours())}${dos(d.getMinutes())}`;
-const RES = path.join(AQUI, "resultados", `${FECHA}_${ETIQUETA}`);
+const RES = path.join(opt("salida") ? path.resolve(opt("salida")) : path.join(AQUI, "resultados"), `${FECHA}_${ETIQUETA}`);
 mkdirSync(path.dirname(RES), { recursive: true });
 mkdirSync(TRABAJO, { recursive: true });
 
@@ -130,9 +131,9 @@ for (let i = 1; i <= REPS; i++) {
   rmSync(D, { recursive: true, force: true });
   mkdirSync(D, { recursive: true });
   cpSync(GUION, path.join(D, "guion.json"));
-  const env = { ...ENV, SHOWREEL_TIEMPOS: path.join(D, "tiempos.jsonl") };
+  const env = { ...ENV, REELSMITH_TIEMPOS: path.join(D, "tiempos.jsonl") };
   const log = path.join(D, "corrida.log");
-  const sr = path.join(S, "showreel.mjs");
+  const sr = path.join(S, "reelsmith.mjs");
   const a = correr(NODE, [sr, "construir"], D, log, env);
   if (a.code) fallar(`construir en la corrida ${i}`, log);
   const b = correr(NODE, [sr, "vista"], D, log, env);
@@ -213,7 +214,7 @@ else {
     cpSync(src, D, { recursive: true });
     const log = path.join(D, "gpu.log");
     if (existsSync(path.join(D, "construir.mjs"))) { const k = correr(NODE, ["construir.mjs"], D, log); if (k.code) fallar(`construir de ${ref}`, log); }
-    const env = { ...ENV, SHOWREEL_TIEMPOS: path.join(D, "tiempos.jsonl") };
+    const env = { ...ENV, REELSMITH_TIEMPOS: path.join(D, "tiempos.jsonl") };
     // devuelve segundos y segmentos repetidos (la última línea del render lo dice)
     const dibujar = (salida, extra = [], e = env) => {
       const k = correr(NODE, [path.join(S, "render-nativo.mjs"), "escena.html", salida, "--duracion", String(meta.duracion_s), "--sin-cache", ...extra], D, log, e);

@@ -44,7 +44,7 @@ const html = `<!doctype html>
 <html lang="es" data-duracion="${DURACION}">
 <head>
 <meta charset="utf-8">
-<title>Ejemplo · video-showreel-nativo</title>
+<title>Ejemplo · reelsmith</title>
 <!-- Generado por construir.mjs: no editar a mano. -->
 <style>
 @font-face { font-family: "Quicksand"; src: url("./fuentes/quicksand-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; font-display: block; }

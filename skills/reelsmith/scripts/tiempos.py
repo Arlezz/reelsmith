@@ -9,7 +9,7 @@ Etapas del agente (en orden): pedido, contenido, preguntas, guion, vista, correc
 Cada marca cierra la etapa anterior. Los scripts de máquina (render, vista, cortes,
 música, mezcla, jueces) escriben solos su registro; el informe resta ese tiempo de la etapa del agente que lo contiene.
 
-Archivo: tiempos.jsonl en la carpeta actual, o la ruta de la variable SHOWREEL_TIEMPOS. Una línea JSON por evento.
+Archivo: tiempos.jsonl en la carpeta actual, o la ruta de la variable REELSMITH_TIEMPOS. Una línea JSON por evento.
 """
 import json
 import os
@@ -20,7 +20,7 @@ for _flujo in (sys.stdout, sys.stderr):  # Windows: la consola y las tuberías n
     if hasattr(_flujo, "reconfigure"):
         _flujo.reconfigure(encoding="utf-8", errors="replace")
 
-ARCHIVO = os.environ.get("SHOWREEL_TIEMPOS", "tiempos.jsonl")
+ARCHIVO = os.environ.get("REELSMITH_TIEMPOS", "tiempos.jsonl")
 
 
 def registrar(etapa, t0, t1=None, **datos):

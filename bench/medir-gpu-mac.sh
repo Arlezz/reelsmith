@@ -13,7 +13,7 @@
 set -euo pipefail
 AQUI="$(cd "$(dirname "$0")" && pwd)"
 RAIZ="$(cd "$AQUI/.." && pwd)"
-SKILL="$RAIZ/skills/video-showreel-nativo"
+SKILL="$RAIZ/skills/reelsmith"
 REPS="${1:-3}"
 TRABAJO="${TMPDIR:-/tmp}/bench-gpu-mac"
 FECHA="$(date +%Y-%m-%d_%H%M)"
@@ -50,7 +50,7 @@ for REF in ref20 ref90; do
   ( cd "$CAL" && [ -f construir.mjs ] && node construir.mjs > /dev/null || true )
   echo "[$REF] calibración con CPU…"
   T0=$(python3 -c 'import time; print(time.time())')
-  ( cd "$CAL" && SHOWREEL_TIEMPOS=/dev/null node "$SKILL/scripts/render-nativo.mjs" escena.html cal.mp4 --duracion "$DUR" --sin-cache --cache "$CAL/.cache" | tail -1 )
+  ( cd "$CAL" && REELSMITH_TIEMPOS=/dev/null node "$SKILL/scripts/render-nativo.mjs" escena.html cal.mp4 --duracion "$DUR" --sin-cache --cache "$CAL/.cache" | tail -1 )
   BPS="$(ffprobe -v error -select_streams v:0 -show_entries format=bit_rate -of csv=p=0 "$CAL/cal.mp4")"
   echo "[$REF] calibración: $(python3 -c "print(round($(python3 -c 'import time; print(time.time())') - $T0, 1))") s · tasa de bits de la CPU: $((BPS / 1000)) kb/s" | tee -a "$RESUMEN"
   # 2) A/B intercalado, mediana de REPS

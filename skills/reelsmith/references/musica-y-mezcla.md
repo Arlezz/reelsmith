@@ -20,7 +20,7 @@ Recomienda primero la corporativa, salvo que el objetivo sea impacto. No hay má
 python3 <skill>/scripts/componer.py cortes.json --estilo corporativa --salida musica --video video-mudo.mp4
 ```
 
-Con el guion del catálogo, `showreel.mjs final` lo llama solo, con los cortes del plan (caen en cuadros exactos) y el tempo del guion (`--bpm`), mientras se dibuja el video. En la vía manual toma `cortes.json`, que escribe `medir_cortes.py` con los instantes medidos en el video. Cada corte lleva su peso:
+Con el guion del catálogo, `reelsmith.mjs final` lo llama solo, con los cortes del plan (caen en cuadros exactos) y el tempo del guion (`--bpm`), mientras se dibuja el video. En la vía manual toma `cortes.json`, que escribe `medir_cortes.py` con los instantes medidos en el video. Cada corte lleva su peso:
 
 | Peso | Rol | Qué recibe |
 |---|---|---|
@@ -56,9 +56,9 @@ Es determinista: la misma entrada da los mismos archivos (md5). Tarda de 4 a 18 
 python3 -I <skill>/scripts/planificar_mezcla.py musica/variante.json     # → musica/musica.mp4, stems/ y plan.json
 ```
 
-`planificar_mezcla.py` escribe `mezcla.sh` con los comandos literales de ffmpeg y ejecuta esos mismos comandos desde Python, sin bash, para que corra igual en Windows. Para repetir la mezcla con bash: `(cd musica && bash mezcla.sh)`. Los dos caminos dan el mismo `audio.m4a`, byte a byte; `SHOWREEL_MEZCLA_BASH=1` hace que el script use bash.
+`planificar_mezcla.py` escribe `mezcla.sh` con los comandos literales de ffmpeg y ejecuta esos mismos comandos desde Python, sin bash, para que corra igual en Windows. Para repetir la mezcla con bash: `(cd musica && bash mezcla.sh)`. Los dos caminos dan el mismo `audio.m4a`, byte a byte; `REELSMITH_MEZCLA_BASH=1` hace que el script use bash.
 
-Con `--solo-audio` deja el master en `musica/audio.m4a` sin tocar el video: así `showreel.mjs final` mezcla mientras el video se dibuja. Después, `bash mezcla.sh unir` (o el ffmpeg de su última línea) lo une al video sin recodificar.
+Con `--solo-audio` deja el master en `musica/audio.m4a` sin tocar el video: así `reelsmith.mjs final` mezcla mientras el video se dibuja. Después, `bash mezcla.sh unir` (o el ffmpeg de su última línea) lo une al video sin recodificar.
 
 - **Colocación de cada efecto por su punto de oficio:**
   - Impacto: por su ataque.

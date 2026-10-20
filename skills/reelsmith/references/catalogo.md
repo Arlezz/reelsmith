@@ -1,6 +1,6 @@
 # Catálogo de escenas (guion.json)
 
-El video se describe en `guion.json`: una lista de escenas de un catálogo probado, con sus textos. `showreel.mjs construir` lo convierte en el HTML. Calcula solo:
+El video se describe en `guion.json`: una lista de escenas de un catálogo probado, con sus textos. `reelsmith.mjs construir` lo convierte en el HTML. Calcula solo:
 
 - la duración de cada escena, con la regla de lectura;
 - los tiempos sobre la grilla del bpm;

@@ -1,6 +1,6 @@
 ﻿# medir-windows.ps1: prepara Windows para la skill y mide una corrida completa, y la GPU si hay una que sirva.
 #
-# Uso, desde PowerShell, en la carpeta del plugin (video-showreel-nativo):
+# Uso, desde PowerShell, en la carpeta del plugin (reelsmith):
 #   powershell -ExecutionPolicy Bypass -File .\bench\medir-windows.ps1 [-Repeticiones 3] [-SinGpu | -SoloGpu] [-SoloInstalar]
 # Tarda unos 15 a 25 minutos la primera vez (instalar y medir); las siguientes, unos 10.
 # -SoloGpu repite solo la medición de GPU contra CPU.
@@ -9,7 +9,7 @@
 #
 # Qué hace:
 #   1. Revisa Node 22 o más, ffmpeg y Python 3.11 a 3.13. Si falta alguno, pregunta y lo instala con winget.
-#   2. Crea un entorno de Python aislado en %LOCALAPPDATA%\video-showreel-nativo\venv con scripts\requirements.txt.
+#   2. Crea un entorno de Python aislado en %LOCALAPPDATA%\reelsmith\venv con scripts\requirements.txt.
 #      No toca el Python del sistema.
 #   3. Instala el navegador del render (chromium-headless-shell de Playwright) si falta.
 #   4. Corre bench\medir-equipo.mjs: prueba completa, la parte de máquina de la corrida final-1 (3 veces) y GPU contra CPU.
@@ -19,7 +19,7 @@ $ErrorActionPreference = "Continue"
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
 $OutputEncoding = [System.Text.UTF8Encoding]::new()
 $Raiz = Split-Path -Parent $PSScriptRoot
-$Scripts = Join-Path $Raiz "skills\video-showreel-nativo\scripts"
+$Scripts = Join-Path $Raiz "skills\reelsmith\scripts"
 
 function Fallar($msg) { Write-Host "FALTA: $msg" -ForegroundColor Red; exit 2 }
 function Tiene($cmd) { return [bool](Get-Command $cmd -ErrorAction SilentlyContinue) }
@@ -67,7 +67,7 @@ if (-not $Py) {
 Write-Host "node $(node --version) · $((ffmpeg -version | Select-Object -First 1)) · Python $($Py.version) ($($Py.exe) $($Py.pre -join ' '))"
 
 # ---------------------------------------------------------------- 2. entorno de Python
-$Venv = Join-Path $env:LOCALAPPDATA "video-showreel-nativo\venv"
+$Venv = Join-Path $env:LOCALAPPDATA "reelsmith\venv"
 $VenvPy = Join-Path $Venv "Scripts\python.exe"
 $listo = $false
 if (Test-Path $VenvPy) { & $VenvPy -c "import numba, scipy, pyloudnorm, soundfile, matplotlib" 2>$null; $listo = ($LASTEXITCODE -eq 0) }
@@ -81,7 +81,7 @@ if (-not $listo) {
   & $VenvPy -m pip install --quiet -r (Join-Path $Scripts "requirements.txt")
   if ($LASTEXITCODE -ne 0) { Fallar "pip no pudo instalar scripts\requirements.txt (copia el error de arriba)" }
 }
-$env:SHOWREEL_PYTHON = $VenvPy
+$env:REELSMITH_PYTHON = $VenvPy
 $env:PYTHONUTF8 = "1"
 $env:Path = (Join-Path $Venv "Scripts") + ";" + $env:Path
 & $VenvPy -c "import sys, numba, scipy; print('python listo:', sys.version.split()[0], '· numba', numba.__version__)"
@@ -96,7 +96,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 if ($SoloInstalar) {
-  $Prueba = Join-Path $env:TEMP "prueba-video-showreel-nativo"
+  $Prueba = Join-Path $env:TEMP "prueba-reelsmith"
   Write-Host "Prueba completa del pipeline en $Prueba (unos minutos)…"
   & node (Join-Path $Scripts "prueba-completa.mjs") $Prueba
   if ($LASTEXITCODE -ne 0) { Fallar "la prueba completa no pasó (copia el error de arriba)" }

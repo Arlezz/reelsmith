@@ -147,7 +147,7 @@ Después, `medir_cortes.py` confirma que cada corte duro del plan está donde de
 - Una cortina que cubre la pantalla justo en el corte se registra como `"tipo": "transicion"`, con deriva 0. Es lo esperado.
 - Los cambios menores (peso bajo 0,6) solo se emparejan a ±1 cuadro. Si no hay un cambio visual ahí, quedan `detectado: false` con el instante del plan.
 
-Con la plantilla, la música, la mezcla y los jueces se corren a mano, en este orden (`showreel.mjs final` los hace solos solo con el guion del catálogo):
+Con la plantilla, la música, la mezcla y los jueces se corren a mano, en este orden (`reelsmith.mjs final` los hace solos solo con el guion del catálogo):
 
 ```bash
 python3 -I <skill>/scripts/medir_cortes.py video-mudo.mp4 --plan plan_cortes.json --salida cortes.json
@@ -157,4 +157,4 @@ node <skill>/scripts/check-audio.mjs musica/musica.mp4 --expect <t del principal
 python3 -I <skill>/scripts/medir_pista.py musica/composicion.json --wav musica/stems/musica.wav --png medicion.png
 ```
 
-En Windows, `python3` no existe: usa el Python del entorno que crea `bench\medir-windows.ps1` (`%LOCALAPPDATA%\video-showreel-nativo\venv\Scripts\python.exe`) o `py -3`, y agrega `-X utf8` (por ejemplo, `py -3 -X utf8 -I <skill>/scripts/medir_cortes.py …`).
+En Windows, `python3` no existe: usa el Python del entorno que crea `bench\medir-windows.ps1` (`%LOCALAPPDATA%\reelsmith\venv\Scripts\python.exe`) o `py -3`, y agrega `-X utf8` (por ejemplo, `py -3 -X utf8 -I <skill>/scripts/medir_cortes.py …`).

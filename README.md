@@ -1,27 +1,27 @@
-# video-showreel-nativo (versión de prueba)
+# reelsmith (versión de prueba)
 
 Skill de prueba para hacer showreels de proyectos sin el tipo Motion. Lleva el pipeline que se decidió el 18/10/2026 ("video y música nativos"):
 
 1. El video se describe en un **guion** (`guion.json`) con escenas de un catálogo probado; un comando lo convierte en HTML y CSS.
 2. Se revisa con una **vista** rápida: tres cuadros por escena a media resolución, en segundos.
-3. `showreel.mjs final` lo renderiza a MP4 con Chromium y, en paralelo, le **compone música y efectos por código** a la medida de sus cortes, la mezcla a −14 LUFS y la pasa por los jueces.
+3. `reelsmith.mjs final` lo renderiza a MP4 con Chromium y, en paralelo, le **compone música y efectos por código** a la medida de sus cortes, la mezcla a −14 LUFS y la pasa por los jueces.
 
 No reemplaza a `video-showreel`, que sigue igual. Cuando esta versión se valide con el equipo, se decide si la reemplaza.
 
 ## Comandos
 
 ```bash
-S=skills/video-showreel-nativo/scripts
-node $S/showreel.mjs construir            # guion.json → escena.html, plan_cortes.json, escenas.json, storyboard.md
-node $S/showreel.mjs vista [--escena e5]  # hoja de cuadros clave (vista.png)
-node $S/showreel.mjs final --estilo corporativa   # MP4 con música, mezcla y jueces
-node $S/showreel.mjs tiempos              # desglose de tiempos de la corrida
+S=skills/reelsmith/scripts
+node $S/reelsmith.mjs construir            # guion.json → escena.html, plan_cortes.json, escenas.json, storyboard.md
+node $S/reelsmith.mjs vista [--escena e5]  # hoja de cuadros clave (vista.png)
+node $S/reelsmith.mjs final --estilo corporativa   # MP4 con música, mezcla y jueces
+node $S/reelsmith.mjs tiempos              # desglose de tiempos de la corrida
 node $S/prueba-completa.mjs /tmp/prueba   # pipeline completo con jueces (Linux, macOS y Windows)
 ```
 
 ## Qué cambia respecto de `video-showreel`
 
-| | `video-showreel` | `video-showreel-nativo` |
+| | `video-showreel` | `reelsmith` |
 |---|---|---|
 | Motor de video | Artifact Motion (export desde la interfaz) | HTML y CSS → `render-nativo.mjs` → MP4 |
 | Música | Sintetizador de Motion, o pista ajena agregada después | Compuesta por código a la medida de los cortes; derechos 100 % propios |
@@ -39,18 +39,18 @@ Se mantienen las recetas de dirección, las paletas, la regla de lectura, el rep
 - **Python 3.11 o más**, con `scripts/requirements.txt`: numpy, scipy, numba, soundfile, pyloudnorm y matplotlib.
 - **`headless_shell` de Chromium.** Viene en el sandbox de Cowork. En otro entorno: `npx -y playwright@1.56.0 install chromium-headless-shell`.
 
-Comprobar: `node skills/video-showreel-nativo/scripts/render-nativo.mjs --verificar`, y luego `node skills/video-showreel-nativo/scripts/prueba-completa.mjs /tmp/prueba` (unos 4 minutos en 2 núcleos).
+Comprobar: `node skills/reelsmith/scripts/render-nativo.mjs --verificar`, y luego `node skills/reelsmith/scripts/prueba-completa.mjs /tmp/prueba` (unos 4 minutos en 2 núcleos).
 
-**Windows (desde la 0.2.1).** En PowerShell, en esta carpeta: `powershell -ExecutionPolicy Bypass -File bench\medir-windows.ps1 -SoloInstalar`. Instala con winget lo que falte, crea un entorno de Python aislado en `%LOCALAPPDATA%\video-showreel-nativo\venv` (los scripts lo encuentran solos), instala el navegador y corre la prueba completa. Sin `-SoloInstalar`, además mide el equipo (ver `bench/RENDIMIENTO.md`).
+**Windows (desde la 0.2.1).** En PowerShell, en esta carpeta: `powershell -ExecutionPolicy Bypass -File bench\medir-windows.ps1 -SoloInstalar`. Instala con winget lo que falte, crea un entorno de Python aislado en `%LOCALAPPDATA%\reelsmith\venv` (los scripts lo encuentran solos), instala el navegador y corre la prueba completa. Sin `-SoloInstalar`, además mide el equipo (ver `bench/RENDIMIENTO.md`).
 
 En macOS, el render cae a capturas comunes: el video se ve igual, pero no es idéntico byte a byte. En Linux y Windows usa `beginFrame`.
 
 ## Estructura
 
 ```
-video-showreel-nativo/
+reelsmith/
   .claude-plugin/plugin.json
-  skills/video-showreel-nativo/
+  skills/reelsmith/
     SKILL.md                      flujo: contenido → preguntas → guion → vista → final → entrega
     references/
       catalogo.md                 formato del guion, tipos de escena, receta de un showreel (la vía normal)
@@ -61,7 +61,7 @@ video-showreel-nativo/
       guion-ejemplo.json          guion de 43 s con todos los tipos (lo usa prueba-completa.sh)
       plantilla/                  video manual de ejemplo de 17,5 s (construir.mjs) con Quicksand e Inter (OFL)
     scripts/
-      showreel.mjs                un comando por fase: construir, vista, final, tiempos
+      reelsmith.mjs                un comando por fase: construir, vista, final, tiempos
       escenas.mjs                 catálogo: guion → HTML, plan de cortes, manifiesto de escenas con claves de caché
       render-nativo.mjs           HTML → MP4 mudo por segmentos en paralelo, con caché; vista rápida
       tiempos.py                  registro de tiempos de cada corrida y su informe (con ruta crítica)
@@ -111,7 +111,7 @@ Lo que más pesó: el guion de catálogo en vez de HTML escrito a mano, la vista
 - `medir_cortes.py` ya no pone la ruta del archivo temporal dentro del grafo de filtros de ffmpeg: una ruta de Windows (`C:\...`) lo rompía.
 - Con NVENC, el render usa a lo más 8 sesiones de codificación (lo que admite una GeForce); con más, los segmentos fallaban y se repetían.
 - Medido en un PC con Windows 11 (Ryzen 7 9800X3D, RTX 5070): el video de 90 s queda en 2,0 min de punta a punta, con render determinista y jueces PASA. Detalle en `bench/RENDIMIENTO.md` §9c.
-- `node showreel.mjs marca <etapa>` hace lo mismo que `python3 tiempos.py marca`.
+- `node reelsmith.mjs marca <etapa>` hace lo mismo que `python3 tiempos.py marca`.
 - En Linux, la prueba completa da los mismos md5 que la 0.2.0: video, WAV, `audio.m4a` y MP4 final.
 
 ## Estado de la prueba (18/10/2026)

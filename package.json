@@ -1,0 +1,19 @@
+{
+  "name": "reelsmith",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Showreels de proyectos desde un guion de escenas, con música y efectos compuestos por código a la medida de los cortes.",
+  "type": "module",
+  "bin": {
+    "reelsmith": "skills/reelsmith/scripts/reelsmith.mjs"
+  },
+  "scripts": {
+    "doctor": "node skills/reelsmith/scripts/reelsmith.mjs doctor",
+    "prueba": "node skills/reelsmith/scripts/reelsmith.mjs prueba"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Arlezz <antonyrodriguezc.2001@gmail.com>",
+  "license": "UNLICENSED"
+}

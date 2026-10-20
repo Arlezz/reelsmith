@@ -1,10 +1,19 @@
 {
-  "name": "video-showreel-nativo",
-  "version": "0.2.1",
-  "description": "Versión de prueba de video-showreel: showreel desde un guion de escenas de catálogo, renderizado a MP4 en paralelo con caché, con música y efectos compuestos por código a la medida de los cortes, mezcla a -14 LUFS y dos jueces medibles.",
+  "name": "reelsmith",
+  "version": "0.3.0",
+  "description": "Reelsmith: showreels de proyectos desde un guion de escenas de catálogo, renderizados a MP4 en paralelo con caché, con música y efectos compuestos por código a la medida de los cortes, mezcla a -14 LUFS y dos jueces medibles. Linux, macOS y Windows, o en un contenedor.",
   "author": {
-    "name": "Antony Rodríguez (CENIA)",
-    "email": "antony.rodriguez@cenia.cl"
+    "name": "Arlezz",
+    "email": "antonyrodriguezc.2001@gmail.com"
   },
-  "keywords": ["video", "showreel", "motion graphics", "html", "css", "música", "ffmpeg"]
+  "keywords": [
+    "video",
+    "showreel",
+    "reel",
+    "motion graphics",
+    "html",
+    "css",
+    "música",
+    "ffmpeg"
+  ]
 }

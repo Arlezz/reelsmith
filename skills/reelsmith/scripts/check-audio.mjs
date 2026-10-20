@@ -247,7 +247,7 @@ function finish() {
   report.resultado = failed ? "FALLA" : "PASA";
   try {  // registro de tiempos de la corrida; nunca hace fallar al juez
     const t0 = T_INICIO / 1000, t1 = Date.now() / 1000;
-    appendFileSync(process.env.SHOWREEL_TIEMPOS || "tiempos.jsonl", JSON.stringify({ v: 1, tipo: "maquina", etapa: "verificar_audio",
+    appendFileSync(process.env.REELSMITH_TIEMPOS || "tiempos.jsonl", JSON.stringify({ v: 1, tipo: "maquina", etapa: "verificar_audio",
       t0: Number(t0.toFixed(3)), t1: Number(t1.toFixed(3)), s: Number((t1 - t0).toFixed(3)), pid: process.pid,
       datos: { resultado: report.resultado, expect: Number.isFinite(expect) ? expect : null } }) + "\n");
   } catch { /* sin registro */ }

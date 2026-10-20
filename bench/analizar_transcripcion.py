@@ -24,13 +24,13 @@ PRECIOS = {
 }
 
 ETAPAS = [
-    ("render", r"render-nativo|showreel\.mjs\s+(render|final)|hyperframes render"),
-    ("vista", r"showreel\.mjs\s+vista|--vista"),
+    ("render", r"render-nativo|(?:showreel|reelsmith)\.mjs\s+(render|final)|hyperframes render"),
+    ("vista", r"(?:showreel|reelsmith)\.mjs\s+vista|--vista"),
     ("cortes", r"medir_cortes"),
     ("musica", r"componer\.py"),
     ("mezcla", r"planificar_mezcla|mezcla\.sh"),
     ("jueces", r"check-audio|medir_pista"),
-    ("construir", r"construir\.mjs|escenas\.mjs|showreel\.mjs\s+construir"),
+    ("construir", r"construir\.mjs|escenas\.mjs|(?:showreel|reelsmith)\.mjs\s+construir"),
     ("ffmpeg_revision", r"ffmpeg .*(-frames:v|select=|tile=)"),
     ("instalacion", r"pip install|npm install|playwright@.* install|--verificar"),
 ]

@@ -1,4 +1,6 @@
-# Rendimiento de video-showreel-nativo: dónde se iba el tiempo y qué lo redujo
+# Rendimiento de Reelsmith: dónde se iba el tiempo y qué lo redujo
+
+Reelsmith se llamó `video-showreel-nativo` hasta la versión 0.2.1. Las mediciones de este informe son de esas versiones; los archivos de `resultados/` conservan el nombre y las rutas de entonces.
 
 Medido el 18 y 19/10/2026 sobre la versión 0.1.0 (base) y la 0.2.0 (final), en la misma máquina. La 0.2.1 agrega Windows (sección 9c) sin cambiar el resultado en Linux: mismos md5.
 
@@ -78,7 +80,7 @@ Mediana de 3 corridas de agente (final-1, final-2 y final-3). Total: **242,5 s**
 
 | # | Cambio | Oficio | Antes | Después | Ganancia |
 |---|---|---|---|---|---|
-| 1 | **Guion de catálogo.** El agente escribe unas 40 líneas de JSON con escenas probadas. El HTML, los tiempos sobre la grilla, el plan de cortes y el storyboard los hace `showreel.mjs construir`, en 20 ms | eliminar | agente 1 382 s | agente 60 s | **−1 322 s** |
+| 1 | **Guion de catálogo.** El agente escribe unas 40 líneas de JSON con escenas probadas. El HTML, los tiempos sobre la grilla, el plan de cortes y el storyboard los hace `reelsmith.mjs construir`, en 20 ms | eliminar | agente 1 382 s | agente 60 s | **−1 322 s** |
 | 2 | **Vista rápida en vez de renders para revisar.** Tres cuadros clave por escena a media resolución, con caché por escena (2 a 4 s). Como el catálogo llega bien a la primera, el render completo se hace una sola vez | eliminar, cachear, incremental | 3 o 4 renders completos con sus jueces: ~1 090 s repetidos | 1 render; vista 3,3 s | **−1 090 s** |
 | 3 | **`final` en un comando, en paralelo.** Ver el detalle abajo | paralelo, eliminar | una pasada de máquina en ref90: 557 s | 225 s | **−333 s** (2,48×) |
 
@@ -156,7 +158,7 @@ Las pruebas, el red team y las corridas de agente encontraron, además, estos er
 - **Registro de cada corrida:** `proyecto/tiempos.jsonl`.
   - El agente marca el inicio de cada etapa con `tiempos.py marca <etapa>`.
   - Cada script de máquina escribe solo su registro, con sus datos: segmentos, caché, trabajadores, reintentos.
-- **Informe:** `node showreel.mjs tiempos` imprime, por etapa, los segundos, el porcentaje y los segundos en la ruta crítica ("en ruta"), y las tres etapas que más pesan en ella.
+- **Informe:** `node reelsmith.mjs tiempos` imprime, por etapa, los segundos, el porcentaje y los segundos en la ruta crítica ("en ruta"), y las tres etapas que más pesan en ella.
   - La ruta crítica se calcula de atrás hacia adelante: en cada instante, lo que se estaba esperando. Lo que corrió en paralelo y terminó antes no cuenta.
   - Con una corrida reanudada, cuenta desde el último `pedido`.
 - **Corridas de agente:** `bench/analizar_transcripcion.py` separa el tiempo del modelo del de herramientas, por etapa, y da tokens y costo.
@@ -196,7 +198,7 @@ MacBook con Apple M5, 10 núcleos y 24 GB, macOS 27.0.1, Node 26.7 y ffmpeg 9.0.
 - **La GPU ahorra poco, como se esperaba:** solo reemplaza la codificación. En ref20, con 825 animaciones, el dibujo de los cuadros pesa más y la ganancia es menor.
 - **Los núcleos pesan mucho más.** El render de 20 s pasó de 60,0 s en la máquina de prueba (2 vCPU) a 10,6 s en el Mac con CPU: 5,7× más rápido. El de 90 s tardó 33 s, contra 203 s en la máquina de prueba (dentro de `final`, compitiendo con el audio).
 - **Una diferencia de modo:** en macOS el render captura los cuadros de forma normal, sin `beginFrame`. El MP4 se ve igual, pero no es idéntico byte a byte entre corridas, y por eso el benchmark marca "determinista False".
-- **Recomendación: seguir con libx264 por defecto.** Es el mismo en todas las máquinas, controla la calidad (CRF 16) y la GPU ahorra entre 0,7 y 6 s por video. La GPU queda como opción: `showreel.mjs final --codificador h264_videotoolbox`.
+- **Recomendación: seguir con libx264 por defecto.** Es el mismo en todas las máquinas, controla la calidad (CRF 16) y la GPU ahorra entre 0,7 y 6 s por video. La GPU queda como opción: `reelsmith.mjs final --codificador h264_videotoolbox`.
 
 Resultados: `resultados/2026-10-19_0959_gpu-mac.txt`, `2026-10-19_1000_gpu-mac-ref20` y `2026-10-19_1004_gpu-mac-ref90`.
 
@@ -263,9 +265,9 @@ Resultados: `resultados/2026-10-19_2212_windows.txt` y `.json` (corrida completa
 ```bash
 # benchmark de máquina, antes y después intercalados (unos 50 min en 2 núcleos)
 python3 bench/benchmark.py --refs ref20,ref90 --repeticiones 3 --etiqueta ab --golden <carpeta golden> \
-  --variantes '[{"nombre":"base","skill":"<skill 0.1.0>","modo":"etapas"},{"nombre":"final","skill":"skills/video-showreel-nativo","modo":"final"}]'
+  --variantes '[{"nombre":"base","skill":"<skill 0.1.0>","modo":"etapas"},{"nombre":"final","skill":"skills/reelsmith","modo":"final"}]'
 # red team de caché y rendimiento (unos 25 min)
-bash bench/red-team.sh skills/video-showreel-nativo <guion de 90 s> /tmp/red-team
+bash bench/red-team.sh skills/reelsmith <guion de 90 s> /tmp/red-team
 # corrida de agente: prompt-corrida.md con {SKILL}, {CORRIDA} y {BRIEF}; luego
 python3 bench/analizar_transcripcion.py <transcripción.jsonl> --json corrida.json
 # medir un computador (Linux, macOS o Windows): prueba completa, corrida de 90 s y GPU contra CPU (unos 10 min)

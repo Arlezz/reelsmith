@@ -34,10 +34,10 @@ import { pathToFileURL } from "node:url";
 const VERSION_RENDER = "3";
 const T_INICIO = Date.now();  // reloj desde el arranque del proceso (tiempos.jsonl)
 const args = process.argv.slice(2);
-const registrar = (etapa, datos) => {  // una línea JSON en tiempos.jsonl (o SHOWREEL_TIEMPOS); nunca hace fallar el render
+const registrar = (etapa, datos) => {  // una línea JSON en tiempos.jsonl (o REELSMITH_TIEMPOS); nunca hace fallar el render
   try {
     const t1 = Date.now() / 1000, t0 = T_INICIO / 1000;
-    appendFileSync(process.env.SHOWREEL_TIEMPOS || "tiempos.jsonl", JSON.stringify({ v: 1, tipo: "maquina", etapa, t0: Number(t0.toFixed(3)),
+    appendFileSync(process.env.REELSMITH_TIEMPOS || "tiempos.jsonl", JSON.stringify({ v: 1, tipo: "maquina", etapa, t0: Number(t0.toFixed(3)),
       t1: Number(t1.toFixed(3)), s: Number((t1 - t0).toFixed(3)), pid: process.pid, datos }) + "\n");
   } catch { /* sin registro */ }
 };
@@ -101,7 +101,7 @@ function trabajadoresAuto(segmentos) {
 // Cupos de trabajadores compartidos por todos los renders de la máquina (archivos de bloqueo en la carpeta temporal).
 // Cada navegador con su página ocupa ~650 MB: con dos videos a la vez, cada uno con 4 trabajadores en 8 GB, el
 // sistema mató páginas por falta de memoria (medido en el red team). Con cupos, el segundo video espera turno.
-const DIR_CUPOS = path.join(os.tmpdir(), "showreel-render-cupos");
+const DIR_CUPOS = path.join(os.tmpdir(), "reelsmith-render-cupos");
 const CUPOS = Math.max(1, Math.min(2 * os.cpus().length, Math.floor((os.totalmem() / 1048576 - 1536) / 700)));
 const misCupos = new Set();
 async function tomarCupo() {

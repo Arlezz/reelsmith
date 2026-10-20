@@ -1,11 +1,11 @@
 ---
-name: video-showreel-nativo
-description: "Versión de prueba de video-showreel: crea un showreel de un proyecto en HTML y CSS, lo renderiza a MP4 y le compone música y efectos por código a la medida de sus cortes (derechos 100 % propios). Úsala cuando pidan la vía nativa, la versión de prueba o un video con música propia."
+name: reelsmith
+description: "Reelsmith: crea un showreel de un proyecto desde un guion de escenas, lo renderiza a MP4 y le compone música y efectos por código a la medida de sus cortes (derechos 100 % propios). Úsala cuando pidan Reelsmith, un video renderizado a MP4 fuera de Motion o un video con música propia."
 ---
 
-# Video showreel nativo (versión de prueba)
+# Reelsmith
 
-Versión de prueba de `video-showreel`, sin el tipo Motion:
+Showreels de proyectos sin el tipo Motion (hasta la 0.2.1 se llamaba `video-showreel-nativo`; `video-showreel` es otra skill y sigue igual):
 
 - El video se describe en un **guion** (`guion.json`) con escenas de un catálogo probado. Un comando lo convierte en HTML y CSS.
 - Se renderiza a MP4 con Chromium y se le **compone música y efectos por código** a la medida de sus cortes.
@@ -31,7 +31,7 @@ Cada corrida deja su desglose en `proyecto/tiempos.jsonl`. Los scripts de máqui
 python3 $S/tiempos.py marca <etapa>
 ```
 
-En Windows, donde `python3` no existe, usa `node $S/showreel.mjs marca <etapa>`: hace lo mismo.
+En Windows, donde `python3` no existe, usa `node $S/reelsmith.mjs marca <etapa>`: hace lo mismo.
 
 | Marca | Cuándo |
 |---|---|
@@ -45,7 +45,7 @@ En Windows, donde `python3` no existe, usa `node $S/showreel.mjs marca <etapa>`:
 | `entrega` | Al empezar el paso 6 |
 | `fin` | Al terminar, justo antes del mensaje final |
 
-`node $S/showreel.mjs tiempos` imprime la tabla: etapa, segundos, porcentaje y las tres etapas que más pesan. Va en la entrega.
+`node $S/reelsmith.mjs tiempos` imprime la tabla: etapa, segundos, porcentaje y las tres etapas que más pesan. Va en la entrega.
 
 ## 0. Preparación (una vez por entorno)
 
@@ -84,7 +84,7 @@ Usa `AskUserQuestion` solo con lo que el pedido no responda. Lo demás toma su v
 Lee `references/catalogo.md` y escribe `proyecto/guion.json`: una escena del catálogo por idea, con sus textos, y la duración pedida en `"duracion"`. El ejemplo de 90 s del catálogo es la receta. Luego:
 
 ```bash
-node $S/showreel.mjs construir
+node $S/reelsmith.mjs construir
 ```
 
 Escribe `escena.html`, `plan_cortes.json`, `escenas.json` y `storyboard.md`, y muestra el storyboard con la duración de cada escena.
@@ -95,7 +95,7 @@ Escribe `escena.html`, `plan_cortes.json`, `escenas.json` y `storyboard.md`, y m
 ## 4. Vista y punto de control
 
 ```bash
-node $S/showreel.mjs vista
+node $S/reelsmith.mjs vista
 ```
 
 Escribe `vista.png` (o `vista-1.png`, `vista-2.png`…): tres cuadros por escena (el corte, el medio y el último) en 1 a 4 s. **Mira cada hoja** y revisa:
@@ -110,7 +110,7 @@ El último cuadro de una escena puede mostrar la transición de la siguiente (co
 Para corregir, edita `guion.json` y vuelve a ver solo esa escena (menos de 1 s, el resto sale de la caché):
 
 ```bash
-node $S/showreel.mjs construir && node $S/showreel.mjs vista --escena e5
+node $S/reelsmith.mjs construir && node $S/reelsmith.mjs vista --escena e5
 ```
 
 **Punto de control:** muestra al usuario el storyboard y las hojas de la vista, y espera su confirmación antes del paso 5.
@@ -118,7 +118,7 @@ node $S/showreel.mjs construir && node $S/showreel.mjs vista --escena e5
 ## 5. Final
 
 ```bash
-node $S/showreel.mjs final --estilo corporativa      # o --estilo trailer; --sin-musica entrega solo el video
+node $S/reelsmith.mjs final --estilo corporativa      # o --estilo trailer; --sin-musica entrega solo el video
 ```
 
 Hace todo en un comando, en paralelo donde se puede:
@@ -130,7 +130,7 @@ Hace todo en un comando, en paralelo donde se puede:
 
 Escribe `showreel-<estilo>.mp4` y `final.json` con el resultado. Si algún corte medido no coincide con el plan, recompone la música con los cortes medidos (lo avisa).
 
-- **check-audio** debe dar `PASA` en cada principal. Si da `FALLA`, no entregues: lee `showreel.log` y corrige.
+- **check-audio** debe dar `PASA` en cada principal. Si da `FALLA`, no entregues: lee `reelsmith.log` y corrige.
 - **medir_pista** da `PASA` o `REVISAR`. Con `REVISAR`, aplica la tabla de `musica-y-mezcla.md` §4.
 
 Tras una corrección, `final` vuelve a dibujar solo las escenas que cambiaron. Si los cortes no se movieron, la música sale de la caché.
@@ -140,7 +140,7 @@ Tras una corrección, `final` vuelve a dibujar solo las escenas que cambiaron. S
 1. Entrega el MP4 con un nombre claro (por ejemplo, `showreel-<proyecto>-<estilo>.mp4`).
 2. Si el usuario lo quiere reproducible, entrega también `guion.json`: con este skill rehace el mismo video byte a byte.
 3. En pocas líneas, informa:
-   - duración final y tiempo que tomó, con la tabla de `node $S/showreel.mjs tiempos`;
+   - duración final y tiempo que tomó, con la tabla de `node $S/reelsmith.mjs tiempos`;
    - decisiones tomadas por defecto;
    - resultado de los jueces y tempo de la música;
    - que viste cuadros, no el video en movimiento;

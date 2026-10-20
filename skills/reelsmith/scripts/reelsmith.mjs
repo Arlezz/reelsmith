@@ -1,11 +1,21 @@
-// showreel.mjs: un comando para cada fase del video. Lo usan el agente y el benchmark.
+#!/usr/bin/env node
+// reelsmith.mjs: el comando de Reelsmith. Lo usan las personas, los agentes y el benchmark. Instalado con `npm link`
+// desde el repo, se llama `reelsmith`; sin instalar, `node <skill>/scripts/reelsmith.mjs`.
 //
-//   node showreel.mjs construir [guion.json]         guion → escena.html, plan_cortes.json, escenas.json, storyboard.md
-//   node showreel.mjs vista [--escena e3,e5]          cuadros clave a media resolución → vista.png (o vista-1.png, …)
-//   node showreel.mjs final --estilo corporativa      render final + música + mezcla + jueces → <nombre>.mp4
+//   reelsmith doctor                                   revisa Node, ffmpeg, Python, sus paquetes y el navegador
+//   reelsmith nuevo <carpeta>                          carpeta de proyecto con un guion de ejemplo
+//   reelsmith video [guion.json] [opciones de final]   construir + vista + final de una vez (sin agente)
+//   reelsmith prueba [carpeta]                         la prueba completa (plantilla y catálogo, con jueces)
+//   reelsmith medir [opciones]                         mide este computador (bench/medir-equipo.mjs; solo desde el repo)
+//   reelsmith --docker <comando>                       el mismo comando dentro del contenedor, sobre la carpeta actual
+//   reelsmith version
+//
+//   node reelsmith.mjs construir [guion.json]         guion → escena.html, plan_cortes.json, escenas.json, storyboard.md
+//   node reelsmith.mjs vista [--escena e3,e5]          cuadros clave a media resolución → vista.png (o vista-1.png, …)
+//   node reelsmith.mjs final --estilo corporativa      render final + música + mezcla + jueces → <nombre>.mp4
 //        [--nombre showreel] [--trabajadores N] [--sin-musica] [--preset medium] [--sin-cache] [--sin-prioridad] [--duracion s] [--codificador h264_videotoolbox]
-//   node showreel.mjs tiempos                         desglose de tiempos de la corrida
-//   node showreel.mjs marca <etapa> [--nota "…"]      lo mismo que python3 tiempos.py marca (sirve igual en Windows)
+//   node reelsmith.mjs tiempos                         desglose de tiempos de la corrida
+//   node reelsmith.mjs marca <etapa> [--nota "…"]      lo mismo que python3 tiempos.py marca (sirve igual en Windows)
 //
 // "final" hace en paralelo lo que no depende entre sí: mientras se dibuja el video, compone la música desde el plan de
 // cortes (los tiempos del catálogo caen en cuadros exactos), la mezcla y la mide. Al terminar el video, une el audio sin
@@ -13,17 +23,41 @@
 // coincide con el plan, recompone la música con los cortes medidos (respaldo para escenas escritas a mano).
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { appendFileSync, cpSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { appendFileSync, cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { ENV_PYTHON, NODE, pythonArgs, python } from "./entorno.mjs";
+import { buscarPython, ENV_PYTHON, NODE, pythonArgs, python, VENV } from "./entorno.mjs";
 
 const S = path.dirname(fileURLToPath(import.meta.url));
+const SKILL = path.dirname(S);
+const RAIZ = path.dirname(path.dirname(SKILL));  // la raíz del repo (o del plugin instalado)
 const [cmd, ...resto] = process.argv.slice(2);
 const opt = (k, def) => { const i = resto.indexOf("--" + k); return i >= 0 ? resto[i + 1] : def; };
 const tiene = (k) => resto.includes("--" + k);
-const LOG = "showreel.log";
+const LOG = "reelsmith.log";
+const VERSION = (() => {
+  for (const f of [path.join(RAIZ, "package.json"), path.join(RAIZ, ".claude-plugin", "plugin.json")]) {
+    try { return JSON.parse(readFileSync(f, "utf8")).version; } catch { /* */ }
+  }
+  return "?";
+})();
+
+// ---------------------------------------------------------------- --docker: el mismo comando dentro del contenedor
+if (process.argv.includes("--docker")) {
+  const args = process.argv.slice(2).filter((a) => a !== "--docker");
+  const imagen = process.env.REELSMITH_IMAGEN || "reelsmith";
+  const dargs = ["run", "--rm", ...(process.stdout.isTTY ? ["-t"] : []), "-v", `${process.cwd()}:/trabajo`, "-w", "/trabajo"];
+  // en Linux los archivos nuevos quedan con el usuario de quien corre, no de root
+  if (process.platform === "linux" && process.getuid) dargs.push("--user", `${process.getuid()}:${process.getgid()}`, "-e", "HOME=/tmp");
+  for (const k of ["RENDER_MODO", "RENDER_ESPERA_MAX_S"]) if (process.env[k]) dargs.push("-e", `${k}=${process.env[k]}`);
+  const r = spawnSync("docker", [...dargs, imagen, ...args], { stdio: "inherit" });
+  if (r.error) {
+    console.error(`no pude correr docker (${r.error.message}). Instala Docker y construye la imagen desde el repo: docker build -t ${imagen} .`);
+    process.exit(2);
+  }
+  process.exit(r.status ?? 1);
+}
 
 function correr(prog, args, { silencioso = true, env = {}, alIniciar } = {}) {
   return new Promise((res) => {
@@ -44,11 +78,137 @@ const sha = (...partes) => createHash("sha256").update(partes.join("\u0000")).di
 const registrar = (etapa, t0, datos) => {  // misma línea que tiempos.py; nunca hace fallar la corrida
   try {
     const t1 = Date.now() / 1000;
-    appendFileSync(process.env.SHOWREEL_TIEMPOS || "tiempos.jsonl", JSON.stringify({ v: 1, tipo: "maquina", etapa, t0: Number(t0.toFixed(3)),
+    appendFileSync(process.env.REELSMITH_TIEMPOS || "tiempos.jsonl", JSON.stringify({ v: 1, tipo: "maquina", etapa, t0: Number(t0.toFixed(3)),
       t1: Number(t1.toFixed(3)), s: Number((t1 - t0).toFixed(3)), pid: process.pid, datos }) + "\n");
   } catch { /* */ }
 };
 const nd = (script, args, o) => correr(NODE, [path.join(S, script), ...args], o);
+// subcomando de este mismo archivo, con la salida a la vista
+const yo = (...args) => spawnSync(NODE, [fileURLToPath(import.meta.url), ...args], { stdio: "inherit" }).status ?? 1;
+
+if (cmd === "version" || cmd === "--version") {
+  console.log(`reelsmith ${VERSION}`);
+  process.exit(0);
+}
+
+if (!cmd || cmd === "ayuda" || cmd === "--help" || cmd === "-h") {
+  console.log(`reelsmith ${VERSION}: showreels desde un guion, con música compuesta por código
+
+  reelsmith doctor                      revisa lo que hace falta y dice cómo instalarlo
+  reelsmith nuevo <carpeta>             carpeta de proyecto con un guion de ejemplo
+  reelsmith video [guion.json]          construir + vista + final de una vez
+  reelsmith construir [guion.json]      guion → escena.html, plan de cortes, storyboard
+  reelsmith vista [--escena e3,e5]      cuadros clave a media resolución (vista.png)
+  reelsmith final --estilo corporativa  video + música + mezcla + jueces → showreel-corporativa.mp4
+       [--estilo trailer] [--nombre x] [--sin-musica] [--sin-cache] [--codificador h264_nvenc]
+  reelsmith tiempos                     desglose de tiempos de la corrida
+  reelsmith marca <etapa>               marca el inicio de una etapa del agente
+  reelsmith prueba [carpeta]            prueba completa del pipeline, con jueces
+  reelsmith medir [--repeticiones 3]    mide este computador (desde el repo)
+  reelsmith --docker <comando>          lo mismo, dentro del contenedor (docker build -t reelsmith .)
+
+Flujo y reglas: AGENTS.md y skills/reelsmith/SKILL.md.`);
+  process.exit(cmd ? 0 : 2);
+}
+
+if (cmd === "doctor") {
+  const filas = [];
+  let falta = false;
+  const fila = (estado, que, detalle) => { filas.push([estado, que, detalle]); if (estado === "FALTA") falta = true; };
+  const salida = (prog, args) => { const r = spawnSync(prog, args, { encoding: "utf8" }); return r.error || r.status !== 0 ? null : (r.stdout || "").replace(/\r\n/g, "\n"); };
+  const mayor = Number(process.versions.node.split(".")[0]);
+  fila(mayor >= 22 && typeof WebSocket === "function" ? "ok" : "FALTA", "Node 22 o más", process.version);
+  const ff = salida("ffmpeg", ["-hide_banner", "-version"]);
+  fila(ff ? "ok" : "FALTA", "ffmpeg", ff ? ff.split("\n")[0].replace(/ Copyright.*/, "") : "no está en el PATH");
+  fila(salida("ffprobe", ["-version"]) ? "ok" : "FALTA", "ffprobe", "");
+  if (ff) {
+    const conf = ff + (salida("ffmpeg", ["-hide_banner", "-buildconf"]) || "");
+    fila(/libsoxr/.test(conf) ? "ok" : "aviso", "libsoxr en ffmpeg", /libsoxr/.test(conf) ? "sí" : "no: la mezcla usa el remuestreador de ffmpeg (mismo resultado en 48 kHz)");
+  }
+  const py = buscarPython();
+  if (!py) fila("FALTA", "Python 3.11 o más", `probé: ${buscarPython.probados.join(", ")}`);
+  else {
+    const ver = salida(py.cmd, [...py.pre, "-c", "import sys; print(sys.version.split()[0]); print(sys.executable)"]) || "";
+    const [v, exe] = ver.trim().split("\n");
+    fila("ok", "Python", `${v} · ${exe}`);
+    const pedidos = Object.fromEntries(readFileSync(path.join(S, "requirements.txt"), "utf8").split(/\r?\n/)
+      .filter((l) => /^[\w-]+==/.test(l)).map((l) => l.split("==")));
+    const codigo = `import importlib.metadata as m, json\nr = {}\nfor p in ${JSON.stringify(Object.keys(pedidos))}:\n    try: r[p] = m.version(p)\n    except Exception: r[p] = None\nprint(json.dumps(r))`;
+    let tiene = {};
+    try { tiene = JSON.parse(salida(py.cmd, [...py.pre, "-c", codigo]) || "{}"); } catch { /* */ }
+    for (const [p, v] of Object.entries(pedidos)) {
+      fila(!tiene[p] ? "FALTA" : tiene[p] === v ? "ok" : "aviso", `paquete ${p}`, !tiene[p] ? `falta (se pide ${v})` : tiene[p] === v ? v : `${tiene[p]} (se probó con ${v})`);
+    }
+  }
+  const nav = spawnSync(NODE, [path.join(S, "render-nativo.mjs"), "--verificar"], { encoding: "utf8" });
+  const lineaNav = (nav.stdout || "").split(/\r?\n/).find((l) => l.startsWith("navegador:"));
+  const lineaModo = (nav.stdout || "").split(/\r?\n/).find((l) => l.startsWith("modo:"));
+  fila(lineaNav ? "ok" : "FALTA", "navegador del render", lineaNav ? lineaNav.slice(11) : "no encontré chromium-headless-shell");
+  if (lineaModo) fila("ok", "modo de render", lineaModo.slice(6));
+  const dk = salida("docker", ["--version"]);
+  fila(dk ? "ok" : "aviso", "Docker (opcional, para --docker)", dk ? dk.trim() : "no está: solo hace falta para correr en el contenedor");
+  const ancho = Math.max(...filas.map((f) => f[1].length));
+  for (const [e, q, d] of filas) console.log(`${e === "ok" ? "  ok   " : e === "aviso" ? "  aviso" : "  FALTA"}  ${q.padEnd(ancho)}  ${d}`);
+  if (falta) {
+    const req = path.join(S, "requirements.txt");
+    console.log(`\nCómo instalar lo que falta${process.platform === "win32" ? " (Windows)" : process.platform === "darwin" ? " (macOS)" : " (Linux)"}:`);
+    if (process.platform === "win32") {
+      console.log(`  powershell -ExecutionPolicy Bypass -File ${path.join(RAIZ, "bench", "medir-windows.ps1")} -SoloInstalar`);
+      console.log("  (instala con winget Node, ffmpeg y Python, crea el entorno de Python y el navegador, y corre la prueba completa)");
+    } else {
+      console.log(process.platform === "darwin" ? "  brew install node@22 ffmpeg python@3.13" : "  sudo apt install ffmpeg python3-venv   (y Node 22: https://nodejs.org)");
+      console.log(`  python3 -m venv ${VENV} && ${path.join(VENV, "bin", "pip")} install -r ${req}`);
+      console.log("  npx -y playwright@1.56.0 install chromium-headless-shell");
+    }
+    console.log("O sin instalar nada más que Docker: docker build -t reelsmith <repo> y luego reelsmith --docker <comando>.");
+  } else console.log("\nTodo listo.");
+  process.exit(falta ? 1 : 0);
+}
+
+if (cmd === "nuevo") {
+  const destino = resto.find((a) => !a.startsWith("--"));
+  if (!destino) { console.error("uso: reelsmith nuevo <carpeta>"); process.exit(2); }
+  if (existsSync(destino) && readdirSync(destino).length) { console.error(`${destino} ya existe y no está vacía`); process.exit(2); }
+  mkdirSync(destino, { recursive: true });
+  cpSync(path.join(SKILL, "assets", "guion-ejemplo.json"), path.join(destino, "guion.json"));
+  console.log(`listo: ${path.join(destino, "guion.json")} (guion de ejemplo de 43 s con todos los tipos de escena)
+
+Siguientes pasos:
+  cd ${destino}
+  edita guion.json (tipos de escena y paletas: ${path.join(SKILL, "references", "catalogo.md")})
+  reelsmith construir && reelsmith vista      revisa vista.png
+  reelsmith final --estilo corporativa        o --estilo trailer
+O todo de una vez: reelsmith video`);
+  process.exit(0);
+}
+
+if (cmd === "video") {
+  const guion = resto.find((a) => a.endsWith(".json")) || "guion.json";
+  const resto2 = resto.filter((a) => a !== guion);
+  if (!existsSync(guion)) { console.error(`no encontré ${guion}: crea uno con reelsmith nuevo <carpeta>`); process.exit(2); }
+  for (const [etapa, args] of [["construir", [guion]], ["vista", []], ["final", resto2.length ? resto2 : ["--estilo", "corporativa"]]]) {
+    console.log(`\n== ${etapa}`);
+    const c = yo(etapa, ...args);
+    if (c !== 0) { console.error(`falló ${etapa} (código ${c})`); process.exit(c); }
+  }
+  process.exit(0);
+}
+
+if (cmd === "prueba") {
+  const carpeta = resto.find((a) => !a.startsWith("--")) || path.join(os.tmpdir(), "reelsmith-prueba");
+  process.exit(spawnSync(NODE, [path.join(S, "prueba-completa.mjs"), carpeta, ...resto.filter((a) => a !== carpeta)], { stdio: "inherit" }).status ?? 1);
+}
+
+if (cmd === "medir") {
+  const script = path.join(RAIZ, "bench", "medir-equipo.mjs");
+  if (!existsSync(script)) { console.error("reelsmith medir corre desde el repo: falta bench/medir-equipo.mjs"); process.exit(2); }
+  const extra = [];
+  if (process.env.REELSMITH_EN_CONTENEDOR) {  // dentro del contenedor: los resultados quedan en la carpeta montada
+    if (!resto.includes("--salida")) extra.push("--salida", path.resolve("resultados-medicion"));
+    if (!resto.includes("--etiqueta")) extra.push("--etiqueta", "contenedor");
+  }
+  process.exit(spawnSync(NODE, [script, ...resto, ...extra], { stdio: "inherit" }).status ?? 1);
+}
 
 if (cmd === "construir") {
   const r = await nd("escenas.mjs", [resto.find((a) => !a.startsWith("--")) || "guion.json"], { silencioso: false });
@@ -76,7 +236,7 @@ if (cmd === "final") {
   const nombre = opt("nombre", "showreel");
   const t0 = Date.now();
   if (!existsSync("escena.html") || !existsSync("plan_cortes.json")) {
-    console.error("falta escena.html o plan_cortes.json: corre antes `node showreel.mjs construir`");
+    console.error("falta escena.html o plan_cortes.json: corre antes `node reelsmith.mjs construir`");
     process.exit(2);
   }
   const html = readFileSync("escena.html", "utf8");
@@ -198,9 +358,9 @@ if (cmd === "final") {
     cortes_fuera_del_plan: corridos.length, segundos: Number(((Date.now() - t0) / 1000).toFixed(1)) };
   writeFileSync("final.json", JSON.stringify(resumen, null, 1));
   console.log(JSON.stringify(resumen, null, 1));
-  if (!pasa) console.log("check-audio FALLA: ver showreel.log");
+  if (!pasa) console.log("check-audio FALLA: ver reelsmith.log");
   process.exit(pasa ? 0 : 1);
 }
 
-console.error("uso: node showreel.mjs construir [guion.json] | vista [--escena e3] | final --estilo corporativa|trailer [--nombre x] | tiempos");
+console.error(`no conozco el comando "${cmd}". Ver: reelsmith ayuda`);
 process.exit(2);

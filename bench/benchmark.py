@@ -21,7 +21,7 @@ Comparación A/B (antes y después en la misma ventana de tiempo, porque la velo
   python3 benchmark.py --variantes '[{"nombre": "base", "skill": "<skill vieja>", "modo": "etapas"},
                                      {"nombre": "nueva", "skill": "<skill nueva>", "modo": "final"}]' --repeticiones 3
   Las corridas se intercalan: repetición 1 de cada variante en cada referencia, luego la 2, etc.
-  Modos: "etapas" (el pipeline paso a paso de la versión 0.1.0), "final" (showreel.mjs final: render ∥ audio y
+  Modos: "etapas" (el pipeline paso a paso de la versión 0.1.0), "final" (reelsmith.mjs final: render ∥ audio y
   jueces en paralelo; las etapas se solapan y el total es el reloj de pared) y "render" (solo el render, para medir
   el render aislado).
 """
@@ -92,7 +92,7 @@ def una_corrida(ref, skill, trabajo, i, extra, golden, guardar_golden, calidad_h
     w = os.path.join(trabajo, f"{nombre}-{ref}-{i}" if nombre else f"{ref}-{i}")
     shutil.rmtree(w, ignore_errors=True)
     shutil.copytree(src, w)
-    env = dict(os.environ, SHOWREEL_TIEMPOS=os.path.join(w, "tiempos.jsonl"))
+    env = dict(os.environ, REELSMITH_TIEMPOS=os.path.join(w, "tiempos.jsonl"))
     log = os.path.join(w, "benchmark.log")
     S = os.path.join(skill, "scripts")
     t = {}
@@ -115,7 +115,7 @@ def una_corrida(ref, skill, trabajo, i, extra, golden, guardar_golden, calidad_h
         resultados_audio.append("PASA" if p.returncode == 0 else "FALLA")
     t["verificar_musica"], p = correr(f"python3 -I {S}/medir_pista.py musica/composicion.json --wav musica/stems/musica.wav", w, env, log)
     musica_res = "PASA" if p.returncode == 0 else "REVISAR"
-    internos = [json.loads(l) for l in open(env["SHOWREEL_TIEMPOS"])] if os.path.exists(env["SHOWREEL_TIEMPOS"]) else []
+    internos = [json.loads(l) for l in open(env["REELSMITH_TIEMPOS"])] if os.path.exists(env["REELSMITH_TIEMPOS"]) else []
     render_int = next((x["datos"] for x in internos if x["etapa"] == "render"), {})
     out = {"etapas_s": {k: round(v, 2) for k, v in t.items()}, "total_s": round(sum(t.values()), 2),
            "render_interno": render_int, "check_audio": resultados_audio, "medir_pista": musica_res,
@@ -142,7 +142,7 @@ def preparar(ref, trabajo, nombre, i):
     w = os.path.join(trabajo, f"{nombre}-{ref}-{i}")
     shutil.rmtree(w, ignore_errors=True)
     shutil.copytree(src, w)
-    env = dict(os.environ, SHOWREEL_TIEMPOS=os.path.join(w, "tiempos.jsonl"))
+    env = dict(os.environ, REELSMITH_TIEMPOS=os.path.join(w, "tiempos.jsonl"))
     return meta, w, env, os.path.join(w, "benchmark.log")
 
 
@@ -159,20 +159,20 @@ def comparar_golden(out, ref, w, golden, clave_calidad, calidad_hecha, final_mp4
 
 
 def corrida_final(ref, skill, trabajo, nombre, i, extra, golden, calidad_hecha):
-    """showreel.mjs final: el total es el reloj de pared; por etapa, lo que cada script anotó (se solapan)."""
+    """reelsmith.mjs final: el total es el reloj de pared; por etapa, lo que cada script anotó (se solapan)."""
     meta, w, env, log = preparar(ref, trabajo, nombre, i)
     S = os.path.join(skill, "scripts")
     t_constr = 0.0
     if os.path.exists(os.path.join(w, "construir.mjs")):
         t_constr, p = correr("node construir.mjs", w, env, log)
     elif os.path.exists(os.path.join(w, "guion.json")):
-        t_constr, p = correr(f"node {S}/showreel.mjs construir", w, env, log)
+        t_constr, p = correr(f"node {S}/reelsmith.mjs construir", w, env, log)
     dur = f"--duracion {meta['duracion_s']}" if "duracion_s" in meta else ""
-    dt, p = correr(f"node {S}/showreel.mjs final --estilo {meta['estilo']} {dur} {extra}", w, env, log)
+    dt, p = correr(f"node {S}/reelsmith.mjs final --estilo {meta['estilo']} {dur} {extra}", w, env, log)
     if not os.path.exists(os.path.join(w, "final.json")):
         raise SystemExit(f"falló showreel final en {ref}: ver {log}")
     fin = json.load(open(os.path.join(w, "final.json")))
-    internos = [json.loads(l) for l in open(env["SHOWREEL_TIEMPOS"])] if os.path.exists(env["SHOWREEL_TIEMPOS"]) else []
+    internos = [json.loads(l) for l in open(env["REELSMITH_TIEMPOS"])] if os.path.exists(env["REELSMITH_TIEMPOS"]) else []
     etapas = {"construir": round(t_constr, 2)}
     for x in internos:
         if x.get("tipo") == "maquina":
@@ -196,7 +196,7 @@ def corrida_render(ref, skill, trabajo, nombre, i, extra, golden, calidad_hecha)
     dt, p = correr(f"node {S}/render-nativo.mjs escena.html video-mudo.mp4 --hoja hoja.png {dur} {extra}", w, env, log)
     if p.returncode:
         raise SystemExit(f"falló el render de {ref}: ver {log}")
-    internos = [json.loads(l) for l in open(env["SHOWREEL_TIEMPOS"])] if os.path.exists(env["SHOWREEL_TIEMPOS"]) else []
+    internos = [json.loads(l) for l in open(env["REELSMITH_TIEMPOS"])] if os.path.exists(env["REELSMITH_TIEMPOS"]) else []
     out = {"modo": "render", "etapas_s": {"construir": round(t_constr, 2), "render": round(dt, 2)}, "total_s": round(dt, 2),
            "render_interno": next((x["datos"] for x in internos if x["etapa"] == "render"), {}),
            "check_audio": [], "medir_pista": "—", "md5_video_mudo": md5(os.path.join(w, "video-mudo.mp4"))}

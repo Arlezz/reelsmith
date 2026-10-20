@@ -6,23 +6,23 @@
 #   bash bench/medir-mac-completo.sh [repeticiones]      (por defecto 3; tarda unos 10 minutos la primera vez)
 #
 # Qué hace:
-#   1. Prepara Python: busca un python 3.11 a 3.13, crea un entorno aislado en ~/.cache/video-showreel-nativo/venv e
+#   1. Prepara Python: busca un python 3.11 a 3.13, crea un entorno aislado en ~/.cache/reelsmith/venv e
 #      instala scripts/requirements.txt (numpy, scipy, numba, soundfile, pyloudnorm, matplotlib). No toca el python del
 #      sistema.
 #   2. Corre prueba-completa.sh: comprueba que todo el pipeline funciona en macOS (plantilla y catálogo, con jueces).
 #   3. Repite N veces, cada una en una carpeta limpia y sin caché, lo que hizo la máquina en la corrida de agente final-1:
-#      construir el guion que escribió ese agente, la vista y `showreel.mjs final`. Mide el reloj de pared.
+#      construir el guion que escribió ese agente, la vista y `reelsmith.mjs final`. Mide el reloj de pared.
 #   4. Corrida de punta a punta = tiempo del agente (modelo y escritura, medido en final-1, final-2 y final-3; no depende
 #      de la máquina) + tiempo de máquina medido aquí.
 # Deja el resultado en bench/resultados/<fecha>_mac-completo.txt y .json.
 set -euo pipefail
 AQUI="$(cd "$(dirname "$0")" && pwd)"
 RAIZ="$(cd "$AQUI/.." && pwd)"
-SKILL="$RAIZ/skills/video-showreel-nativo"
+SKILL="$RAIZ/skills/reelsmith"
 S="$SKILL/scripts"
 REPS="${1:-3}"
 TRABAJO="${TMPDIR:-/tmp}/bench-mac-completo"
-VENV="$HOME/.cache/video-showreel-nativo/venv"
+VENV="$HOME/.cache/reelsmith/venv"
 FECHA="$(date +%Y-%m-%d_%H%M)"
 RES="$AQUI/resultados/${FECHA}_mac-completo"
 mkdir -p "$AQUI/resultados"
@@ -77,14 +77,14 @@ GUION="$AQUI/resultados/corridas-agente/final-1-guion.json"
 for i in $(seq 1 "$REPS"); do
   D="$TRABAJO/corrida-$i"
   rm -rf "$D" && mkdir -p "$D" && cp "$GUION" "$D/guion.json"
-  export SHOWREEL_TIEMPOS="$D/tiempos.jsonl"
+  export REELSMITH_TIEMPOS="$D/tiempos.jsonl"
   cd "$D"
   T0=$(ahora)
-  node "$S/showreel.mjs" construir > construir.log
+  node "$S/reelsmith.mjs" construir > construir.log
   T1=$(ahora)
-  node "$S/showreel.mjs" vista > vista.log
+  node "$S/reelsmith.mjs" vista > vista.log
   T2=$(ahora)
-  node "$S/showreel.mjs" final --estilo corporativa > final.log 2>&1 || { tail -20 final.log; echo "FALLÓ final en la corrida $i: log en $D/final.log"; exit 1; }
+  node "$S/reelsmith.mjs" final --estilo corporativa > final.log 2>&1 || { tail -20 final.log; echo "FALLÓ final en la corrida $i: log en $D/final.log"; exit 1; }
   T3=$(ahora)
   python3 - "$D" "$T0" "$T1" "$T2" "$T3" "$i" <<'EOF' | tee -a "$RES.txt"
 import json, sys

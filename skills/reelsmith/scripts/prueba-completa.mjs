@@ -3,7 +3,7 @@
 // macOS y Windows (antes era solo bash: prueba-completa.sh ahora llama a este archivo).
 //
 // Uso: node prueba-completa.mjs carpeta-de-salida [corporativa|trailer|ambos]   (por defecto: ambos)
-// Prueba la vía manual (la plantilla, en los dos estilos) y la del catálogo (assets/guion-ejemplo.json con showreel.mjs).
+// Prueba la vía manual (la plantilla, en los dos estilos) y la del catálogo (assets/guion-ejemplo.json con reelsmith.mjs).
 // Tarda unos 4 minutos en 2 núcleos. Sale con código distinto de 0 si algún paso o juez falla.
 import { spawnSync } from "node:child_process";
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
@@ -100,7 +100,7 @@ const C = path.join(OUT, "catalogo");
 rmSync(C, { recursive: true, force: true });
 mkdirSync(C, { recursive: true });
 cpSync(path.join(SKILL, "assets", "guion-ejemplo.json"), path.join(C, "guion.json"));
-const sr = path.join(S, "showreel.mjs");
+const sr = path.join(S, "reelsmith.mjs");
 correr(NODE, [sr, "construir"], C, { capturar: true });
 const sb = readFileSync(path.join(C, "storyboard.md"), "utf8");
 const iAvisos = sb.search(/^Avisos/m);
