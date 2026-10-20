@@ -23,7 +23,7 @@
 // coincide con el plan, recompone la música con los cortes medidos (respaldo para escenas escritas a mano).
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { appendFileSync, cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { appendFileSync, cpSync, existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -151,6 +151,14 @@ if (cmd === "doctor") {
   const lineaModo = (nav.stdout || "").split(/\r?\n/).find((l) => l.startsWith("modo:"));
   fila(lineaNav ? "ok" : "FALTA", "navegador del render", lineaNav ? lineaNav.slice(11) : "no encontré chromium-headless-shell");
   if (lineaModo) fila("ok", "modo de render", lineaModo.slice(6));
+  // el comando reelsmith del PATH, si lo hay, debe ser esta copia (con varios clones, npm link deja el último)
+  if (process.platform !== "win32") {
+    const este = realpathSync(fileURLToPath(import.meta.url));
+    const enPath = (process.env.PATH || "").split(path.delimiter).map((d) => path.join(d, "reelsmith")).find((p) => existsSync(p));
+    if (!enPath) fila("aviso", "comando reelsmith", "no está en el PATH: corre npm link en el repo (o usa node <repo>/skills/reelsmith/scripts/reelsmith.mjs)");
+    else if (realpathSync(enPath) !== este) fila("aviso", "comando reelsmith", `el del PATH es otra copia (${realpathSync(enPath)}): corre npm link en ${RAIZ}`);
+    else fila("ok", "comando reelsmith", enPath);
+  }
   const dk = salida("docker", ["--version"]);
   fila(dk ? "ok" : "aviso", "Docker (opcional, para --docker)", dk ? dk.trim() : "no está: solo hace falta para correr en el contenedor");
   const ancho = Math.max(...filas.map((f) => f[1].length));

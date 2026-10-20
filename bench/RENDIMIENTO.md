@@ -260,6 +260,29 @@ PC con AMD Ryzen 7 9800X3D (8 núcleos, 16 hilos), 62 GB, NVIDIA GeForce RTX 507
 
 Resultados: `resultados/2026-10-19_2212_windows.txt` y `.json` (corrida completa), y `2026-10-19_2232_windows-gpu.txt` y `.json` (GPU con el tope de sesiones). La primera medición de GPU, con los reintentos, está en `2026-10-19_2212_windows`.
 
+## 9d. Prueba de transferencia con AGENTS.md (0.3.0, 19/10/2026)
+
+Un agente nuevo, sin la skill instalada y sin contexto, recibió un clon limpio del repo, la instrucción de empezar por `AGENTS.md` y el mismo brief de 90 s de las corridas de agente. El agente fue Claude, el mismo modelo de las otras corridas: la prueba mide si `AGENTS.md` basta para llegar al video, no cómo lo haría otro agente.
+
+| | Resultado |
+|---|---|
+| Video | 90,2 s, 12 escenas, 1080p; `final` corrió una sola vez |
+| Jueces | `check-audio` PASA en los 2 principales; `medir_pista` PASA; 0 cortes fuera del plan |
+| Tiempo del agente de punta a punta | 224 s (3,7 min), con la lectura de las instrucciones |
+| Registro de la corrida | 191,4 s: agente 57,8 s y máquina 133,6 s. La máquina de prueba estaba más rápida ese día: no se compara con los 257,4 s de §3 |
+| Herramientas y tokens | 21 llamadas; unos 107 000 tokens |
+
+El agente anotó siete cosas que le hicieron perder tiempo. Seis quedaron corregidas:
+
+1. El `reelsmith` del PATH era de otro clon y `doctor` no lo decía. Ahora lo avisa.
+2. No quedaba claro si marcar `pedido` antes o después de leer, ni dónde crear la carpeta, y `tiempos.jsonl` quedó fuera del proyecto. `AGENTS.md` ahora abre con un solo comando que crea la carpeta, entra y marca.
+3. El ejemplo del catálogo tiene 13 escenas y el pedido pedía de 10 a 12. SKILL.md ahora dice que el ejemplo muestra la forma y que el número de escenas sale del pedido.
+4. El ejemplo usa un titular que no estaba en el contenido. SKILL.md ahora dice que se usan solo los textos del contenido.
+5. El pedido nombraba las recetas B y C de `direccion.md`, pero nada decía cómo se traducen a tipos de escena. SKILL.md ahora trae la equivalencia.
+6. `--nombre` no aparecía en SKILL.md aunque la entrega pide un nombre claro. Ahora está en el paso 5 de los dos documentos.
+
+La séptima no es un error: la marca `pedido` va antes de leer las instrucciones, así que el tiempo de lectura cae fuera del registro. La tabla de arriba usa el reloj del agente.
+
 ## 10. Cómo reproducir
 
 ```bash

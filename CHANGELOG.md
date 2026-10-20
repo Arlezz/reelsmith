@@ -15,6 +15,7 @@ Reelsmith se llamó `video-showreel-nativo` hasta la 0.2.1.
 - **CI:** GitHub Actions corre la prueba completa nativa y en la imagen, y publica la imagen en ghcr.io.
 - **Referencia de md5:** `bench/referencia-md5.json`; `bench/comparar-md5.mjs` compara otra corrida contra ella.
 - **ruff:** con el estándar de CENIA (`pyproject.toml`). Sin cambios de comportamiento: la prueba completa da los mismos md5 que la 0.2.1.
+- **Prueba de transferencia:** un agente nuevo, solo con el repo y `AGENTS.md`, hizo el video de 90 s en 3,7 min, con los jueces en PASA a la primera. Seis ajustes de documentación y de `doctor` salieron de esa prueba (`bench/RENDIMIENTO.md` §9d).
 
 ## 0.2.1 (19/10/2026): Windows
 

@@ -12,16 +12,16 @@ reelsmith doctor        # revisa Node 22, ffmpeg, Python 3.11+ con sus paquetes 
 ```
 
 - Si `doctor` marca algo como FALTA, imprime cómo instalarlo según el sistema. En Windows hay un script que instala todo: `bench\medir-windows.ps1 -SoloInstalar`.
-- Sin `npm link`, usa `node skills/reelsmith/scripts/reelsmith.mjs` en lugar de `reelsmith`.
+- Sin `npm link`, usa `node skills/reelsmith/scripts/reelsmith.mjs` en lugar de `reelsmith`. Si `doctor` avisa que el `reelsmith` del PATH es de otra copia del repo, corre `npm link` en esta.
 - Sin instalar nada más que Docker: `docker build -t reelsmith .` una vez, y luego `reelsmith --docker <comando>`.
 
 ## Hacer un video
 
-1. **Lee `skills/reelsmith/SKILL.md` completo antes de empezar.** Tiene el flujo (contenido → preguntas → guion → vista → final → entrega), las reglas de lectura y la meta de tiempo. Los tipos de escena y las paletas están en `skills/reelsmith/references/catalogo.md`.
-2. **Crea la carpeta del proyecto y entra en ella:** `reelsmith nuevo proyecto && cd proyecto`. Trae un guion de ejemplo que se reemplaza. Todos los comandos siguientes corren ahí.
-3. **Escribe `guion.json`** con escenas del catálogo y `"duracion"` si hay una duración pedida.
+1. **Lo primero, antes de leer nada más:** `reelsmith nuevo proyecto && cd proyecto && reelsmith marca pedido`. Así el reloj de la corrida empieza con el pedido y `tiempos.jsonl` queda dentro del proyecto. Todos los comandos siguientes corren en `proyecto/`.
+2. **Lee `skills/reelsmith/SKILL.md` completo.** Tiene el flujo (contenido → preguntas → guion → vista → final → entrega), las reglas de lectura y la meta de tiempo. Su paso «pedido» ya lo hiciste en el punto 1. Los tipos de escena y las paletas están en `skills/reelsmith/references/catalogo.md`.
+3. **Escribe `guion.json`** (reemplaza el de ejemplo) con escenas del catálogo y `"duracion"` si hay una duración pedida.
 4. **Construye y revisa:** `reelsmith construir`, luego `reelsmith vista`. Muestra `vista.png` a la persona: es el punto de control. Corrige el guion y repite la vista hasta que la apruebe.
-5. **Final:** `reelsmith final --estilo corporativa` (o `--estilo trailer`).
+5. **Final:** `reelsmith final --estilo corporativa --nombre <nombre-claro>` (o `--estilo trailer`). El MP4 queda como `<nombre-claro>-corporativa.mp4`.
 6. **Entrega:** el MP4, el resumen de `final.json` y la tabla de `reelsmith tiempos`.
 
 Marca el inicio de cada etapa tuya con `reelsmith marca <etapa>`: `pedido`, `contenido`, `preguntas`, `guion`, `vista`, `correccion`, `final`, `entrega` y `fin`. Las marcas alimentan el registro de tiempos.

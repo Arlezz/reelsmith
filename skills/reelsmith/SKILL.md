@@ -35,7 +35,7 @@ En Windows, donde `python3` no existe, usa `node $S/reelsmith.mjs marca <etapa>`
 
 | Marca | Cuándo |
 |---|---|
-| `pedido` | Lo primero: `mkdir -p proyecto && cd proyecto && python3 $S/tiempos.py marca pedido` |
+| `pedido` | Lo primero: `mkdir -p proyecto && cd proyecto && python3 $S/tiempos.py marca pedido` (con el comando instalado: `reelsmith nuevo proyecto && cd proyecto && reelsmith marca pedido`) |
 | `contenido` | Al empezar el paso 1 |
 | `preguntas` | Al empezar el paso 2 |
 | `guion` | Al empezar el paso 3 |
@@ -81,7 +81,16 @@ Usa `AskUserQuestion` solo con lo que el pedido no responda. Lo demás toma su v
 
 ## 3. Guion
 
-Lee `references/catalogo.md` y escribe `proyecto/guion.json`: una escena del catálogo por idea, con sus textos, y la duración pedida en `"duracion"`. El ejemplo de 90 s del catálogo es la receta. Luego:
+Lee `references/catalogo.md` y escribe `proyecto/guion.json`: una escena del catálogo por idea, con sus textos, y la duración pedida en `"duracion"`. El ejemplo de 90 s del catálogo muestra la forma (13 escenas): ajusta el número de escenas al pedido y usa solo los textos del contenido, nunca los del ejemplo.
+
+Si el pedido nombra recetas de `direccion.md`, en el catálogo se traducen así:
+
+- **A. Morph de UI y E. Recorrido de producto:** el catálogo no los cubre; usa la vía manual (sección «Cuando el catálogo no alcanza»).
+- **B. Arquitectura que se arma:** `pasos` para el flujo y `lista` para las partes.
+- **C. Tipografía cinética:** `texto` y `montaje` para los mensajes, e `impacto` para la palabra clave.
+- **D. Datos que se dibujan:** `dato`, una cifra por escena.
+
+Luego:
 
 ```bash
 node $S/reelsmith.mjs construir
@@ -118,7 +127,7 @@ node $S/reelsmith.mjs construir && node $S/reelsmith.mjs vista --escena e5
 ## 5. Final
 
 ```bash
-node $S/reelsmith.mjs final --estilo corporativa      # o --estilo trailer; --sin-musica entrega solo el video
+node $S/reelsmith.mjs final --estilo corporativa --nombre <nombre-claro>   # o --estilo trailer; --sin-musica entrega solo el video
 ```
 
 Hace todo en un comando, en paralelo donde se puede:
