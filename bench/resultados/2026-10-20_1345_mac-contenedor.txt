@@ -1,0 +1,27 @@
+# Medición en contenedor · 2026-10-20 1345
+Equipo: unknown · 10 núcleos lógicos · 8 GB · Ubuntu 24.04.5 LTS (7.0.12-linuxkit)
+Tarjeta de video: no detectada
+v22.22.0 · ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers · Python 3.12.3
+navegador: /opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell
+modo: beginFrame (MP4 idéntico byte a byte) · sistema: linux
+CPU: 10 · memoria libre: 6080 MB · trabajadores por defecto: 10
+
+prueba-completa: PASA en 50 s (plantilla en los dos estilos y guion del catálogo, con jueces)
+  medir_pista: PASA {"1_espectro":true,"2_graves_bajo_50hz":true,"3_ancho":true,"4_arco":true,"5_golpe_principal":true}
+  medir_pista: PASA {"1_espectro":true,"2_graves_bajo_50hz":true,"3_ancho":true,"4_arco":true,"5_golpe_principal":true}
+  check-audio: ["24.3667 s: PASA"] · medir_pista: PASA · cortes fuera del plan: 0
+
+corrida 1: máquina 57,6 s (construir 0,04 · vista 1,2 · final 56,3) · render 39,1 s · música 27,2 s · check-audio ["43.1333 s: PASA","67.5 s: PASA"] · medir_pista PASA
+corrida 2: máquina 44,0 s (construir 0,06 · vista 1,2 · final 42,8) · render 37,6 s · música 17,7 s · check-audio ["43.1333 s: PASA","67.5 s: PASA"] · medir_pista PASA
+corrida 3: máquina 46,3 s (construir 0,06 · vista 1,1 · final 45,1) · render 37,5 s · música 18,0 s · check-audio ["43.1333 s: PASA","67.5 s: PASA"] · medir_pista PASA
+Video mudo: md5 idéntico en las 3 corridas · distinto del de Linux
+
+Máquina en este equipo (construir + vista + final), mediana de 3: 46,3 s · render 37,6 s
+Agente (modelo y escritura), mediana de final-1/2/3: 72,1 s
+PUNTA A PUNTA EN ESTE EQUIPO (agente + máquina): 118,4 s = 2,0 min
+  como referencia: 257,4 s en la máquina de prueba de 2 vCPU · 110,7 s en el MacBook M5
+Jueces: PASA en todas
+
+GPU: ningún codificador por hardware funcionó en este ffmpeg (probé: h264_nvenc). Queda libx264.
+
+Listo. Resumen: /trabajo/resultados-medicion/2026-10-20_1345_contenedor.txt

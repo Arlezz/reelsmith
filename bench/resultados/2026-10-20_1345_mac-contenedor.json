@@ -1,0 +1,114 @@
+{
+ "fecha": "2026-10-20_1345",
+ "etiqueta": "contenedor",
+ "sistema": "linux",
+ "equipo": {
+  "cpu": "unknown",
+  "nucleos": 10,
+  "memoria_gb": 8,
+  "so": "Ubuntu 24.04.5 LTS (7.0.12-linuxkit)",
+  "gpu": "",
+  "node": "v22.22.0",
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "python": "3.12.3"
+ },
+ "modo_render": "beginFrame",
+ "prueba_completa": {
+  "pasa": true,
+  "s": 49.8
+ },
+ "corridas": [
+  {
+   "corrida": 1,
+   "maquina_s": 57.6,
+   "construir_s": 0.04,
+   "vista_s": 1.2,
+   "final_s": 56.3,
+   "etapas_s": {
+    "vista": 1.2,
+    "musica": 27.2,
+    "render": 39.1,
+    "mezcla": 17.7,
+    "verificar_musica": 4.7,
+    "verificar_audio": 6.4,
+    "cortes": 5.2
+   },
+   "check_audio": [
+    "43.1333 s: PASA",
+    "67.5 s: PASA"
+   ],
+   "medir_pista": "PASA",
+   "cortes_fuera_del_plan": 0,
+   "md5_video_mudo": "03b67e733528a79573deaddff19e0c14",
+   "duracion_video_s": 90.23333333333333
+  },
+  {
+   "corrida": 2,
+   "maquina_s": 44,
+   "construir_s": 0.06,
+   "vista_s": 1.2,
+   "final_s": 42.8,
+   "etapas_s": {
+    "vista": 1.1,
+    "musica": 17.7,
+    "mezcla": 14.2,
+    "verificar_musica": 4.5,
+    "render": 37.6,
+    "verificar_audio": 6.2,
+    "cortes": 5
+   },
+   "check_audio": [
+    "43.1333 s: PASA",
+    "67.5 s: PASA"
+   ],
+   "medir_pista": "PASA",
+   "cortes_fuera_del_plan": 0,
+   "md5_video_mudo": "03b67e733528a79573deaddff19e0c14",
+   "duracion_video_s": 90.23333333333333
+  },
+  {
+   "corrida": 3,
+   "maquina_s": 46.3,
+   "construir_s": 0.06,
+   "vista_s": 1.1,
+   "final_s": 45.1,
+   "etapas_s": {
+    "vista": 1.1,
+    "musica": 18,
+    "mezcla": 15.4,
+    "render": 37.5,
+    "verificar_musica": 5.5,
+    "verificar_audio": 6.6,
+    "cortes": 5.3
+   },
+   "check_audio": [
+    "43.1333 s: PASA",
+    "67.5 s: PASA"
+   ],
+   "medir_pista": "PASA",
+   "cortes_fuera_del_plan": 0,
+   "md5_video_mudo": "03b67e733528a79573deaddff19e0c14",
+   "duracion_video_s": 90.23333333333333
+  }
+ ],
+ "determinista": true,
+ "igual_a_linux": false,
+ "maquina_mediana_s": 46.3,
+ "render_mediana_s": 37.6,
+ "agente_s": [
+  72.1,
+  76,
+  69.2
+ ],
+ "agente_mediana_s": 72.1,
+ "punta_a_punta_s": 118.4,
+ "nube_2vcpu_s": 257.4,
+ "mac_m5_s": 110.7,
+ "jueces_pasan": true,
+ "gpu": {
+  "codificador": null,
+  "probados": [
+   "h264_nvenc"
+  ]
+ }
+}

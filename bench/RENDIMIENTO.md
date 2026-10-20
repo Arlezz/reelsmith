@@ -283,6 +283,27 @@ El agente anotó siete cosas que le hicieron perder tiempo. Seis quedaron correg
 
 La séptima no es un error: la marca `pedido` va antes de leer las instrucciones, así que el tiempo de lectura cae fuera del registro. La tabla de arriba usa el reloj del agente.
 
+## 9e. El contenedor en el MacBook M5 (0.3.0, 20/10/2026)
+
+`docker build -t reelsmith .` en el Mac construyó la imagen para arm64. Durante la construcción pasó la prueba completa. Después, `reelsmith --docker medir` repitió 3 veces la parte de máquina de final-1. Docker Desktop tenía 10 CPU y 8 GB, la memoria que trae por defecto.
+
+| | Mac nativo (macOS) | Mac en el contenedor (Linux arm64) |
+|---|---|---|
+| Prueba completa | 39 s | 50 s |
+| Máquina: construir + vista + `final` (mediana de 3) | 38,6 s | **46,3 s** (44,0 a 57,6) |
+| Render | 23,3 s (20 trabajadores) | 37,5 s (10 trabajadores: con 8 GB, la memoria limita) |
+| Rama de audio: componer + mezcla + `medir_pista` | ~34 s | 38,9 s (18,0 + 15,4 + 5,5) |
+| Jueces | 2,8 s | ~6 s |
+| **Punta a punta, con los 72,1 s del agente** | **110,7 s (1,8 min)** | **118,4 s (2,0 min)** |
+| Video entre corridas | distinto (capturas comunes) | **idéntico byte a byte** (`beginFrame`) |
+| Jueces | PASA | PASA en las 3 |
+
+- **El contenedor cuesta un 7 % de punta a punta en el Mac:** 7,7 s más. Casi todo sale del render, que dibuja con la mitad de navegadores porque Docker tenía 8 GB. Con más memoria en Docker Desktop (Settings → Resources) debería acercarse; no está medido.
+- **En el Mac, el contenedor da algo que lo nativo no da:** el mismo video byte a byte en cada corrida. El md5 no es el de la máquina de prueba: es otra arquitectura, arm64 contra x86.
+- **La primera corrida fue más lenta (57,6 s):** la música tardó 27,2 s contra 17,7 y 18,0 en las otras. Lo más probable es el arranque en frío: archivos de la imagen que todavía no estaban en caché. No está verificado; las otras dos son las representativas.
+
+Resultados: `resultados/2026-10-20_1345_mac-contenedor.txt` y `.json`.
+
 ## 10. Cómo reproducir
 
 ```bash
