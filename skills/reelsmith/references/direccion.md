@@ -107,10 +107,13 @@ Prioriza las variables con nombre de marca (por ejemplo, `--pink-cenia`) por sob
 
 ```python
 from PIL import Image
-im = Image.open(ruta).convert('RGB'); im.thumbnail((300, 300))
+
+im = Image.open(ruta).convert("RGB")
+im.thumbnail((300, 300))
 q = im.quantize(colors=8, method=Image.Quantize.MEDIANCUT)
-pal = q.getpalette()[:24]; cuentas = sorted(q.getcolors(), reverse=True)
-print(['#%02X%02X%02X (%d)' % (*pal[i*3:i*3+3], n) for n, i in cuentas])
+pal = q.getpalette()[:24]
+cuentas = sorted(q.getcolors(), reverse=True)
+print(["#%02X%02X%02X (%d)" % (*pal[i * 3 : i * 3 + 3], n) for n, i in cuentas])
 ```
 
 En los dos casos, **muestra la paleta propuesta con sus roles antes de usarla**.

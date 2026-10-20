@@ -11,6 +11,7 @@ música, mezcla, jueces) escriben solos su registro; el informe resta ese tiempo
 
 Archivo: tiempos.jsonl en la carpeta actual, o la ruta de la variable REELSMITH_TIEMPOS. Una línea JSON por evento.
 """
+
 import json
 import os
 import sys
@@ -28,22 +29,40 @@ def registrar(etapa, t0, t1=None, **datos):
     try:
         t1 = time.time() if t1 is None else t1
         with open(ARCHIVO, "a", encoding="utf-8") as f:
-            f.write(json.dumps({"v": 1, "tipo": "maquina", "etapa": etapa, "t0": round(t0, 3), "t1": round(t1, 3),
-                                "s": round(t1 - t0, 3), "pid": os.getpid(), "datos": datos}, ensure_ascii=False) + "\n")
+            f.write(
+                json.dumps(
+                    {
+                        "v": 1,
+                        "tipo": "maquina",
+                        "etapa": etapa,
+                        "t0": round(t0, 3),
+                        "t1": round(t1, 3),
+                        "s": round(t1 - t0, 3),
+                        "pid": os.getpid(),
+                        "datos": datos,
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
+            )
     except OSError:
         pass
 
 
 def marca(etapa, nota=None):
     with open(ARCHIVO, "a", encoding="utf-8") as f:
-        f.write(json.dumps({"v": 1, "tipo": "marca", "etapa": etapa, "t": round(time.time(), 3), "nota": nota},
-                           ensure_ascii=False) + "\n")
+        f.write(
+            json.dumps(
+                {"v": 1, "tipo": "marca", "etapa": etapa, "t": round(time.time(), 3), "nota": nota}, ensure_ascii=False
+            )
+            + "\n"
+        )
 
 
 def cargar(ruta=ARCHIVO):
     if not os.path.exists(ruta):
         return []
-    return [json.loads(l) for l in open(ruta, encoding="utf-8") if l.strip()]
+    return [json.loads(linea) for linea in open(ruta, encoding="utf-8") if linea.strip()]
 
 
 def solape(a0, a1, b0, b1):
@@ -106,8 +125,11 @@ def informe(ev):
     if marcas:
         t_ini = marcas[0]["t"]
         t_fin = marcas[-1]["t"] if marcas[-1]["etapa"] == "fin" else max([marcas[-1]["t"]] + [m["t1"] for m in maq])
-        tramos = [(m["etapa"], m["t"], (marcas[i + 1]["t"] if i + 1 < len(marcas) else t_fin)) for i, m in enumerate(marcas)
-                  if m["etapa"] != "fin"]
+        tramos = [
+            (m["etapa"], m["t"], (marcas[i + 1]["t"] if i + 1 < len(marcas) else t_fin))
+            for i, m in enumerate(marcas)
+            if m["etapa"] != "fin"
+        ]
     else:  # solo registros de máquina (benchmark): un tramo por registro
         t_ini = min(m["t0"] for m in maq)
         t_fin = max(m["t1"] for m in maq)
@@ -137,17 +159,25 @@ def informe(ev):
         f["en_ruta_s"] = round(en_ruta.get((f["etapa"], f["tipo"]), 0.0), 1)
     filas.sort(key=lambda f: (-f["en_ruta_s"], -f["s"]))
     ruta = [f for f in filas if f["en_ruta_s"] > 0][:3]
-    return {"total_s": round(total, 1), "agente_s": round(total - s_maq_total, 1) if marcas else 0.0,
-            "maquina_s": round(s_maq_total, 1), "filas": filas,
-            "ruta_critica": [f"{f['etapa']} ({f['tipo']}, {f['en_ruta_s']} s)" for f in ruta]}
+    return {
+        "total_s": round(total, 1),
+        "agente_s": round(total - s_maq_total, 1) if marcas else 0.0,
+        "maquina_s": round(s_maq_total, 1),
+        "filas": filas,
+        "ruta_critica": [f"{f['etapa']} ({f['tipo']}, {f['en_ruta_s']} s)" for f in ruta],
+    }
 
 
 def imprimir(r):
     print(f"total {r['total_s']} s · agente {r['agente_s']} s · máquina {r['maquina_s']} s")
     print(f"{'etapa':16} {'tipo':8} {'s':>8} {'%':>6} {'en ruta':>8}  veces")
     for f in r["filas"]:
-        print(f"{f['etapa']:16} {f['tipo']:8} {f['s']:8.1f} {f['pct']:6.1f} {f['en_ruta_s']:8.1f}  {f.get('veces', '')}")
-    print("en ruta = segundos en la ruta crítica (lo que se esperó; lo que corrió en paralelo y terminó antes no cuenta)")
+        print(
+            f"{f['etapa']:16} {f['tipo']:8} {f['s']:8.1f} {f['pct']:6.1f} {f['en_ruta_s']:8.1f}  {f.get('veces', '')}"
+        )
+    print(
+        "en ruta = segundos en la ruta crítica (lo que se esperó; lo que corrió en paralelo y terminó antes no cuenta)"
+    )
     print("ruta crítica (las 3 etapas que más pesan en ella): " + " · ".join(r["ruta_critica"]))
 
 
@@ -162,7 +192,9 @@ def main():
         return
     r = informe(cargar())
     if "--json" in sys.argv:
-        open(sys.argv[sys.argv.index("--json") + 1], "w", encoding="utf-8").write(json.dumps(r, indent=1, ensure_ascii=False))
+        open(sys.argv[sys.argv.index("--json") + 1], "w", encoding="utf-8").write(
+            json.dumps(r, indent=1, ensure_ascii=False)
+        )
     imprimir(r)
 
 

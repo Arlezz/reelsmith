@@ -10,6 +10,7 @@ Piezas:
   sub, reese, braam, golpe metálico, swell invertido;
   efectos de sonido: whoosh, riser, impacto.
 """
+
 import functools
 
 import numpy as np
@@ -17,8 +18,25 @@ from numba import njit
 from scipy.signal import butter, fftconvolve, sosfilt
 
 SR = 48000
-NOTAS = {"C": 0, "C#": 1, "Db": 1, "D": 2, "D#": 3, "Eb": 3, "E": 4, "F": 5, "F#": 6, "Gb": 6, "G": 7, "G#": 8,
-         "Ab": 8, "A": 9, "A#": 10, "Bb": 10, "B": 11}
+NOTAS = {
+    "C": 0,
+    "C#": 1,
+    "Db": 1,
+    "D": 2,
+    "D#": 3,
+    "Eb": 3,
+    "E": 4,
+    "F": 5,
+    "F#": 6,
+    "Gb": 6,
+    "G": 7,
+    "G#": 8,
+    "Ab": 8,
+    "A": 9,
+    "A#": 10,
+    "Bb": 10,
+    "B": 11,
+}
 
 
 # ---------------------------------------------------------------- utilidades
@@ -57,7 +75,7 @@ def sos(tipo, f, orden=2):
     return _sos(tipo, tuple(f) if isinstance(f, (list, tuple, np.ndarray)) else float(f), orden)
 
 
-@functools.lru_cache(maxsize=None)
+@functools.cache
 def _sos(tipo, f, orden):
     return butter(orden, list(f) if isinstance(f, tuple) else f, tipo, fs=SR, output="sos")
 
@@ -91,7 +109,7 @@ def env_adsr(n, a, d, s, r, largo):
 
 
 def _rng(semilla):
-    return np.random.default_rng(int(semilla) % (2 ** 32))
+    return np.random.default_rng(int(semilla) % (2**32))
 
 
 def saturar(x, drive=1.5):
@@ -189,11 +207,14 @@ def ir_reverb(rt60=1.8, predelay=0.015, brillo=0.5, semilla=1):
         lo = filtrar(r, "low", 400)
         mid = filtrar(r, "band", [400, 3500])
         hi = filtrar(r, "high", 3500)
-        ir[:, c] = (1.2 * lo * np.exp(-6.91 * t / (rt60 * 1.15)) + mid * np.exp(-6.91 * t / rt60)
-                    + brillo * hi * np.exp(-6.91 * t / (rt60 * 0.4)))
+        ir[:, c] = (
+            1.2 * lo * np.exp(-6.91 * t / (rt60 * 1.15))
+            + mid * np.exp(-6.91 * t / rt60)
+            + brillo * hi * np.exp(-6.91 * t / (rt60 * 0.4))
+        )
     ir *= np.clip(t / 0.01, 0, 1)[:, None]
     ir = np.vstack([np.zeros((ns(predelay), 2)), ir])
-    return ir / np.sqrt((ir ** 2).sum(0)).max()
+    return ir / np.sqrt((ir**2).sum(0)).max()
 
 
 def convolver(x, ir):
@@ -331,7 +352,9 @@ def platillo(dur=2.2, semilla=4, oscuro=False):
     x = np.zeros((n, 2))
     for c in range(2):
         r = rng.standard_normal(n)
-        m = sum(cuadrada(f * (1.9 + 0.01 * c), n, fase=rng.random()) for f in [205.3, 304.4, 369.6, 522.7, 540.0, 800.0])
+        m = sum(
+            cuadrada(f * (1.9 + 0.01 * c), n, fase=rng.random()) for f in [205.3, 304.4, 369.6, 522.7, 540.0, 800.0]
+        )
         x[:, c] = 0.5 * r + 0.25 * m / 6
     x = filtrar(x, "high", 3000 if oscuro else 4000)
     x = filtrar(x, "low", 8000 if oscuro else 11000)
@@ -367,8 +390,20 @@ def pluck_sierra(f, dur=0.4, corte0=6000.0, corte1=500.0, tau_f=0.08, tau=0.25, 
     return x * np.clip((dur - t) / 0.01, 0, 1)
 
 
-def supersaw(notas, dur, corte=3000.0, voces=7, detune=0.25, ataque=0.01, release=0.3, sost=1.0,
-             q=0.8, semilla=7, ancho=0.85, largo=None):
+def supersaw(
+    notas,
+    dur,
+    corte=3000.0,
+    voces=7,
+    detune=0.25,
+    ataque=0.01,
+    release=0.3,
+    sost=1.0,
+    q=0.8,
+    semilla=7,
+    ancho=0.85,
+    largo=None,
+):
     """Acorde supersaw: 'voces' sierras por nota, desafinadas en +-detune semitonos y abiertas en estéreo.
     corte escalar o arreglo de n muestras."""
     n = ns(dur)
@@ -378,7 +413,9 @@ def supersaw(notas, dur, corte=3000.0, voces=7, detune=0.25, ataque=0.01, releas
         f = hz(nt)
         for v in range(voces):
             d = (v / (voces - 1) - 0.5) * 2 * detune if voces > 1 else 0.0
-            if ancho >= 1.0 and voces > 1:  # ancho total: cada canal con su propio juego de voces (fases y desafines distintos)
+            if (
+                ancho >= 1.0 and voces > 1
+            ):  # ancho total: cada canal con su propio juego de voces (fases y desafines distintos)
                 for c in range(2):
                     dc = d + (rng.random() - 0.5) * detune * 0.3
                     x[:, c] += sierra(f * 2 ** (dc / 12), n, rng.random()) / voces * np.sqrt(2)
@@ -424,8 +461,19 @@ def braam(notas, dur=2.5, semilla=8, abre=2400.0, cierra=260.0, drive=2.6):
     n = ns(dur)
     t = tt(n)
     fc = cierra + (abre - cierra) * (np.clip(t / 0.06, 0, 1) * np.exp(-np.clip(t - 0.06, 0, None) / 0.5))
-    x = supersaw(notas, dur, corte=fc, voces=5, detune=0.18, ataque=0.012, release=dur * 0.6, q=1.4,
-                 semilla=semilla, ancho=0.6, largo=dur * 0.35)
+    x = supersaw(
+        notas,
+        dur,
+        corte=fc,
+        voces=5,
+        detune=0.18,
+        ataque=0.012,
+        release=dur * 0.6,
+        q=1.4,
+        semilla=semilla,
+        ancho=0.6,
+        largo=dur * 0.35,
+    )
     x = saturar(x * 2.2, drive) * 0.5
     s = seno(hz(notas[0]), n) * env_exp(n, 0.01, dur / 3) * 0.5
     return x + estereo(s)
@@ -485,15 +533,15 @@ def sfx_riser(dur=2.0, f0=180.0, f1=1400.0, semilla=12, oscuro=False):
     t = tt(n)
     u = t / dur
     rng = _rng(semilla)
-    fc = 400 * (12000 / 400) ** (u ** 1.3) if not oscuro else 250 * (6000 / 250) ** (u ** 1.3)
+    fc = 400 * (12000 / 400) ** (u**1.3) if not oscuro else 250 * (6000 / 250) ** (u**1.3)
     ruido = np.stack([svf(rng.standard_normal(n), fc, 1.2, "bp") for _ in range(2)], axis=1)
-    f = f0 * (f1 / f0) ** (u ** 1.6)
+    f = f0 * (f1 / f0) ** (u**1.6)
     tonal = np.zeros((n, 2))
     for i, d in enumerate([-0.12, -0.04, 0.05, 0.13]):
         tonal += estereo(sierra(f * 2 ** (d / 12), fase=rng.random()), (i / 3 - 0.5) * 1.4) / 4
     tonal = svf(tonal, fc * 0.8 + 300, 0.9)
-    trem = 1 - 0.35 * (0.5 + 0.5 * np.sin(2 * np.pi * np.cumsum(4 + 20 * u ** 2) / SR))
-    x = (ruido * 0.9 + tonal * 0.45) * ((u ** 2.4) * trem)[:, None]
+    trem = 1 - 0.35 * (0.5 + 0.5 * np.sin(2 * np.pi * np.cumsum(4 + 20 * u**2) / SR))
+    x = (ruido * 0.9 + tonal * 0.45) * ((u**2.4) * trem)[:, None]
     x *= np.clip((dur - t) / 0.004, 0, 1)[:, None]
     return x / (np.abs(x).max() + 1e-9)
 
@@ -537,6 +585,7 @@ def estante_agudos(x, f=9000.0, g_db=-6.0):
 def peq(x, f0, g_db, q=0.8):
     """Ecualizador paramétrico (biquad de pico, fórmulas RBJ)."""
     from scipy.signal import tf2sos
+
     A = 10 ** (g_db / 40)
     w = 2 * np.pi * f0 / SR
     al = np.sin(w) / (2 * q)

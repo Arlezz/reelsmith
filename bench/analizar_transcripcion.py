@@ -11,6 +11,7 @@ Lee la transcripción (formato de Claude Code / Cowork: una línea JSON por even
     mezcla, jueces, lectura de imágenes, otros).
   - Tokens: por id de mensaje, el último uso informado (entrada, caché creada, caché leída, salida).
 """
+
 import argparse  # noqa: I001
 import json
 import re
@@ -60,12 +61,12 @@ def main():
     ap.add_argument("jsonl")
     ap.add_argument("--json")
     a = ap.parse_args()
-    ev = [json.loads(l) for l in open(a.jsonl) if l.strip()]
+    ev = [json.loads(linea) for linea in open(a.jsonl) if linea.strip()]
     ev = [e for e in ev if "timestamp" in e and e.get("type") in ("user", "assistant")]
     ev.sort(key=ts)
     t_ini, t_fin = ts(ev[0]), ts(ev[-1])
     usos, llamadas, modelo = {}, {}, 0.0
-    ultimo_fin_herr = t_ini   # momento en que el modelo recibe el turno
+    ultimo_fin_herr = t_ini  # momento en que el modelo recibe el turno
     ultimo_bloque = None
     ids_turno = set()
     for e in ev:
@@ -126,16 +127,32 @@ def main():
         cc = u.get("cache_creation") or {}
         c1h = cc.get("ephemeral_1h_input_tokens", 0)
         c5m = cc.get("ephemeral_5m_input_tokens", u.get("cache_creation_input_tokens", 0) - c1h)
-        costo += (u.get("input_tokens", 0) * pr["entrada"] + u.get("output_tokens", 0) * pr["salida"] + c5m * pr["cache_5m"]
-                  + c1h * pr["cache_1h"] + u.get("cache_read_input_tokens", 0) * pr["cache_leida"]) / 1e6
+        costo += (
+            u.get("input_tokens", 0) * pr["entrada"]
+            + u.get("output_tokens", 0) * pr["salida"]
+            + c5m * pr["cache_5m"]
+            + c1h * pr["cache_1h"]
+            + u.get("cache_read_input_tokens", 0) * pr["cache_leida"]
+        ) / 1e6
     total = t_fin - t_ini
-    res = {"archivo": a.jsonl, "total_s": round(total, 1), "modelo_s": round(modelo, 1),
-           "herramientas_s": round(herr_union, 1), "otros_s": round(total - modelo - herr_union, 1),
-           "respuestas_del_modelo": len(usos), "llamadas_a_herramientas": len(llamadas),
-           "por_etapa": {k: {"s": round(v["s"], 1), "llamadas": v["llamadas"]} for k, v in sorted(por_etapa.items(), key=lambda kv: -kv[1]["s"])},
-           "tokens": tok, "modelos": sorted({str(u.get("_modelo")) for u in usos.values()}),
-           "costo_usd": round(costo, 2), "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
-           + (f"; sin precio para {sorted(map(str, sin_precio))}" if sin_precio else "")}
+    res = {
+        "archivo": a.jsonl,
+        "total_s": round(total, 1),
+        "modelo_s": round(modelo, 1),
+        "herramientas_s": round(herr_union, 1),
+        "otros_s": round(total - modelo - herr_union, 1),
+        "respuestas_del_modelo": len(usos),
+        "llamadas_a_herramientas": len(llamadas),
+        "por_etapa": {
+            k: {"s": round(v["s"], 1), "llamadas": v["llamadas"]}
+            for k, v in sorted(por_etapa.items(), key=lambda kv: -kv[1]["s"])
+        },
+        "tokens": tok,
+        "modelos": sorted({str(u.get("_modelo")) for u in usos.values()}),
+        "costo_usd": round(costo, 2),
+        "costo_nota": "precios de lista del 19/10/2026 (PRECIOS en este script)"
+        + (f"; sin precio para {sorted(map(str, sin_precio))}" if sin_precio else ""),
+    }
     txt = json.dumps(res, indent=1, ensure_ascii=False)
     if a.json:
         open(a.json, "w").write(txt)

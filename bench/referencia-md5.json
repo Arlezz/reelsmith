@@ -1,0 +1,19 @@
+{
+ "nota": "md5 de la prueba completa (reelsmith prueba) en la máquina de prueba. bench/comparar-md5.mjs compara otra corrida contra estos valores. Iguales solo con el mismo Chromium, ffmpeg y arquitectura; en otro equipo, distinto no es un error: se mide con SSIM.",
+ "equipo": {
+  "sistema": "Ubuntu 24.04 (x86_64)",
+  "navegador": "chromium_headless_shell-1194 (Playwright 1.56.0)",
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5",
+  "python": "3.13",
+  "numpy": "2.5.3",
+  "modo": "beginFrame"
+ },
+ "version": "0.3.0",
+ "md5": {
+  "proyecto/video-mudo.mp4": "71d31201b052807eae8b84a23d7e0001",
+  "proyecto/musica-corporativa/musica-corporativa.mp4": "bd402d556d498d2c194cf66a930234d3",
+  "proyecto/musica-trailer/musica-trailer.mp4": "29e6ba7b31dfb916b3e55e9d0c24b2bc",
+  "catalogo/video-mudo.mp4": "4f9d41cb8f79e2179dc040959899207f",
+  "catalogo/showreel-corporativa.mp4": "74c09f5dd2d70a5058e22f494f527887"
+ }
+}

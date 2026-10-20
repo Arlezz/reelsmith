@@ -28,7 +28,9 @@ Reglas (ver references/musica-y-mezcla.md):
     o en el tiempo más cercano; la cola termina antes del final del video.
 Todo se sintetiza (sintesis.py): derechos 100 % propios. Semillas fijas: misma entrada, mismos archivos (md5).
 """
+
 import time
+
 T_INICIO = time.time()  # reloj desde el arranque del proceso (tiempos.jsonl)
 import argparse  # noqa: E402
 import json  # noqa: E402
@@ -39,8 +41,8 @@ for _flujo in (sys.stdout, sys.stderr):  # Windows: la consola y las tuberías n
     if hasattr(_flujo, "reconfigure"):
         _flujo.reconfigure(encoding="utf-8", errors="replace")
 
-import numpy as np
-from scipy.io import wavfile
+import numpy as np  # noqa: E402
+from scipy.io import wavfile  # noqa: E402
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sintesis as S  # noqa: E402
@@ -66,7 +68,7 @@ class Pista:
             i = 0
         k = min(len(y), len(self.x) - i)
         if k > 0:
-            self.x[i:i + k] += g * y[:k]
+            self.x[i : i + k] += g * y[:k]
 
 
 # ======================================================================= estructura
@@ -95,8 +97,11 @@ def buscar_tempo(cortes, P, rango):
             k = (c["t"] - ancla) / p * 4
             errs.append(abs(k - round(k)) * p / 4)
             pesos.append(c["peso"])
-        clave = (round(max(e_pr, default=0) * 1000 / 5), round(max(errs, default=0) * 1000),
-                 sum(e * w for e, w in zip(errs, pesos)) / max(sum(pesos), 1e-9))
+        clave = (
+            round(max(e_pr, default=0) * 1000 / 5),
+            round(max(errs, default=0) * 1000),
+            sum(e * w for e, w in zip(errs, pesos, strict=False)) / max(sum(pesos), 1e-9),
+        )
         if mejor is None or clave < mejor[0]:
             mejor = (clave, round(float(bpm), 2))
     return mejor[1]
@@ -151,7 +156,9 @@ def estructura(cortes, P, p, D, final_s, estilo):
             t_fin -= p
     k = 0
     while a + 4 * k * p < t_fin - 1e-6:
-        compases.append({"t0": a + 4 * k * p, "beats": min(4, (t_fin - a - 4 * k * p) / p), "tipo": "drop" if k < 8 else "A"})
+        compases.append(
+            {"t0": a + 4 * k * p, "beats": min(4, (t_fin - a - 4 * k * p) / p), "tipo": "drop" if k < 8 else "A"}
+        )
         k += 1
     compases.sort(key=lambda c: c["t0"])
     # acordes
@@ -246,12 +253,61 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
     pistas = {k: Pista(n) for k in nombres}
     VOZ = {"C": ["G3", "C4", "E4"], "G": ["G3", "B3", "D4"], "Am": ["A3", "C4", "E4"], "F": ["A3", "C4", "F4"]}
     RAIZ = {"C": "C2", "G": "G1", "Am": "A1", "F": "F1"}
-    ARP = {"C": ["C5", "E5", "G5", "C6"], "G": ["B4", "D5", "G5", "B5"], "Am": ["C5", "E5", "A5", "C6"], "F": ["C5", "F5", "A5", "C6"]}
-    MEL = {"C": [(0, "E5", .5), (.75, "G5", .5), (1.5, "A5", .5), (2.5, "G5", .5), (3, "E5", .25), (3.25, "D5", .25), (3.5, "E5", .5)],
-           "G": [(0, "D5", .5), (.75, "G5", .5), (1.5, "A5", .5), (2.5, "G5", .5), (3, "D5", .25), (3.25, "E5", .25), (3.5, "D5", .5)],
-           "Am": [(0, "C5", .5), (.75, "E5", .5), (1.5, "A5", .5), (2.5, "G5", .5), (3, "E5", .25), (3.25, "G5", .25), (3.5, "A5", .5)],
-           "F": [(0, "A5", .5), (.75, "C6", .5), (1.5, "A5", .5), (2.5, "G5", .5), (3, "F5", .25), (3.25, "E5", .25), (3.5, "D5", .5)],
-           "FG": [(0, "A5", .5), (.75, "C6", .5), (1.5, "A5", .25), (1.75, "G5", .25), (2, "D5", .5), (2.5, "G5", .5), (3, "A5", .25), (3.25, "B5", .25), (3.5, "D6", .5)]}
+    ARP = {
+        "C": ["C5", "E5", "G5", "C6"],
+        "G": ["B4", "D5", "G5", "B5"],
+        "Am": ["C5", "E5", "A5", "C6"],
+        "F": ["C5", "F5", "A5", "C6"],
+    }
+    MEL = {
+        "C": [
+            (0, "E5", 0.5),
+            (0.75, "G5", 0.5),
+            (1.5, "A5", 0.5),
+            (2.5, "G5", 0.5),
+            (3, "E5", 0.25),
+            (3.25, "D5", 0.25),
+            (3.5, "E5", 0.5),
+        ],
+        "G": [
+            (0, "D5", 0.5),
+            (0.75, "G5", 0.5),
+            (1.5, "A5", 0.5),
+            (2.5, "G5", 0.5),
+            (3, "D5", 0.25),
+            (3.25, "E5", 0.25),
+            (3.5, "D5", 0.5),
+        ],
+        "Am": [
+            (0, "C5", 0.5),
+            (0.75, "E5", 0.5),
+            (1.5, "A5", 0.5),
+            (2.5, "G5", 0.5),
+            (3, "E5", 0.25),
+            (3.25, "G5", 0.25),
+            (3.5, "A5", 0.5),
+        ],
+        "F": [
+            (0, "A5", 0.5),
+            (0.75, "C6", 0.5),
+            (1.5, "A5", 0.5),
+            (2.5, "G5", 0.5),
+            (3, "F5", 0.25),
+            (3.25, "E5", 0.25),
+            (3.5, "D5", 0.5),
+        ],
+        "FG": [
+            (0, "A5", 0.5),
+            (0.75, "C6", 0.5),
+            (1.5, "A5", 0.25),
+            (1.75, "G5", 0.25),
+            (2, "D5", 0.5),
+            (2.5, "G5", 0.5),
+            (3, "A5", 0.25),
+            (3.25, "B5", 0.25),
+            (3.5, "D6", 0.5),
+        ],
+    }
     ir_hall = S.ir_reverb(2.4, 0.02, 0.5, semilla=3)
     ir_sala = S.ir_reverb(0.9, 0.008, 0.4, semilla=4)
     kicks = []
@@ -263,7 +319,7 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
 
     primera_barra = True
     for ci, c in enumerate(compases):
-        tp, t0, pb = c["tipo"], c["t0"], c["p"]
+        tp, pb = c["tipo"], c["p"]
         T = lambda b, c=c: c["t0"] + b * c["p"]  # noqa: E731
         # pad
         for j, ch in enumerate(c["acordes"]):
@@ -273,18 +329,55 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
             if tp == "build":
                 fin = ultimo_dieciseisavo(c) if j == len(c["acordes"]) - 1 else bfin
                 dur = fin - ini + (0.02 if j == len(c["acordes"]) - 1 else 0.35)
-                corte = 1200 * (9000 / 1200) ** (np.linspace((j) / len(c["acordes"]), (j + 1) / len(c["acordes"]), ns(dur)) ** 1.5)
-                pistas["pad"].poner(S.supersaw(VOZ[ch] + [VOZ[ch][0][:-1] + "2"], dur, corte=corte, ataque=0.05,
-                                               release=0.02 if j == len(c["acordes"]) - 1 else 0.35, semilla=20 + ci, detune=0.3, ancho=1.0), ini, 0.55)
+                corte = 1200 * (9000 / 1200) ** (
+                    np.linspace((j) / len(c["acordes"]), (j + 1) / len(c["acordes"]), ns(dur)) ** 1.5
+                )
+                pistas["pad"].poner(
+                    S.supersaw(
+                        VOZ[ch] + [VOZ[ch][0][:-1] + "2"],
+                        dur,
+                        corte=corte,
+                        ataque=0.05,
+                        release=0.02 if j == len(c["acordes"]) - 1 else 0.35,
+                        semilla=20 + ci,
+                        detune=0.3,
+                        ancho=1.0,
+                    ),
+                    ini,
+                    0.55,
+                )
             elif tp in ("intro", "A"):
                 dur = bfin - ini + 0.35
-                pistas["pad"].poner(S.supersaw(VOZ[ch] + [VOZ[ch][0][:-1] + "2"], dur, corte=1100 if tp == "intro" else 1800,
-                                               ataque=0.9 if primera_barra else 0.05, release=0.35, semilla=20 + ci, detune=0.3, ancho=1.0),
-                                    ini, 0.8 if tp == "intro" else 0.55)
+                pistas["pad"].poner(
+                    S.supersaw(
+                        VOZ[ch] + [VOZ[ch][0][:-1] + "2"],
+                        dur,
+                        corte=1100 if tp == "intro" else 1800,
+                        ataque=0.9 if primera_barra else 0.05,
+                        release=0.35,
+                        semilla=20 + ci,
+                        detune=0.3,
+                        ancho=1.0,
+                    ),
+                    ini,
+                    0.8 if tp == "intro" else 0.55,
+                )
             else:  # drop
                 dur = bfin - a + 0.3
-                pistas["pad"].poner(S.supersaw([RAIZ[ch][:-1] + "3", *VOZ[ch], VOZ[ch][1][:-1] + "5"], dur, corte=4200, ataque=0.01,
-                                               release=0.3, semilla=40 + ci + j, detune=0.3, ancho=1.0), a, 1.0)
+                pistas["pad"].poner(
+                    S.supersaw(
+                        [RAIZ[ch][:-1] + "3", *VOZ[ch], VOZ[ch][1][:-1] + "5"],
+                        dur,
+                        corte=4200,
+                        ataque=0.01,
+                        release=0.3,
+                        semilla=40 + ci + j,
+                        detune=0.3,
+                        ancho=1.0,
+                    ),
+                    a,
+                    1.0,
+                )
         primera_barra = False
         nb = int(round(c["beats"] * 4))
         # arpegio (todo lo que no es caída), hasta la semicorchea previa al build terminado
@@ -297,8 +390,14 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
                 ch = acorde_en(compases, t)
                 vel = (0.55 + 0.45 * (k % 4 == 0)) * (0.75 if tp == "A" else 1.0)
                 prog_i = 1.0 if tp != "intro" else min(1.0, 0.4 + 0.3 * ci)
-                pistas["arp"].poner(S.estereo(S.pluck_fm(S.hz(ARP[ch][patron[k % 8]]), 0.35, indice=1.2 + 1.8 * prog_i, razon=1.0, tau=0.16),
-                                              0.65 if k % 2 else -0.65), t, 0.5 * vel)
+                pistas["arp"].poner(
+                    S.estereo(
+                        S.pluck_fm(S.hz(ARP[ch][patron[k % 8]]), 0.35, indice=1.2 + 1.8 * prog_i, razon=1.0, tau=0.16),
+                        0.65 if k % 2 else -0.65,
+                    ),
+                    t,
+                    0.5 * vel,
+                )
         # batería y bajo
         if tp == "A":
             for b in range(int(c["beats"])):
@@ -312,13 +411,21 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
                     pistas["clap"].poner(S.clap(semilla=ci * 4 + b), t, 0.7)
                     pistas["hats"].poner(S.hat(True, 50), T(b - 0.5), 0.4)
             for k in range(nb):
-                pistas["hats"].poner(S.estereo(S.hat(False, 40 + k % 7), 0.3), T(k / 4), [0.5, 0.22, 0.8, 0.3][k % 4] * 0.5)
+                pistas["hats"].poner(
+                    S.estereo(S.hat(False, 40 + k % 7), 0.3), T(k / 4), [0.5, 0.22, 0.8, 0.3][k % 4] * 0.5
+                )
         elif tp == "build":
             L = c["beats"]
-            golpes = [i * 0.5 for i in range(int(L - 2) * 2)] + [L - 2 + i * 0.25 for i in range(4)] + [L - 1 + i * 0.125 for i in range(6)]
+            golpes = (
+                [i * 0.5 for i in range(int(L - 2) * 2)]
+                + [L - 2 + i * 0.25 for i in range(4)]
+                + [L - 1 + i * 0.125 for i in range(6)]
+            )
             for b in golpes:
                 frac = b / (L - 0.25)
-                pistas["caja"].poner(S.caja(0.25, semilla=int(b * 8) + 100 + ci, brillo=0.8 + 0.4 * frac), T(b), 0.18 + 0.5 * frac ** 1.5)
+                pistas["caja"].poner(
+                    S.caja(0.25, semilla=int(b * 8) + 100 + ci, brillo=0.8 + 0.4 * frac), T(b), 0.18 + 0.5 * frac**1.5
+                )
         elif tp == "drop":
             ultimo = c["fin"] >= t_fin - 1e-6
             for b in range(int(np.ceil(c["beats"] - 1e-6))):
@@ -336,23 +443,36 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
             for k in range(nb):
                 t = T(k / 4)
                 if t < stop - 1e-6 and not (ultimo and k >= nb - 4):
-                    pistas["hats"].poner(S.estereo(S.hat(False, 60 + k % 5), 0.3), t, [0.5, 0.22, 0.8, 0.3][k % 4] * 0.7)
+                    pistas["hats"].poner(
+                        S.estereo(S.hat(False, 60 + k % 5), 0.3), t, [0.5, 0.22, 0.8, 0.3][k % 4] * 0.7
+                    )
             for off in (0.0, 0.75, 1.5, 2.5, 3.0):
                 t = T(off)
                 if off < c["beats"] and t < stop - 1e-6:
                     ch = acorde_en(compases, t)
-                    ep = sum(S.pluck_fm(S.hz(nn), 0.32, indice=0.9, razon=1.0, tau=0.22, tau_indice=0.08) for nn in [RAIZ[ch][:-1] + "3", *VOZ[ch]]) / 3
+                    ep = (
+                        sum(
+                            S.pluck_fm(S.hz(nn), 0.32, indice=0.9, razon=1.0, tau=0.22, tau_indice=0.08)
+                            for nn in [RAIZ[ch][:-1] + "3", *VOZ[ch]]
+                        )
+                        / 3
+                    )
                     pistas["keys"].poner(S.estereo(ep, 0.0), t, 0.8 if off in (0.0, 1.5) else 0.6)
             mel = MEL["FG"] if c["acordes"] == ["F", "G"] else MEL[c["acordes"][0]]
             for off, nt, durb in mel:
                 t = T(off)
                 if off < c["beats"] and t < stop - 1e-6:
-                    voz = lambda ff, dd: 0.6 * S.pluck_fm(ff, dd, indice=1.6, razon=1.0, tau=0.3) + 0.5 * S.pluck_sierra(ff, dd, corte0=5000, tau_f=0.12, tau=0.3)  # noqa: E731
+                    voz = lambda ff, dd: (  # noqa: E731
+                        0.6 * S.pluck_fm(ff, dd, indice=1.6, razon=1.0, tau=0.3)
+                        + 0.5 * S.pluck_sierra(ff, dd, corte0=5000, tau_f=0.12, tau=0.3)
+                    )
                     pistas["lead"].poner(S.doble(voz, S.hz(nt), durb * pb + 0.25, cents=6, pan=0.45), t, 0.9)
             if ultimo:  # relleno antes del final
                 for b in (c["beats"] - 1, c["beats"] - 0.5, c["beats"] - 0.25):
                     if T(b) < stop - 0.06:
-                        pistas["caja"].poner(S.caja(0.25, semilla=int(b * 4) + 400 + ci), T(b), 0.6 + 0.2 * (b - c["beats"] + 1))
+                        pistas["caja"].poner(
+                            S.caja(0.25, semilla=int(b * 4) + 400 + ci), T(b), 0.6 + 0.2 * (b - c["beats"] + 1)
+                        )
     # platillos en cada caída y cada 4 compases de caída
     for t in P:
         pistas["platillo"].poner(S.platillo(2.4, 90), t, 0.8)
@@ -368,15 +488,23 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
         cp = compas_de(compases, t)
         ch = acorde_en(compases, t)
         if cc["rol"] == "menor" and cp["tipo"] == "intro":
-            notas = {"Am": ["A4", "C5", "E5", "B5"], "F": ["A4", "C5", "F5", "G5"], "C": ["G4", "C5", "E5", "D6"], "G": ["G4", "B4", "D5", "A5"]}[ch]
+            notas = {
+                "Am": ["A4", "C5", "E5", "B5"],
+                "F": ["A4", "C5", "F5", "G5"],
+                "C": ["G4", "C5", "E5", "D6"],
+                "G": ["G4", "B4", "D5", "A5"],
+            }[ch]
             camp = sum(S.pluck_fm(S.hz(nn), 2.2, indice=3.5, razon=3.5, tau=0.9, tau_indice=0.25) for nn in notas) / 3
             pistas["campana"].poner(camp, t, 0.6)
             pistas["bajo"].poner(S.sub(S.hz(RAIZ[ch]), 0.6, release=0.3), t, 0.6)
             pistas["campana"].poner(S.swell_invertido(S.estereo(camp), 0.85, ir_hall), t - 0.85, 0.35)
         elif cc["rol"] == "seccion" and t == salida:
             pistas["caja"].poner(S.tom(0.5, 140, 401), t, 0.8)
-        elif cc["rol"] == "seccion" and (cp["tipo"] == "build" or (cp["fin"] - t) < cp["p"] * 1.01 and
-                                         compas_de(compases, cp["fin"] + 1e-3)["tipo"] == "build"):
+        elif cc["rol"] == "seccion" and (
+            cp["tipo"] == "build"
+            or (cp["fin"] - t) < cp["p"] * 1.01
+            and compas_de(compases, cp["fin"] + 1e-3)["tipo"] == "build"
+        ):
             pistas["clap"].poner(S.clap(semilla=77), t, 1.0)
             pistas["caja"].poner(S.caja(semilla=78), t, 0.6)
             pistas["platillo"].poner(S.platillo(1.2, 79, oscuro=True), t, 0.5)
@@ -398,25 +526,61 @@ def corporativa(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
     pistas["bombo"].poner(S.bombo(0.6, tau=0.45, semilla=500), t_fin, 1.0)
     pistas["platillo"].poner(S.platillo(2.6, 93), t_fin, 0.8)
     largo = min(2.4, D - t_fin)
-    pistas["pad"].poner(S.supersaw(["C3", "G3", "C4", "E4", "G4", "C5"], largo, corte=np.linspace(5000, 900, ns(largo)),
-                                   ataque=0.005, release=min(1.4, largo * 0.6), semilla=60), t_fin, 1.0)
+    pistas["pad"].poner(
+        S.supersaw(
+            ["C3", "G3", "C4", "E4", "G4", "C5"],
+            largo,
+            corte=np.linspace(5000, 900, ns(largo)),
+            ataque=0.005,
+            release=min(1.4, largo * 0.6),
+            semilla=60,
+        ),
+        t_fin,
+        1.0,
+    )
     pistas["bajo"].poner(S.sub(S.hz("C2"), min(1.6, largo), release=min(1.0, largo * 0.5)), t_fin, 0.8)
     pistas["bajo"].poner(S.bajo_house(S.hz("C2"), 0.4), t_fin, 0.8)
-    pistas["campana"].poner(sum(S.pluck_fm(S.hz(nn), min(2.0, largo), indice=2.5, razon=3.0, tau=0.8) for nn in ["C5", "E5", "G5"]) / 2.5, t_fin, 0.6)
+    pistas["campana"].poner(
+        sum(S.pluck_fm(S.hz(nn), min(2.0, largo), indice=2.5, razon=3.0, tau=0.8) for nn in ["C5", "E5", "G5"]) / 2.5,
+        t_fin,
+        0.6,
+    )
     if t_boton:
-        boton = sum(S.pluck_fm(S.hz(nn), D - t_boton, indice=2.0, razon=3.0, tau=0.35, tau_indice=0.15) for nn in ["C5", "G5", "C6"]) / 2.5
+        boton = (
+            sum(
+                S.pluck_fm(S.hz(nn), D - t_boton, indice=2.0, razon=3.0, tau=0.35, tau_indice=0.15)
+                for nn in ["C5", "G5", "C6"]
+            )
+            / 2.5
+        )
         pistas["campana"].poner(boton, t_boton, 0.5)
         pistas["bajo"].poner(S.sub(S.hz("C2"), min(0.5, D - t_boton), release=0.4), t_boton, 0.35)
     envios = {
-        "bombo": (1.0, 0.0, 0.0, 0.0, None, None), "clap": (0.42, 0.35, 0.1, 0.0, 200, None),
-        "caja": (0.5, 0.3, 0.1, 0.0, 120, None), "hats": (0.17, 0.05, 0.0, 0.0, 400, None),
-        "platillo": (0.3, 0.0, 0.15, 0.0, 300, None), "bajo": (0.55, 0.0, 0.0, 0.0, 30, "fuerte"),
-        "pad": (0.34, 0.0, 0.32, 0.0, 120, "fuerte"), "arp": (0.42, 0.05, 0.28, 0.4, 220, "suave"),
-        "lead": (0.38, 0.0, 0.3, 0.3, 250, "suave"), "stab": (0.42, 0.1, 0.35, 0.15, 180, None),
-        "campana": (0.42, 0.0, 0.5, 0.2, 200, None), "keys": (0.42, 0.08, 0.2, 0.0, 140, "suave")}
+        "bombo": (1.0, 0.0, 0.0, 0.0, None, None),
+        "clap": (0.42, 0.35, 0.1, 0.0, 200, None),
+        "caja": (0.5, 0.3, 0.1, 0.0, 120, None),
+        "hats": (0.17, 0.05, 0.0, 0.0, 400, None),
+        "platillo": (0.3, 0.0, 0.15, 0.0, 300, None),
+        "bajo": (0.55, 0.0, 0.0, 0.0, 30, "fuerte"),
+        "pad": (0.34, 0.0, 0.32, 0.0, 120, "fuerte"),
+        "arp": (0.42, 0.05, 0.28, 0.4, 220, "suave"),
+        "lead": (0.38, 0.0, 0.3, 0.3, 250, "suave"),
+        "stab": (0.42, 0.1, 0.35, 0.15, 180, None),
+        "campana": (0.42, 0.0, 0.5, 0.2, 200, None),
+        "keys": (0.42, 0.08, 0.2, 0.0, 140, "suave"),
+    }
     # ecualización medida contra perfil-profesional.json (medir_pista.py): cuerpo en 170-400 Hz y aire en 6 kHz
-    mix = mezclar(pistas, envios, ir_sala, ir_hall, kicks, 0.75 * p, D, eq=[(48, -6.5, 1.0), (170, 5.0, 1.0), (400, 6.5, 0.9), (2600, 1.0, 0.8),
-                                                                        (6000, 3.0, 0.8)], estante_db=-1.0)
+    mix = mezclar(
+        pistas,
+        envios,
+        ir_sala,
+        ir_hall,
+        kicks,
+        0.75 * p,
+        D,
+        eq=[(48, -6.5, 1.0), (170, 5.0, 1.0), (400, 6.5, 0.9), (2600, 1.0, 0.8), (6000, 3.0, 0.8)],
+        estante_db=-1.0,
+    )
     sfx = {
         "sfx-whoosh-corto.wav": S.sfx_whoosh(0.7, 0.68, semilla=11),
         "sfx-whoosh-largo.wav": S.sfx_whoosh(1.1, 0.72, f_lo=250, f_hi=4200, pan0=0.8, pan1=-0.8, semilla=14),
@@ -434,18 +598,43 @@ def reese_ancho(f, largo, corte):
     a = S.reese(f, largo, corte=corte, detune=0.14)
     b = S.reese(f, largo, corte=corte, detune=0.21)
     grave = S.filtrar((a + b) / 2, "low", 250)
-    return (S.estereo(grave) + S.estereo(S.filtrar(a, "high", 250), -0.6) * 0.5
-            + S.estereo(S.filtrar(b, "high", 250), 0.6) * 0.5)
+    return (
+        S.estereo(grave)
+        + S.estereo(S.filtrar(a, "high", 250), -0.6) * 0.5
+        + S.estereo(S.filtrar(b, "high", 250), 0.6) * 0.5
+    )
 
 
 def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
     n = ns(D) + ns(4.0)
-    nombres = ["bombo", "caja", "tom", "hats", "platillo", "sub", "reese", "drone", "ostinato", "braam", "metal", "tick"]
+    nombres = [
+        "bombo",
+        "caja",
+        "tom",
+        "hats",
+        "platillo",
+        "sub",
+        "reese",
+        "drone",
+        "ostinato",
+        "braam",
+        "metal",
+        "tick",
+    ]
     pistas = {k: Pista(n) for k in nombres}
     RAIZ = {"Dm": 38, "Bb": 34, "Gm": 31, "A": 33}
-    OST = {"Dm": [50, 62, 57, 62, 65, 62, 57, 62], "Bb": [46, 58, 53, 58, 62, 58, 53, 58],
-           "Gm": [43, 55, 50, 55, 58, 55, 50, 55], "A": [45, 57, 52, 57, 61, 57, 52, 57]}
-    BRAAM = {"Dm": ["D1", "D2", "A2", "D3"], "Bb": ["Bb0", "Bb1", "F2", "Bb2"], "Gm": ["G1", "G2", "D3"], "A": ["A1", "A2", "E3"]}
+    OST = {
+        "Dm": [50, 62, 57, 62, 65, 62, 57, 62],
+        "Bb": [46, 58, 53, 58, 62, 58, 53, 58],
+        "Gm": [43, 55, 50, 55, 58, 55, 50, 55],
+        "A": [45, 57, 52, 57, 61, 57, 52, 57],
+    }
+    BRAAM = {
+        "Dm": ["D1", "D2", "A2", "D3"],
+        "Bb": ["Bb0", "Bb1", "F2", "Bb2"],
+        "Gm": ["G1", "G2", "D3"],
+        "A": ["A1", "A2", "E3"],
+    }
     ir_hall = S.ir_reverb(3.0, 0.025, 0.35, semilla=5)
     ir_sala = S.ir_reverb(1.2, 0.01, 0.3, semilla=6)
     kicks = []
@@ -455,8 +644,21 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
     primera_secc = next((cc["t"] for cc in cortes if cc["rol"] == "seccion" and cc["t"] < P[0]), None)
     # drone desde 0 s hasta el inicio del primer build: el build queda sin grave y la caída marca el escalón
     dl = max(0.6, primer_build["t0"] + 0.1)
-    pistas["drone"].poner(S.supersaw(["D2", "A2", "D3"], dl, corte=np.linspace(250, 700, ns(dl)), ataque=0.5, release=0.6, voces=5,
-                                     detune=0.16, semilla=1, ancho=1.0), 0.0, 1.0)
+    pistas["drone"].poner(
+        S.supersaw(
+            ["D2", "A2", "D3"],
+            dl,
+            corte=np.linspace(250, 700, ns(dl)),
+            ataque=0.5,
+            release=0.6,
+            voces=5,
+            detune=0.16,
+            semilla=1,
+            ancho=1.0,
+        ),
+        0.0,
+        1.0,
+    )
     for ci, c in enumerate(compases):
         tp = c["tipo"]
         T = lambda b, c=c: c["t0"] + b * c["p"]  # noqa: E731
@@ -466,8 +668,11 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
             for k in range(nb):
                 t = T(k / 4)
                 if t < primer_build["t0"] - c["p"]:
-                    pistas["tick"].poner(S.estereo(S.filtrar(S.hat(False, 500 + k % 3)[:, 0], "low", 9000), 0.25 if k % 2 else -0.25), t,
-                                         0.5 if k % 4 == 0 else 0.25)
+                    pistas["tick"].poner(
+                        S.estereo(S.filtrar(S.hat(False, 500 + k % 3)[:, 0], "low", 9000), 0.25 if k % 2 else -0.25),
+                        t,
+                        0.5 if k % 4 == 0 else 0.25,
+                    )
         if tp == "intro":
             for b in range(int(c["beats"])):
                 if primera_secc is None or T(b) < primera_secc:
@@ -480,20 +685,40 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
                 if tp == "build" and t >= ultimo_dieciseisavo(c) - 1e-6:
                     break
                 apertura = min(1.0, max(0.0, (t - (primera_secc or 0)) / max(1.0, P[0] - (primera_secc or 0))))
-                corte0 = 2200 + 5000 * apertura ** 2
-                pistas["ostinato"].poner(S.estereo(S.pluck_sierra(S.hz(OST[acorde_en(compases, t)][k % 8]), 0.18, corte0=corte0, corte1=350,
-                                                                  tau_f=0.05, tau=0.09, q=1.5), 0.65 if k % 2 else -0.65), t, 0.55 + 0.25 * (k % 4 == 0))
+                corte0 = 2200 + 5000 * apertura**2
+                pistas["ostinato"].poner(
+                    S.estereo(
+                        S.pluck_sierra(
+                            S.hz(OST[acorde_en(compases, t)][k % 8]),
+                            0.18,
+                            corte0=corte0,
+                            corte1=350,
+                            tau_f=0.05,
+                            tau=0.09,
+                            q=1.5,
+                        ),
+                        0.65 if k % 2 else -0.65,
+                    ),
+                    t,
+                    0.55 + 0.25 * (k % 4 == 0),
+                )
         if tp == "A":
             for off, g in ((0, 0.8), (1.5, 0.6), (3.5, 0.45)):
                 if off < c["beats"] and T(off) < stop - 1e-6:
                     kicks.append(T(off))
-                    pistas["bombo"].poner(S.bombo(0.6, f0=120, f1=42, tau=0.42, drive=2.2, semilla=ci * 10 + int(off * 2)), T(off), g)
+                    pistas["bombo"].poner(
+                        S.bombo(0.6, f0=120, f1=42, tau=0.42, drive=2.2, semilla=ci * 10 + int(off * 2)), T(off), g
+                    )
                     pistas["sub"].poner(S.sub(S.hz(RAIZ[ch] - 12), 0.35, release=0.2), T(off), 0.5)
             if c["beats"] > 2:
                 pistas["caja"].poner(S.caja(0.5, 170, semilla=ci), T(2), 0.7)
         elif tp == "build":
             L = c["beats"]
-            golpes = [i * 0.5 for i in range(int(L - 2) * 2)] + [L - 2 + i * 0.25 for i in range(4)] + [L - 1 + i * 0.125 for i in range(6)]
+            golpes = (
+                [i * 0.5 for i in range(int(L - 2) * 2)]
+                + [L - 2 + i * 0.25 for i in range(4)]
+                + [L - 1 + i * 0.125 for i in range(6)]
+            )
             menores_aqui = [cc["t"] for cc in cortes if cc["rol"] == "menor" and c["t0"] <= cc["t"] < c["fin"]]
             for b in golpes:
                 if any(abs(T(b) - tm) < 0.06 for tm in menores_aqui):
@@ -502,13 +727,15 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
                 # redoble de toms que sube de 140 a 210 Hz, filtrado sobre 200 Hz: el grave queda guardado para la caída
                 # (sin esto el escalón en graves del corte principal no llegaba a 6 dB)
                 tm = S.filtrar(S.tom(0.35, 140 + 70 * frac, semilla=int(b * 8) + 300 + ci), "high", 200, orden=4)
-                pistas["tom"].poner(tm, T(b), 0.8 * (0.2 + 0.42 * frac ** 1.4))
+                pistas["tom"].poner(tm, T(b), 0.8 * (0.2 + 0.42 * frac**1.4))
         elif tp == "drop":
             for off, g in ((0, 1.0), (0.75, 0.6), (1.5, 0.85), (2.5, 0.7), (3.25, 0.5)):
                 t = T(off)
                 if off < c["beats"] and t < stop - 1e-6:
                     kicks.append(t)
-                    pistas["bombo"].poner(S.bombo(0.6, f0=125, f1=42, tau=0.4, drive=2.4, semilla=600 + ci * 8 + int(off * 4)), t, g)
+                    pistas["bombo"].poner(
+                        S.bombo(0.6, f0=125, f1=42, tau=0.4, drive=2.4, semilla=600 + ci * 8 + int(off * 4)), t, g
+                    )
             if c["beats"] > 2 and T(2) < stop - 1e-6:
                 pistas["caja"].poner(S.caja(0.55, 165, semilla=700 + ci), T(2), 1.0)
             largo = min(c["fin"], stop) - c["t0"] + 0.05
@@ -516,7 +743,11 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
                 pistas["reese"].poner(reese_ancho(S.hz(RAIZ[ch]), largo, 380 + 120 * (ci % 4)), c["t0"], 0.8)
             for k in range(nb):
                 if T(k / 4) < stop - 1e-6:
-                    pistas["hats"].poner(S.estereo(S.hat(False, 800 + k % 4), 0.35 if k % 4 < 2 else -0.35), T(k / 4), (0.5 if k % 2 == 0 else 0.25))
+                    pistas["hats"].poner(
+                        S.estereo(S.hat(False, 800 + k % 4), 0.35 if k % 4 < 2 else -0.35),
+                        T(k / 4),
+                        (0.5 if k % 2 == 0 else 0.25),
+                    )
             for off, f, pan, g in ((3.5, 120, 0.4, 0.6), (3.75, 95, -0.4, 0.7)):
                 if off < c["beats"] and T(off) < stop - 1e-6:
                     pistas["tom"].poner(S.estereo(S.tom(0.4, f, 750 + ci)[:, 0], pan), T(off), g)
@@ -547,12 +778,20 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
             pistas["tom"].poner(S.filtrar(S.tom(0.8, 72, 350, golpe=1.4), "high", 140), t, 1.1)
             pistas["caja"].poner(S.caja(0.4, 165, semilla=351), t, 0.7)
         elif cc["rol"] == "menor":
-            pistas["metal"].poner(S.estereo(S.golpe_metal([260.0, 196.0][k_metal % 2], 1.4, 30 + k_metal), -0.5 if k_metal % 2 == 0 else 0.5), t, 0.6)
+            pistas["metal"].poner(
+                S.estereo(
+                    S.golpe_metal([260.0, 196.0][k_metal % 2], 1.4, 30 + k_metal), -0.5 if k_metal % 2 == 0 else 0.5
+                ),
+                t,
+                0.6,
+            )
             k_metal += 1
         elif t == salida:
             pistas["tom"].poner(S.tom(0.9, 62, 900, golpe=1.4), t, 1.0)
             pistas["platillo"].poner(S.platillo(1.2, 83, oscuro=True), t, 0.6)
-        elif cp["tipo"] == "build" or ((cp["fin"] - t) < cp["p"] * 1.01 and compas_de(compases, cp["fin"] + 1e-3)["tipo"] == "build"):
+        elif cp["tipo"] == "build" or (
+            (cp["fin"] - t) < cp["p"] * 1.01 and compas_de(compases, cp["fin"] + 1e-3)["tipo"] == "build"
+        ):
             pistas["caja"].poner(S.caja(0.5, 160, semilla=77), t, 1.0)
             pistas["tom"].poner(S.tom(0.7, 80, 78), t, 0.9)
             pistas["platillo"].poner(S.platillo(1.6, 79, oscuro=True), t, 0.6)
@@ -570,22 +809,44 @@ def trailer(cortes, P, p, D, compases, t_fin, t_boton, salida, final_ch):
     if salida and t_fin - salida > 0.2:
         pistas["braam"].poner(S.swell_invertido(final[: ns(1.0)], t_fin - salida - 0.05, ir_hall), salida + 0.05, 0.4)
     pistas["metal"].poner(S.golpe_metal(147.0, largo, 33), t_fin, 0.7)
-    pistas["sub"].poner(S.sub(S.hz("D1"), max(0.2, largo - 0.1), glide_desde=120, tau_glide=0.1, release=min(1.6, largo * 0.6)), t_fin, 1.0)
+    pistas["sub"].poner(
+        S.sub(S.hz("D1"), max(0.2, largo - 0.1), glide_desde=120, tau_glide=0.1, release=min(1.6, largo * 0.6)),
+        t_fin,
+        1.0,
+    )
     pistas["platillo"].poner(S.platillo(largo, 84, oscuro=True), t_fin, 0.7)
     kicks.append(t_fin)
     pistas["bombo"].poner(S.bombo(0.9, f0=110, f1=38, tau=0.7, drive=2.6, semilla=901), t_fin, 1.0)
     envios = {
-        "bombo": (1.0, 0.08, 0.0, 0.0, None, None), "caja": (0.55, 0.45, 0.15, 0.0, 120, None),
-        "tom": (0.6, 0.3, 0.15, 0.0, 50, None), "hats": (0.14, 0.05, 0.0, 0.0, 500, None),
-        "platillo": (0.3, 0.0, 0.2, 0.0, 300, None), "sub": (0.42, 0.0, 0.0, 0.0, 25, "fuerte"),
-        "reese": (0.32, 0.0, 0.0, 0.0, 35, "fuerte"), "drone": (0.4, 0.0, 0.25, 0.0, 60, "suave"),
-        "ostinato": (0.44, 0.05, 0.22, 0.3, 150, "suave"), "braam": (0.55, 0.0, 0.3, 0.0, 45, None),
-        "metal": (0.32, 0.0, 0.45, 0.1, 150, None), "tick": (0.2, 0.1, 0.05, 0.1, 2000, None)}
+        "bombo": (1.0, 0.08, 0.0, 0.0, None, None),
+        "caja": (0.55, 0.45, 0.15, 0.0, 120, None),
+        "tom": (0.6, 0.3, 0.15, 0.0, 50, None),
+        "hats": (0.14, 0.05, 0.0, 0.0, 500, None),
+        "platillo": (0.3, 0.0, 0.2, 0.0, 300, None),
+        "sub": (0.42, 0.0, 0.0, 0.0, 25, "fuerte"),
+        "reese": (0.32, 0.0, 0.0, 0.0, 35, "fuerte"),
+        "drone": (0.4, 0.0, 0.25, 0.0, 60, "suave"),
+        "ostinato": (0.44, 0.05, 0.22, 0.3, 150, "suave"),
+        "braam": (0.55, 0.0, 0.3, 0.0, 45, None),
+        "metal": (0.32, 0.0, 0.45, 0.1, 150, None),
+        "tick": (0.2, 0.1, 0.05, 0.1, 2000, None),
+    }
     # -12,5 dB en 40 Hz: el sub en D1 (37 Hz) se comía el margen (medir_pista.py, criterio 2)
-    mix = mezclar(pistas, envios, ir_sala, ir_hall, kicks, 0.75 * p, D, eq=[(40, -12.5, 1.0), (120, -3.5, 0.9), (2400, 4.0, 0.8), (12000, -4.0, 0.7)])
+    mix = mezclar(
+        pistas,
+        envios,
+        ir_sala,
+        ir_hall,
+        kicks,
+        0.75 * p,
+        D,
+        eq=[(40, -12.5, 1.0), (120, -3.5, 0.9), (2400, 4.0, 0.8), (12000, -4.0, 0.7)],
+    )
     sfx = {
         "sfx-whoosh-corto.wav": S.sfx_whoosh(0.65, 0.7, f_lo=250, f_hi=4000, semilla=21, oscuro=True),
-        "sfx-whoosh-largo.wav": S.sfx_whoosh(1.1, 0.75, f_lo=200, f_hi=3000, pan0=0.8, pan1=-0.8, semilla=24, oscuro=True),
+        "sfx-whoosh-largo.wav": S.sfx_whoosh(
+            1.1, 0.75, f_lo=200, f_hi=3000, pan0=0.8, pan1=-0.8, semilla=24, oscuro=True
+        ),
         "sfx-whoosh-salida.wav": S.sfx_whoosh(0.6, 0.72, f_lo=300, f_hi=5000, semilla=25, oscuro=True),
         "sfx-riser.wav": S.sfx_riser(2.2, f0=120, f1=900, semilla=22, oscuro=True),
         "sfx-impacto.wav": S.sfx_impacto(3.0, "trailer", semilla=23),
@@ -602,7 +863,9 @@ def main():
     ap.add_argument("cortes")
     ap.add_argument("--estilo", required=True, choices=sorted(ESTILOS))
     ap.add_argument("--salida", required=True)
-    ap.add_argument("--video", default="video-mudo.mp4", help="video sin audio (ruta tal como la verá planificar_mezcla.py)")
+    ap.add_argument(
+        "--video", default="video-mudo.mp4", help="video sin audio (ruta tal como la verá planificar_mezcla.py)"
+    )
     ap.add_argument("--bpm", type=float, help="forzar tempo (por defecto se busca en el rango del estilo)")
     a = ap.parse_args()
     t0 = time.time()
@@ -624,46 +887,122 @@ def main():
     for c in cortes:
         ancla = max([x for x in P if x <= c["t"] + 1e-9], default=P[0])
         k = (c["t"] - ancla) / p * 4
-        golpes.append({"corte": c.get("nombre", ""), "rol": c["rol"], "t": c["t"], "tiempos_desde_principal": round(k) / 4,
-                       "error_grilla_ms": round((k - round(k)) * p / 4 * 1000, 1), "acento": "instante exacto del corte"})
+        golpes.append(
+            {
+                "corte": c.get("nombre", ""),
+                "rol": c["rol"],
+                "t": c["t"],
+                "tiempos_desde_principal": round(k) / 4,
+                "error_grilla_ms": round((k - round(k)) * p / 4 * 1000, 1),
+                "acento": "instante exacto del corte",
+            }
+        )
     eventos = []
     for c in cortes:
         if c["rol"] == "principal":
             if c["t"] >= RISER_MIN_S:  # el riser dura ~2 s: con un principal más temprano no cabe
-                eventos.append({"nombre": f"riser hacia {c.get('nombre', 'principal')}", "archivo": "sfx-riser.wav", "alinear": "final", "t": c["t"]})
-            eventos.append({"nombre": f"IMPACTO en {c.get('nombre', 'principal')}", "archivo": "sfx-impacto.wav", "alinear": "onset", "t": c["t"]})
+                eventos.append(
+                    {
+                        "nombre": f"riser hacia {c.get('nombre', 'principal')}",
+                        "archivo": "sfx-riser.wav",
+                        "alinear": "final",
+                        "t": c["t"],
+                    }
+                )
+            eventos.append(
+                {
+                    "nombre": f"IMPACTO en {c.get('nombre', 'principal')}",
+                    "archivo": "sfx-impacto.wav",
+                    "alinear": "onset",
+                    "t": c["t"],
+                }
+            )
         elif c["rol"] == "seccion":
             cp = compas_de(compases, c["t"])
-            archivo = "sfx-whoosh-salida.wav" if c["t"] == salida else ("sfx-whoosh-largo.wav" if cp["tipo"] == "drop" else "sfx-whoosh-corto.wav")
-            eventos.append({"nombre": f"whoosh {c.get('nombre', '')}", "archivo": archivo, "alinear": "pico", "t": c["t"]})
-    comp = {"estilo": a.estilo, "bpm": bpm, "tonalidad": ESTILOS[a.estilo]["tonalidad"], "duracion_s": D, "frecuencia_hz": SR,
-            "principales": P, "final": {"t": round(t_fin, 4), "cae_en": tipo_fin, "asentamiento_logo_s": doc.get("final_s"),
-                                        "boton_s": round(t_boton, 4) if t_boton else None, "corte_de_salida_s": salida},
-            "compases": [{"t0": round(c["t0"], 4), "tiempos": round(c["beats"], 3), "tipo": c["tipo"], "acordes": c["acordes"]} for c in compases],
-            "puntos_de_golpe": golpes, "eventos_sfx": eventos, "bombos": len(kicks),
-            "derechos": "100 % propios: todo sintetizado por este código, sin muestras ni modelos de terceros"}
-    json.dump(comp, open(os.path.join(a.salida, "composicion.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    variante = {"nombre": os.path.basename(os.path.normpath(a.salida)), "video": a.video, "duracion_video_s": D,
-                "salida": os.path.basename(os.path.normpath(a.salida)) + ".mp4",
-                "musica": {"archivo": os.path.join(a.salida, "musica.wav"), "titulo": f"{a.estilo} (compuesta por código)", "entrada_s": 0.0,
-                           "bpm": bpm, "t0_fuera_de_beat": False, "fade_out_s": 0.3,
-                           "porque": "compuesta a la medida de los cortes; el final está compuesto y el fundido de 0,3 s es solo una garantía"},
-                "efectos": [{**ev, "archivo": os.path.join(a.salida, ev["archivo"])} for ev in eventos]}
-    json.dump(variante, open(os.path.join(a.salida, "variante.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+            archivo = (
+                "sfx-whoosh-salida.wav"
+                if c["t"] == salida
+                else ("sfx-whoosh-largo.wav" if cp["tipo"] == "drop" else "sfx-whoosh-corto.wav")
+            )
+            eventos.append(
+                {"nombre": f"whoosh {c.get('nombre', '')}", "archivo": archivo, "alinear": "pico", "t": c["t"]}
+            )
+    comp = {
+        "estilo": a.estilo,
+        "bpm": bpm,
+        "tonalidad": ESTILOS[a.estilo]["tonalidad"],
+        "duracion_s": D,
+        "frecuencia_hz": SR,
+        "principales": P,
+        "final": {
+            "t": round(t_fin, 4),
+            "cae_en": tipo_fin,
+            "asentamiento_logo_s": doc.get("final_s"),
+            "boton_s": round(t_boton, 4) if t_boton else None,
+            "corte_de_salida_s": salida,
+        },
+        "compases": [
+            {"t0": round(c["t0"], 4), "tiempos": round(c["beats"], 3), "tipo": c["tipo"], "acordes": c["acordes"]}
+            for c in compases
+        ],
+        "puntos_de_golpe": golpes,
+        "eventos_sfx": eventos,
+        "bombos": len(kicks),
+        "derechos": "100 % propios: todo sintetizado por este código, sin muestras ni modelos de terceros",
+    }
+    json.dump(
+        comp, open(os.path.join(a.salida, "composicion.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False
+    )
+    variante = {
+        "nombre": os.path.basename(os.path.normpath(a.salida)),
+        "video": a.video,
+        "duracion_video_s": D,
+        "salida": os.path.basename(os.path.normpath(a.salida)) + ".mp4",
+        "musica": {
+            "archivo": os.path.join(a.salida, "musica.wav"),
+            "titulo": f"{a.estilo} (compuesta por código)",
+            "entrada_s": 0.0,
+            "bpm": bpm,
+            "t0_fuera_de_beat": False,
+            "fade_out_s": 0.3,
+            "porque": "compuesta a la medida de los cortes; el final está compuesto y el fundido de 0,3 s es solo una garantía",
+        },
+        "efectos": [{**ev, "archivo": os.path.join(a.salida, ev["archivo"])} for ev in eventos],
+    }
+    json.dump(
+        variante, open(os.path.join(a.salida, "variante.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False
+    )
     tiempos.registrar("musica", T_INICIO, estilo=a.estilo, duracion_s=D, bpm=bpm)
     peor = max((abs(g["error_grilla_ms"]) for g in golpes), default=0)
     avisos = []
     if peor > 45:
-        avisos.append(f"un corte queda a {peor} ms de la grilla (> 45 ms): mueve ese corte 1 o 2 cuadros en el storyboard, "
-                      "baja su peso para que el acento lo lleve un efecto, o prueba --bpm con otro tempo del rango")
+        avisos.append(
+            f"un corte queda a {peor} ms de la grilla (> 45 ms): mueve ese corte 1 o 2 cuadros en el storyboard, "
+            "baja su peso para que el acento lo lleve un efecto, o prueba --bpm con otro tempo del rango"
+        )
     if abs(t_fin - P[-1]) < 1e-6:
         avisos.append("el logo se asienta encima del último corte principal: ese corte es también el golpe final")
     if all(c["rol"] != "principal" or c["t"] < RISER_MIN_S for c in cortes):
         avisos.append("ningún principal deja espacio para el riser (>= 2,3 s): va solo el impacto")
     comp["avisos"] = avisos
-    json.dump(comp, open(os.path.join(a.salida, "composicion.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    print(json.dumps({"estilo": a.estilo, "bpm": bpm, "compases_hasta_el_final": len(compases), "principales": len(P), "final_s": round(t_fin, 4),
-                      "peor_error_grilla_ms": peor, "avisos": avisos, "tiempo_s": round(time.time() - t0, 1)}, ensure_ascii=False))
+    json.dump(
+        comp, open(os.path.join(a.salida, "composicion.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False
+    )
+    print(
+        json.dumps(
+            {
+                "estilo": a.estilo,
+                "bpm": bpm,
+                "compases_hasta_el_final": len(compases),
+                "principales": len(P),
+                "final_s": round(t_fin, 4),
+                "peor_error_grilla_ms": peor,
+                "avisos": avisos,
+                "tiempo_s": round(time.time() - t0, 1),
+            },
+            ensure_ascii=False,
+        )
+    )
 
 
 if __name__ == "__main__":

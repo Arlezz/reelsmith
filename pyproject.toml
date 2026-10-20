@@ -1,0 +1,25 @@
+# Reelsmith no es un paquete de Python: este archivo solo fija la versión mínima y el estándar de ruff de CENIA para
+# los scripts de skills/reelsmith/scripts y bench/. Las dependencias están en skills/reelsmith/scripts/requirements.txt.
+[project]
+name = "reelsmith"
+version = "0.3.0"
+requires-python = ">=3.11"
+
+[dependency-groups]
+dev = ["ruff"]
+
+[tool.ruff]
+target-version = "py311"   # sigue a requires-python
+line-length = 120
+
+[tool.ruff.lint]
+# E4/E7/E9/F son los de ruff por defecto. Agregados:
+#   I   orden de imports (isort)
+#   UP  pyupgrade
+#   B   bugbear (B023, cierre sobre la variable del ciclo, ha encontrado errores reales)
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
+# E501 (largo de línea) no se exige a propósito: el formateador se encarga del ancho del código.
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
