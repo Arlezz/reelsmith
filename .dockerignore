@@ -1,0 +1,10 @@
+.git
+.github
+**/__pycache__
+**/.cache
+node_modules
+*.mp4
+*.wav
+*.m4a
+prueba*/
+proyecto/
